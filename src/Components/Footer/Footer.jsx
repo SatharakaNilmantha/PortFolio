@@ -14,7 +14,7 @@ const Footer = () => {
     {
       type: 'phone',
       icon: <FaPhone className="contact-icon" />,
-      value: '+94 76 123 4567', // Replace with your actual number
+      value: '+94 76 587 1905', // Replace with your actual number
       action: 'tel:+94761234567'
     },
     {
