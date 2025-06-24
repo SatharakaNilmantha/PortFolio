@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { FaGithub, FaMobileAlt, FaServer, FaShieldAlt, FaVideo } from 'react-icons/fa';
 import { SiSpring, SiReact, SiMysql, SiFirebase, SiWebrtc, SiTwilio } from 'react-icons/si';
 import './Projects.css';
 
 const Projects = () => {
+  const [loading, setLoading] = useState(true);
+
   const projects = [
     {
       id: 1,
@@ -97,6 +100,34 @@ const Projects = () => {
     }
   ];
 
+  useEffect(() => {
+    // Simulate loading data
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleLinkClick = (e, url) => {
+    if (url === '#') {
+      e.preventDefault();
+      // Optional: Add toast notification or other feedback
+      console.log('This repository is private');
+    }
+    // For all other links, default behavior (opening in new tab) will occur
+  };
+
+  if (loading) {
+    return (
+      <section id="projects" className="projects-section loading">
+        <div className="container">
+          <div className="loading-spinner"></div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="projects" className="projects-section">
       <div className="container">
@@ -141,17 +172,16 @@ const Projects = () => {
                   ))}
                 </div>
                 
-                {project.github && (
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="github-link"
-                  >
-                    <FaGithub />
-                    View on GitHub
-                  </a>
-                )}
+                <a 
+                  href={project.github} 
+                  target={project.github === '#' ? '_self' : '_blank'}
+                  rel="noopener noreferrer"
+                  className={`github-link ${project.github === '#' ? 'private-link' : ''}`}
+                  onClick={(e) => handleLinkClick(e, project.github)}
+                >
+                  <FaGithub />
+                  {project.github === '#' ? 'Private Repository' : 'View on GitHub'}
+                </a>
               </div>
             </motion.div>
           ))}
