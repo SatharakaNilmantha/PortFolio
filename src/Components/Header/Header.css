@@ -1,0 +1,283 @@
+/* 3D Gaming Color Palette */
+:root {
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff2a92;
+  --neon-purple: #c724ff;
+  --neon-green: #00ff88;
+  --deep-blue: #0a0a2a;
+  --text-glow: 0 0 10px currentColor;
+  --game-glow: 0 0 15px currentColor;
+}
+
+.neon-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 0;
+  background: rgba(10, 10, 42, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Gaming Logo Styling */
+.logo-container {
+  perspective: 1000px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-decoration: none;
+}
+
+.gamepad-icon-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.gamepad-icon {
+  position: absolute;
+  font-size: 2.2rem;
+  color: var(--neon-blue);
+  filter: drop-shadow(var(--game-glow) var(--neon-blue));
+  transform-style: preserve-3d;
+  animation: float-icon 3s ease-in-out infinite;
+}
+
+.headset-icon {
+  position: absolute;
+  font-size: 1.2rem;
+  color: var(--neon-pink);
+  filter: drop-shadow(var(--game-glow) var(--neon-pink));
+  right: -5px;
+  bottom: -5px;
+  transform: rotate(15deg);
+  animation: pulse-icon 2s ease-in-out infinite;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  transform-style: preserve-3d;
+}
+
+.logo-3d {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--neon-blue);
+  text-shadow: 
+    0 0 10px var(--neon-blue),
+    0 2px 0 #0066ff,
+    0 4px 0 #0044cc,
+    0 6px 2px rgba(0,0,0,0.5);
+  transform: translateZ(20px);
+  transition: all 0.3s ease;
+}
+
+.logo-3d-alt {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--neon-pink);
+  text-shadow: 
+    0 0 10px var(--neon-pink),
+    0 2px 0 #cc0066,
+    0 4px 0 #99004d,
+    0 6px 2px rgba(0,0,0,0.5);
+  transform: translateZ(20px);
+  transition: all 0.3s ease;
+}
+
+.logo-link:hover .logo-3d {
+  color: var(--neon-green);
+  text-shadow: 
+    0 0 15px var(--neon-green),
+    0 2px 0 #00cc66,
+    0 4px 0 #00994d,
+    0 6px 2px rgba(0,0,0,0.5);
+}
+
+.logo-link:hover .logo-3d-alt {
+  color: var(--neon-purple);
+  text-shadow: 
+    0 0 15px var(--neon-purple),
+    0 2px 0 #7a00cc,
+    0 4px 0 #5a0099,
+    0 6px 2px rgba(0,0,0,0.5);
+}
+
+/* Gaming Navigation */
+.nav-3d {
+  perspective: 1000px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transform-style: preserve-3d;
+}
+
+.nav-icon {
+  font-size: 1.6rem;
+  color: white;
+  margin-bottom: 0.4rem;
+  filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));
+  transform: translateZ(15px);
+  transition: all 0.3s ease;
+}
+
+.nav-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transform: translateZ(10px);
+  transition: all 0.3s ease;
+}
+
+.nav-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--neon-blue);
+  transform: scaleX(0) translateZ(5px);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* Active Link Styling */
+.nav-link.active .nav-icon {
+  color: var(--neon-green);
+  filter: drop-shadow(0 0 10px var(--neon-green));
+}
+
+.nav-link.active .nav-text {
+  color: var(--neon-green);
+  text-shadow: 0 0 10px var(--neon-green);
+}
+
+.nav-link.active .nav-underline {
+  transform: scaleX(1) translateZ(5px);
+  background: var(--neon-green);
+  box-shadow: 0 0 15px var(--neon-green);
+}
+
+.active-indicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 8px;
+  height: 8px;
+  background: var(--neon-green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--neon-green);
+  animation: pulse 1.5s infinite;
+}
+
+.nav-link:hover .nav-icon {
+  color: var(--neon-blue);
+  filter: drop-shadow(0 0 8px var(--neon-blue));
+}
+
+.nav-link:hover .nav-text {
+  color: var(--neon-blue);
+  text-shadow: 0 0 8px var(--neon-blue);
+}
+
+.nav-link:hover .nav-underline {
+  transform: scaleX(1) translateZ(5px);
+  transform-origin: left;
+}
+
+/* Animations */
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+@keyframes pulse-icon {
+  0%, 100% { transform: scale(1) rotate(15deg); }
+  50% { transform: scale(1.2) rotate(15deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .logo-text {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  
+  .logo-3d, .logo-3d-alt {
+    font-size: 1.5rem;
+  }
+  
+  .nav-list {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-link {
+    padding: 0.3rem 0;
+  }
+  
+  .nav-icon {
+    font-size: 1.4rem;
+  }
+  
+  .nav-text {
+    font-size: 0.9rem;
+  }
+  
+  .active-indicator {
+    width: 6px;
+    height: 6px;
+    top: -3px;
+    right: -3px;
+  }
+}

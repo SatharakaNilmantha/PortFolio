@@ -1,0 +1,61 @@
+/* Global Variables */
+:root {
+  --primary: #8b0000;
+  --secondary: #0080ff;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --accent: #ff4081;
+  --muted: #666666;
+  --rgb-1: rgb(255, 0, 0);
+  --rgb-2: rgb(0, 255, 0);
+  --rgb-3: rgb(0, 0, 255);
+  --loading-bg: rgba(10, 10, 10, 0.95);
+}
+
+/* Base Styles */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* RGB Animations */
+@keyframes rgb-shift {
+  0% { border-color: var(--rgb-1); box-shadow: 0 0 15px var(--rgb-1); }
+  33% { border-color: var(--rgb-2); box-shadow: 0 0 15px var(--rgb-2); }
+  66% { border-color: var(--rgb-3); box-shadow: 0 0 15px var(--rgb-3); }
+  100% { border-color: var(--rgb-1); box-shadow: 0 0 15px var(--rgb-1); }
+}
+
+@keyframes rgb-text-shift {
+  0% { color: var(--rgb-1); }
+  33% { color: var(--rgb-2); }
+  66% { color: var(--rgb-3); }
+  100% { color: var(--rgb-1); }
+}
+
+.rgb-border {
+  border: 4px solid var(--rgb-1);
+  animation: rgb-shift 3s infinite;
+  border-radius: 8px;
+}
+
+.rgb-text {
+  animation: rgb-text-shift 3s infinite;
+}
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-content {
+  min-height: calc(100vh - 120px);
+}

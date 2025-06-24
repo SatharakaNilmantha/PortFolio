@@ -1,0 +1,329 @@
+/* Cyberpunk/Neon Styled Footer */
+.cyber-footer {
+  background: linear-gradient(135deg, #0a0a2a 0%, #050515 100%);
+  padding: 80px 0 30px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 243, 255, 0.2);
+
+}
+
+.cyber-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    #00f3ff 20%, 
+    #c724ff 50%, 
+    #00f3ff 80%, 
+    transparent 100%);
+  animation: scanline 4s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.cyber-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.cyber-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+.cyber-title {
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.cyber-glitch {
+  position: relative;
+  color: #fff;
+}
+
+.cyber-glitch::before,
+.cyber-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cyber-glitch::before {
+  color: #00f3ff;
+  animation: glitch-effect 3s infinite;
+  z-index: -1;
+}
+
+.cyber-glitch::after {
+  color: #ff2a92;
+  animation: glitch-effect 2s infinite reverse;
+  z-index: -2;
+}
+
+@keyframes glitch-effect {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 3px); }
+  40% { transform: translate(-3px, -3px); }
+  60% { transform: translate(3px, 3px); }
+  80% { transform: translate(3px, -3px); }
+  100% { transform: translate(0); }
+}
+
+/* Contact Form Styles */
+.cyber-contact-form {
+  background: rgba(10, 10, 42, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 243, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.cyber-input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.cyber-input {
+  width: 100%;
+  padding: 15px;
+  background: rgba(5, 5, 21, 0.7);
+  border: none;
+  border-radius: 4px;
+  color: #e0e0e0;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.cyber-input::placeholder {
+  color: rgba(224, 224, 224, 0.6);
+  font-family: 'Fira Code', monospace;
+}
+
+.cyber-input-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00f3ff, #c724ff);
+  transition: width 0.3s ease;
+}
+
+.cyber-input:focus ~ .cyber-input-border {
+  width: 100%;
+}
+
+.cyber-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.cyber-button {
+  position: relative;
+  background: linear-gradient(90deg, #00f3ff, #c724ff);
+  color: #050515;
+  border: none;
+  padding: 12px 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.cyber-button-text {
+  position: relative;
+  z-index: 2;
+}
+
+.cyber-button-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff2a92, #00ff88);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-button:hover .cyber-button-glitch {
+  opacity: 0.7;
+}
+
+/* Contact Info Styles */
+.cyber-contact-info {
+  background: rgba(10, 10, 42, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 243, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.cyber-contact-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.cyber-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cyber-contact-icon {
+  font-size: 1.2rem;
+  color: #00f3ff;
+  min-width: 30px;
+}
+
+.cyber-contact-details {
+  flex: 1;
+}
+
+.cyber-contact-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+  display: block;
+  position: relative;
+}
+
+.cyber-contact-link:hover {
+  color: #00f3ff;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.cyber-contact-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #00f3ff;
+  transition: width 0.3s ease;
+}
+
+.cyber-contact-link:hover::after {
+  width: 100%;
+}
+
+/* Social Links */
+.cyber-social-links {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.cyber-social-icon {
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.cyber-social-icon:hover {
+  color: #00f3ff;
+  transform: translateY(-5px);
+}
+
+/* Footer Bottom */
+.cyber-footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.cyber-copyright {
+  color: rgba(224, 224, 224, 0.7);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.cyber-crypto {
+  color: #00f3ff;
+  font-weight: bold;
+}
+
+.cyber-highlight {
+  color: #ff2a92;
+  font-weight: bold;
+}
+
+.cyber-credits {
+  color: rgba(224, 224, 224, 0.5);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+}
+
+.cyber-powered {
+  color: #00ff88;
+}
+
+.cyber-tech {
+  color: #c724ff;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .cyber-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .cyber-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cyber-footer {
+    padding: 50px 0 20px;
+  }
+  
+  .cyber-contact-form,
+  .cyber-contact-info {
+    padding: 20px;
+  }
+  
+  .cyber-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+  }
+  
+  .cyber-input {
+    padding: 12px;
+  }
+  
+  .cyber-social-links {
+    margin-top: 30px;
+  }
+}

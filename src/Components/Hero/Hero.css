@@ -1,0 +1,454 @@
+/* Cyberpunk Hero Component with Typing Animation */
+:root {
+  /* Color Palette */
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff2a92;
+  --neon-purple: #c724ff;
+  --neon-green: #00ff88;
+  --whatsapp-green: #25D366;
+  --github-black: #24292e;
+  --linkedin-blue: #0a66c2;
+  --email-red: #db4437;
+  --dark-bg: #0a0a2a;
+  --darker-bg: #050515;
+  --text-glow: 0 0 10px currentColor;
+  --box-glow: 0 0 15px currentColor;
+  
+  /* Typography */
+  --font-main: 'Rajdhani', sans-serif;
+  --font-heading: 'Orbitron', sans-serif;
+  
+  /* Spacing */
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* Animation Timings */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Reset & Smooth Animations */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--darker-bg);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Hero Section - Full Page */
+.cyber-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 180px 10px 80px;
+  overflow: hidden;
+}
+
+/* Background Animation */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(rgba(10, 10, 42, 0.9), rgba(10, 10, 42, 0.9)),
+    url('https://images.unsplash.com/photo-1518770660439-4636190af475') center/cover;
+  z-index: -1;
+  opacity: 0.2;
+  animation: 
+    zoomIn 1.8s var(--ease-smooth) forwards,
+    subtlePulse 16s infinite alternate;
+}
+
+@keyframes zoomIn {
+  from { 
+    transform: scale(1.05); 
+    opacity: 0; 
+    filter: blur(2px);
+  }
+  to { 
+    transform: scale(1); 
+    opacity: 1; 
+    filter: blur(0);
+  }
+}
+
+@keyframes subtlePulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.01); }
+}
+
+/* Main Container Layout */
+.hero-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  gap: 70px;
+  align-items: center;
+}
+
+/* Profile Picture Section */
+.profile-column {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-image-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  filter: grayscale(20%) contrast(110%);
+  animation: 
+    pulse 4s var(--ease-smooth) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.profile-frame {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 5px solid var(--neon-blue);
+  z-index: 1;
+  animation: rgb-pulse 8s infinite var(--ease-smooth);
+}
+
+@keyframes rgb-pulse {
+  0% { 
+    box-shadow: 0 0 15px var(--neon-blue);
+    border-color: var(--neon-blue);
+  }
+  33% { 
+    box-shadow: 0 0 20px var(--neon-pink);
+    border-color: var(--neon-pink);
+  }
+  66% { 
+    box-shadow: 0 0 20px var(--neon-purple);
+    border-color: var(--neon-purple);
+  }
+  100% { 
+    box-shadow: 0 0 15px var(--neon-blue);
+    border-color: var(--neon-blue);
+  }
+}
+
+/* Typing Animation Styles */
+.typing-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: var(--space-sm);
+}
+
+.typing-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.title-part {
+  display: inline-block;
+  text-shadow: var(--text-glow);
+  gap: 2px;
+}
+
+
+/* Add this to your existing CSS */
+.word-space {
+  display: inline-block;
+  width: 0.5em; /* Adjust this value to control space width */
+}
+
+/* Or alternatively, you could add margin to title-part */
+.title-part {
+  margin-right: 0.5em; /* Space after each word */
+}
+
+/* If you want to remove space after last word */
+.title-part:last-child {
+  margin-right: 0;
+}
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--neon-blue);
+  margin-left: 4px;
+  vertical-align: middle;
+  position: absolute;
+  bottom: 0.15em;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Content Styles */
+.content-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-description {
+  margin-top: 20px;
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+}
+
+.expertise-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.expertise-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: rgba(0, 243, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  font-size: 0.95rem;
+  transition: all 0.4s var(--ease-bounce);
+}
+
+.expertise-item:hover {
+  background: rgba(0, 243, 255, 0.2);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+}
+
+/* Social Links */
+.social-container {
+  margin: var(--space-xl) 0;
+}
+
+.social-title {
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  color: var(--neon-green);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s var(--ease-bounce);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+  transition: all 0.8s var(--ease-smooth);
+}
+
+.social-link:hover {
+  transform: translateY(-3px) scale(1.05);
+  color: aliceblue;
+}
+
+.social-link:hover::before {
+  left: 100%;
+}
+
+.social-icon {
+  font-size: 1.3rem;
+  color: var(--neon-blue);
+  transition: all 0.3s var(--ease-smooth);
+}
+
+.social-link:hover .social-icon {
+  transform: scale(1.2);
+}
+
+/* Specific Social Link Hover Effects */
+.social-link.github-link:hover {
+  background: rgba(36, 41, 46, 0.15);
+  border-color: var(--github-black);
+  box-shadow: 0 5px 20px rgba(36, 41, 46, 0.3);
+}
+
+.social-link.github-link:hover .social-icon {
+  color: var(--github-black);
+}
+
+.social-link.linkedin-link:hover {
+  background: rgba(10, 102, 194, 0.15);
+  border-color: var(--linkedin-blue);
+  box-shadow: 0 5px 20px rgba(10, 102, 194, 0.3);
+}
+
+.social-link.linkedin-link:hover .social-icon {
+  color: var(--linkedin-blue);
+}
+
+.social-link.email-link:hover {
+  background: rgba(219, 68, 55, 0.15);
+  border-color: var(--email-red);
+  box-shadow: 0 5px 20px rgba(219, 68, 55, 0.3);
+}
+
+.social-link.email-link:hover .social-icon {
+  color: var(--email-red);
+}
+
+.social-link.whatsapp-link:hover {
+  background: rgba(37, 211, 102, 0.15);
+  border-color: var(--whatsapp-green);
+  box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+}
+
+.social-link.whatsapp-link:hover .social-icon {
+  color: var(--whatsapp-green);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-lg);
+  }
+  
+  .profile-column {
+    margin-bottom: var(--space-md);
+  }
+  
+  .hero-title {
+    justify-content: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .expertise-section {
+    justify-content: center;
+  }
+  
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .cyber-hero {
+    padding: 2rem 1rem;
+  }
+  
+  .profile-image-container {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .social-link {
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .typing-container {
+    white-space: normal;
+  }
+  
+  .typing-wrapper {
+    white-space: normal;
+  }
+  
+  .hero-title {
+    white-space: normal;
+  }
+  
+  .social-links {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .profile-image-container {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .expertise-item {
+    font-size: 0.85rem;
+  }
+}

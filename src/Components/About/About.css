@@ -1,0 +1,255 @@
+/* About.css - Only changing percentage position */
+:root {
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff2a92;
+  --neon-purple: #c724ff;
+  --neon-green: #00ff88;
+  --dark-bg: #0a0a2a;
+  --darker-bg: #050515;
+}
+
+.about-section {
+  background: var(--dark-bg);
+  padding: 100px 0;
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.about-card {
+  background: rgba(10, 10, 30, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 60px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.about-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-block;
+  color: var(--neon-blue);
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.highlight {
+  color: var(--neon-blue);
+  position: relative;
+}
+
+.divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+  margin: 0 auto;
+  border-radius: 3px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.about-description {
+  background: rgba(5, 5, 15, 0.5);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+
+/* About.css (updated color styles) */
+/* Description Text Colors */
+.description-text {
+  color: #e0e0e0; /* Light gray for better readability */
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.text-highlight {
+  color: #00f3ff; /* Neon blue for highlighted text */
+  font-weight: 600;
+}
+
+.expertise-list {
+  padding-left: 20px;
+  color: #d1d1d1; /* Slightly lighter gray than paragraph text */
+  line-height: 1.8;
+}
+
+.list-highlight {
+  color: #c724ff; /* Neon purple for list highlights */
+  font-weight: 600;
+}
+
+/* Existing styles remain the same */
+.about-description {
+  background: rgba(5, 5, 15, 0.5);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.expertise-list {
+  padding-left: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+}
+
+.expertise-list li {
+  margin-bottom: 10px;
+}
+
+.tech-stacks {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.tech-stack {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stack-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* Changed from center to flex-end */
+  margin-bottom: 15px;
+}
+
+.stack-title {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.stack-level {
+  color: var(--neon-blue);
+  font-weight: 600;
+  margin-left: 15px; /* Added margin to separate from title */
+  position: relative;
+  top: -3px; /* Slight adjustment to align with title baseline */
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.tech-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.tech-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 80px;
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tech-icon:hover .icon-wrapper {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+}
+
+.tech-icon span {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .about-card {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 60px 0;
+  }
+  
+  .about-card {
+    padding: 30px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .about-description {
+    padding: 20px;
+  }
+  
+  .tech-icons {
+    justify-content: center;
+  }
+  
+  .stack-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .stack-level {
+    margin-left: 0;
+    margin-top: 5px;
+    align-self: flex-end;
+  }
+}
