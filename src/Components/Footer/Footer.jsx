@@ -43,12 +43,6 @@ const Footer = () => {
       icon: <SiLeetcode className="cyber-contact-icon" />,
       value: 'leetcode.com/Satharaka',
       action: 'https://leetcode.com/Satharaka'
-    },
-    {
-      type: 'resume',
-      icon: <FaFileAlt className="cyber-contact-icon" />,
-      value: 'Download Resume',
-      action: '/resume.pdf'
     }
   ];
 
@@ -84,16 +78,6 @@ const Footer = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleResumeDownload = (e) => {
-    e.preventDefault();
-    const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'Satharaka_Nilmantha_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   return (
@@ -232,23 +216,14 @@ const Footer = () => {
                 >
                   <div className="cyber-contact-icon">{contact.icon}</div>
                   <div className="cyber-contact-details">
-                    {contact.type === 'resume' ? (
-                      <button 
-                        onClick={handleResumeDownload}
-                        className="cyber-contact-link resume-download"
-                      >
-                        {contact.value}
-                      </button>
-                    ) : (
-                      <a 
-                        href={contact.action} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="cyber-contact-link"
-                      >
-                        {contact.value}
-                      </a>
-                    )}
+                    <a 
+                      href={contact.action} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="cyber-contact-link"
+                    >
+                      {contact.value}
+                    </a>
                   </div>
                 </motion.div>
               ))}

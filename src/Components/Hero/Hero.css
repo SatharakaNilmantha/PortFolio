@@ -1,10 +1,11 @@
-/* Cyberpunk Hero Component with Enhanced Animations */
+/* Cyberpunk Hero Component with Gaming Background */
 :root {
   /* Color Palette */
   --neon-blue: #00f3ff;
   --neon-pink: #ff2a92;
   --neon-purple: #c724ff;
   --neon-green: #00ff88;
+  --neon-orange: #ff6b35;
   --whatsapp-green: #25D366;
   --github-black: #24292e;
   --linkedin-blue: #0a66c2;
@@ -57,7 +58,7 @@ body {
   overflow: hidden;
 }
 
-/* Enhanced Background Animation */
+/* Gaming Background with Animated Elements */
 .hero-background {
   position: absolute;
   top: 0;
@@ -65,31 +66,86 @@ body {
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(rgba(10, 10, 42, 0.9), rgba(10, 10, 42, 0.9)),
-    url('https://images.unsplash.com/photo-1518770660439-4636190af475') center/cover;
-  z-index: -1;
-  opacity: 0.2;
-  animation: 
-    backgroundZoom 2s var(--ease-smooth) forwards,
-    backgroundPulse 20s infinite alternate;
+    radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(199, 36, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 42, 146, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0a2a 0%, #050515 100%);
+  z-index: -3;
+  animation: backgroundShift 20s ease-in-out infinite alternate;
 }
 
-@keyframes backgroundZoom {
-  from { 
-    transform: scale(1.1); 
-    opacity: 0; 
-    filter: blur(3px);
+@keyframes backgroundShift {
+  0% {
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(199, 36, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(255, 42, 146, 0.05) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0a2a 0%, #050515 100%);
   }
-  to { 
-    transform: scale(1); 
-    opacity: 0.2; 
-    filter: blur(0);
+  50% {
+    background: 
+      radial-gradient(circle at 80% 20%, rgba(0, 243, 255, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(199, 36, 255, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 60% 60%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0a2a 0%, #050515 100%);
+  }
+  100% {
+    background: 
+      radial-gradient(circle at 60% 30%, rgba(255, 42, 146, 0.12) 0%, transparent 55%),
+      radial-gradient(circle at 30% 70%, rgba(0, 243, 255, 0.12) 0%, transparent 55%),
+      radial-gradient(circle at 70% 80%, rgba(199, 36, 255, 0.08) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0a2a 0%, #050515 100%);
   }
 }
 
-@keyframes backgroundPulse {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.02); }
+/* Floating Gaming Elements */
+.hero-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(0, 243, 255, 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(199, 36, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 42, 146, 0.3), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(0, 255, 136, 0.3), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(0, 243, 255, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: floatingDots 25s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes floatingDots {
+  0% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-20px) translateX(10px); }
+  50% { transform: translateY(-10px) translateX(-5px); }
+  75% { transform: translateY(-30px) translateX(15px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* Gaming Grid Overlay */
+.hero-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridPulse 15s ease-in-out infinite alternate;
+  opacity: 0.3;
+}
+
+@keyframes gridPulse {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.1; }
 }
 
 /* Main Container Layout */
@@ -101,6 +157,8 @@ body {
   width: 100%;
   gap: 70px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 /* Profile Picture Section */
@@ -276,55 +334,6 @@ body {
   background: rgba(0, 243, 255, 0.2);
   border-color: rgba(0, 243, 255, 0.5);
   box-shadow: 0 5px 20px rgba(0, 243, 255, 0.2);
-}
-
-/* Enhanced Resume Download Button */
-.resume-section {
-  margin: var(--space-lg) 0;
-}
-
-.resume-download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
-  color: white;
-  border: none;
-  padding: 1rem 2.5rem;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  font-family: var(--font-main);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s var(--ease-bounce);
-  box-shadow: 0 5px 20px rgba(199, 36, 255, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.resume-download-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: all 0.6s var(--ease-smooth);
-}
-
-.resume-download-btn:hover::before {
-  left: 100%;
-}
-
-.download-icon {
-  font-size: 1.2rem;
-  transition: transform 0.3s var(--ease-bounce);
-}
-
-.resume-download-btn:hover .download-icon {
   transform: translateY(-2px);
 }
 
@@ -479,11 +488,6 @@ body {
   .social-link {
     padding: 0.8rem 1.4rem;
   }
-  
-  .resume-download-btn {
-    padding: 0.9rem 2rem;
-    font-size: 1rem;
-  }
 }
 
 @media (max-width: 576px) {
@@ -513,11 +517,6 @@ body {
   .expertise-item {
     font-size: 0.85rem;
     padding: 0.5rem 1rem;
-  }
-  
-  .resume-download-btn {
-    padding: 0.8rem 1.8rem;
-    font-size: 0.95rem;
   }
   
   .role-container {

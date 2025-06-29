@@ -1,6 +1,6 @@
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import profilePic from '../../Images/satharaka.jpg';
 import './Hero.css';
 
@@ -125,16 +125,6 @@ const Hero = () => {
     }
   ];
 
-  const handleResumeDownload = () => {
-    // Create a temporary link element
-    const link = document.createElement('a');
-    link.href = '/resume.pdf'; // Make sure this file exists in public folder
-    link.download = 'Satharaka_Nilmantha_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <section className="cyber-hero">
       <div className="hero-background"></div>
@@ -230,26 +220,6 @@ const Hero = () => {
                 </motion.div>
               ))}
             </div>
-
-            {/* Resume Download Button */}
-            <motion.div 
-              className="resume-section"
-              variants={itemVariants}
-            >
-              <motion.button 
-                onClick={handleResumeDownload}
-                className="resume-download-btn"
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -3,
-                  boxShadow: "0 10px 30px rgba(199, 36, 255, 0.4)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaDownload className="download-icon" />
-                <span>Download Resume</span>
-              </motion.button>
-            </motion.div>
           </motion.div>
 
           <motion.div 

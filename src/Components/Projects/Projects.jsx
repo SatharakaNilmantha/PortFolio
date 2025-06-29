@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { FaGithub, FaMobileAlt, FaServer, FaShieldAlt, FaVideo, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaMobileAlt, FaServer, FaShieldAlt, FaVideo, FaExternalLinkAlt, FaRobot } from 'react-icons/fa';
 import { SiSpring, SiReact, SiMysql, SiFirebase, SiWebrtc, SiTwilio, SiNodedotjs } from 'react-icons/si';
 import './Projects.css';
 
@@ -78,19 +78,21 @@ const Projects = () => {
       status: 'Completed',
       description: [
         'Developed comprehensive doctor appointment booking system with secure user authentication',
-        'Integrated Twilio API for SMS notifications, appointment reminders, and verification codes',
+        'Integrated React-based AI chatbot for intelligent patient assistance and symptom assessment',
+        'Implemented Twilio API for SMS notifications, appointment reminders, and verification codes',
         'Built admin dashboard for managing doctors, appointments, and system analytics',
-        'Implemented file upload functionality for medical documents and prescription management',
-        'Created responsive design with intuitive user experience for patients and healthcare providers'
+        'Created responsive design with intuitive user experience for patients and healthcare providers',
+        'Added file upload functionality for medical documents and prescription management'
       ],
       techStack: [
         { name: 'Spring Boot', icon: <SiSpring /> },
         { name: 'React.js', icon: <SiReact /> },
+        { name: 'AI Chatbot', icon: <FaRobot /> },
         { name: 'Twilio API', icon: <SiTwilio /> }
       ],
       icon: <FaServer />,
       github: 'https://github.com/SatharakaNilmantha/BookMyDoctor.git',
-      highlights: ['Healthcare Tech', 'SMS Integration', 'File Management', 'Admin Dashboard']
+      highlights: ['Healthcare Tech', 'AI Integration', 'SMS Integration', 'File Management', 'Admin Dashboard']
     },
     {
       id: 5,
@@ -173,10 +175,10 @@ const Projects = () => {
                 <div className="project-header">
                   <div className="project-title-row">
                     <h3 className="project-title">{project.title}</h3>
-                    <span className={`project-status ${project.status.toLowerCase().replace(' ', '-')}`}>
-                      {project.status}
-                    </span>
                   </div>
+                  <span className={`project-status ${project.status.toLowerCase().replace(' ', '-')}`}>
+                    {project.status}
+                  </span>
                   <span className="project-period">{project.period}</span>
                 </div>
                 
