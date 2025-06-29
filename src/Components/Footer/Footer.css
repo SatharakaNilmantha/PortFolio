@@ -7,7 +7,6 @@
   border-top: 1px solid rgba(0, 243, 255, 0.2);
 }
 
-/* Real-time Animated Background */
 .cyber-footer::before {
   content: '';
   position: absolute;
@@ -62,7 +61,6 @@
   }
 }
 
-/* Animated Scanline Effect */
 .cyber-footer::after {
   content: '';
   position: absolute;
@@ -111,12 +109,8 @@
 }
 
 @keyframes titleGlow {
-  0% { 
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-  100% { 
-    text-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.4);
-  }
+  0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
+  100% { text-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.4); }
 }
 
 .cyber-glitch {
@@ -155,7 +149,7 @@
   100% { transform: translate(0); }
 }
 
-/* Enhanced Contact Form Styles */
+/* Contact Form */
 .cyber-contact-form {
   background: rgba(10, 10, 42, 0.7);
   backdrop-filter: blur(15px);
@@ -165,25 +159,6 @@
   box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
   position: relative;
   overflow: hidden;
-}
-
-.cyber-contact-form::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    linear-gradient(45deg, transparent 30%, rgba(0, 243, 255, 0.03) 50%, transparent 70%),
-    linear-gradient(-45deg, transparent 30%, rgba(199, 36, 255, 0.03) 50%, transparent 70%);
-  animation: formShimmer 6s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes formShimmer {
-  0% { opacity: 0.3; }
-  100% { opacity: 0.6; }
 }
 
 .cyber-input-group {
@@ -203,7 +178,6 @@
   outline: none;
   transition: all 0.3s ease;
   position: relative;
-  z-index: 1;
 }
 
 .cyber-input:focus {
@@ -225,6 +199,7 @@
   background: linear-gradient(90deg, #00f3ff, #c724ff);
   transition: width 0.3s ease;
   animation: borderPulse 2s ease-in-out infinite;
+  
 }
 
 @keyframes borderPulse {
@@ -240,6 +215,14 @@
   min-height: 120px;
   resize: vertical;
 }
+
+/* Disable hover glow for Name and Email inputs */
+.cyber-input[type="text"]:hover,
+.cyber-input[type="email"]:hover {
+  background: rgba(5, 5, 21, 0.7);
+  box-shadow: none;
+}
+
 
 /* Enhanced Button Styles */
 .cyber-button {
