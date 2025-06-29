@@ -408,12 +408,12 @@ body {
 
 /* Social Links */
 .social-container {
-  margin: var(--space-xl) 0;
+  margin: var(--space-lg) 0;
 }
 
 .social-title {
   font-weight: 600;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   color: var(--neon-green);
   font-size: 1.2rem;
   letter-spacing: 1px;
