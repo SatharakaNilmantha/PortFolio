@@ -1,74 +1,16 @@
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import profilePic from '../../Images/satharaka.jpg';
 import './Hero.css';
 
 const Hero = () => {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const roles = [
-    "Full-Stack Developer",
-    "Backend Developer", 
-    "Frontend Developer",
-    "Problem Solver",
-    "UI/UX Designer"
-  ];
-
   const titleParts = [
     { text: "Hello,", color: "var(--neon-blue)" },
     { text: "I'm", color: "var(--neon-green)" },
     { text: "Satharaka", color: "var(--neon-pink)" },
     { text: "Nilmantha", color: "var(--neon-purple)" }
   ];
-
-  // Enhanced typing animation for roles with better timing
-  useEffect(() => {
-    const typeSpeed = 120;
-    const deleteSpeed = 80;
-    const pauseTime = 2500;
-    const deleteDelay = 1500;
-
-    if (isPaused) return;
-
-    const timer = setTimeout(() => {
-      const currentRole = roles[currentWordIndex];
-      
-      if (!isDeleting && currentCharIndex < currentRole.length) {
-        setCurrentCharIndex(prev => prev + 1);
-      } else if (isDeleting && currentCharIndex > 0) {
-        setCurrentCharIndex(prev => prev - 1);
-      } else if (!isDeleting && currentCharIndex === currentRole.length) {
-        setIsPaused(true);
-        setTimeout(() => {
-          setIsPaused(false);
-          setIsDeleting(true);
-        }, deleteDelay);
-      } else if (isDeleting && currentCharIndex === 0) {
-        setIsDeleting(false);
-        setCurrentWordIndex(prev => (prev + 1) % roles.length);
-        setIsPaused(true);
-        setTimeout(() => {
-          setIsPaused(false);
-        }, pauseTime);
-      }
-    }, isDeleting ? deleteSpeed : typeSpeed);
-
-    return () => clearTimeout(timer);
-  }, [currentCharIndex, currentWordIndex, isDeleting, isPaused, roles]);
-
-  // Enhanced cursor blinking effect
-  useEffect(() => {
-    const cursorTimer = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 530);
-
-    return () => clearInterval(cursorTimer);
-  }, []);
 
   // Animation variants
   const containerVariants = {
@@ -208,10 +150,7 @@ const Hero = () => {
             transition={{ delay: 0.8, duration: 0.8 }}
           >
             <h2 className="hero-role">
-              <span className="role-text">
-                {roles[currentWordIndex].substring(0, currentCharIndex)}
-              </span>
-              <span className={`typing-cursor ${showCursor ? 'visible' : 'hidden'}`}>|</span>
+              Full-Stack Developer & Problem Solver
             </h2>
           </motion.div>
 

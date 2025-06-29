@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaDiscord, FaFileAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaDiscord, FaFileAlt, FaPaperPlane, FaDownload } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import './Footer.css';
 
@@ -43,6 +43,13 @@ const Footer = () => {
       icon: <SiLeetcode className="cyber-contact-icon" />,
       value: 'leetcode.com/Satharaka',
       action: 'https://leetcode.com/Satharaka'
+    },
+    {
+      type: 'resume',
+      icon: <FaDownload className="cyber-contact-icon" />,
+      value: 'Download Resume',
+      action: '/resume.pdf',
+      isDownload: true
     }
   ];
 
@@ -78,6 +85,16 @@ const Footer = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleResumeDownload = () => {
+    // Create a temporary link element to trigger download
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'Satharaka_Nilmantha_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -216,14 +233,23 @@ const Footer = () => {
                 >
                   <div className="cyber-contact-icon">{contact.icon}</div>
                   <div className="cyber-contact-details">
-                    <a 
-                      href={contact.action} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="cyber-contact-link"
-                    >
-                      {contact.value}
-                    </a>
+                    {contact.isDownload ? (
+                      <button 
+                        onClick={handleResumeDownload}
+                        className="cyber-contact-link resume-download"
+                      >
+                        {contact.value}
+                      </button>
+                    ) : (
+                      <a 
+                        href={contact.action} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="cyber-contact-link"
+                      >
+                        {contact.value}
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}
