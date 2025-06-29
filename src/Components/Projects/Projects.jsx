@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { FaGithub, FaMobileAlt, FaServer, FaShieldAlt, FaVideo } from 'react-icons/fa';
-import { SiSpring, SiReact, SiMysql, SiFirebase, SiWebrtc, SiTwilio } from 'react-icons/si';
+import { FaGithub, FaMobileAlt, FaServer, FaShieldAlt, FaVideo, FaExternalLinkAlt, FaRobot } from 'react-icons/fa';
+import { SiSpring, SiReact, SiMysql, SiFirebase, SiWebrtc, SiTwilio, SiNodedotjs } from 'react-icons/si';
 import './Projects.css';
 
 const Projects = () => {
@@ -12,96 +12,112 @@ const Projects = () => {
       id: 1,
       title: 'HealthHub – Smart Hospital Management System',
       period: 'Jan 2025 - May 2025',
+      status: 'Completed',
       description: [
-        'Contributed to full-stack development of a role-based hospital management system',
-        'Designed responsive UI for patients, doctors, admins, and receptionists',
-        'Implemented real-time appointment booking and doctor prescription features',
-        'Conducted manual and exploratory QA testing, validated APIs with Postman'
-      ],
-      techStack: [
-        { name: 'Java Spring Boot', icon: <SiSpring /> },
-        { name: 'React.js', icon: <SiReact /> },
-        { name: 'MySQL', icon: <SiMysql /> }
-      ],
-      icon: <FaServer />,
-      github: 'https://github.com/SatharakaNilmantha/HealthHub_Smart-Hospital.git'
-    },
-    {
-      id: 2,
-      title: 'Smart Pet Feeder – IoT-Based Automated Feeding System',
-      period: 'Jan 2025 - May 2025',
-      description: [
-        'Developed IoT pet feeder using ESP32 and C with real-time food level monitoring',
-        'Built React Native mobile app for remote control and scheduling',
-        'Implemented dynamic portion control and offline functionality',
-        'Integrated with Firebase for instant alerts and data synchronization'
-      ],
-      techStack: [
-        { name: 'ESP32', icon: <FaMobileAlt /> },
-        { name: 'React Native', icon: <SiReact /> },
-        { name: 'Firebase', icon: <SiFirebase /> }
-      ],
-      icon: <FaMobileAlt />,
-      github: 'https://github.com/SatharakaNilmantha/Smart-food-feeder.git'
-    },
-    {
-      id: 3,
-      title: 'ProConnect – WebRTC Video Conferencing Application',
-      period: 'Apr 2025',
-      description: [
-        'Developed video conferencing app with HD video/audio calls and screen sharing',
-        'Implemented WebRTC for low-latency peer-to-peer media streaming',
-        'Built signaling server with Socket.io for connection management',
-        'Created responsive frontend with modern JavaScript'
-      ],
-      techStack: [
-        { name: 'WebRTC', icon: <SiWebrtc /> },
-        { name: 'Node.js', icon: <FaServer /> },
-        { name: 'Socket.io', icon: <FaVideo /> }
-      ],
-      icon: <FaVideo />,
-      github: 'https://github.com/SatharakaNilmantha/ProConnect_WebRTC-online-meeting-platform.git'
-    },
-    {
-      id: 4,
-      title: 'BookMyDoctor – Appointment Booking System',
-      period: 'Nov 2024 - Jun 2025',
-      description: [
-        'Developed web-based doctor appointment system with secure authentication',
-        'Integrated Twilio for SMS notifications and appointment reminders',
-        'Built admin features for managing appointments and doctor registration',
-        'Implemented file handling for document uploads'
+        'Architected and developed a comprehensive role-based hospital management system serving 4 user types',
+        'Built responsive React.js frontend with modern UI/UX design and real-time data synchronization',
+        'Designed RESTful APIs using Spring Boot with JWT authentication and role-based access control',
+        'Implemented advanced features: appointment scheduling, prescription management, and patient records',
+        'Conducted comprehensive testing including unit tests, integration tests, and API validation with Postman'
       ],
       techStack: [
         { name: 'Spring Boot', icon: <SiSpring /> },
         { name: 'React.js', icon: <SiReact /> },
-        { name: 'Twilio', icon: <SiTwilio /> }
+        { name: 'MySQL', icon: <SiMysql /> }
       ],
       icon: <FaServer />,
-      github: 'https://github.com/SatharakaNilmantha/BookMyDoctor.git'
+      github: 'https://github.com/SatharakaNilmantha/HealthHub_Smart-Hospital.git',
+      highlights: ['Full-Stack', 'Authentication', 'Database Design', 'API Development']
+    },
+    {
+      id: 2,
+      title: 'Smart Pet Feeder – IoT Automated System',
+      period: 'Jan 2025 - May 2025',
+      status: 'Completed',
+      description: [
+        'Developed IoT-based pet feeding system using ESP32 microcontroller with C programming',
+        'Created React Native mobile application for remote monitoring and feeding control',
+        'Implemented real-time food level monitoring with ultrasonic sensors and servo motor control',
+        'Integrated Firebase for cloud data storage, push notifications, and offline functionality',
+        'Built scheduling system with portion control and automated feeding based on pet profiles'
+      ],
+      techStack: [
+        { name: 'ESP32/C', icon: <FaMobileAlt /> },
+        { name: 'React Native', icon: <SiReact /> },
+        { name: 'Firebase', icon: <SiFirebase /> }
+      ],
+      icon: <FaMobileAlt />,
+      github: 'https://github.com/SatharakaNilmantha/Smart-food-feeder.git',
+      highlights: ['IoT Development', 'Mobile App', 'Hardware Integration', 'Cloud Services']
+    },
+    {
+      id: 3,
+      title: 'ProConnect – WebRTC Video Conferencing',
+      period: 'Apr 2025',
+      status: 'Completed',
+      description: [
+        'Built real-time video conferencing application with HD video/audio streaming capabilities',
+        'Implemented WebRTC technology for peer-to-peer communication with low latency',
+        'Developed Node.js signaling server using Socket.io for connection management and room handling',
+        'Created responsive web interface with screen sharing, chat functionality, and meeting controls',
+        'Optimized for cross-browser compatibility and mobile responsiveness'
+      ],
+      techStack: [
+        { name: 'WebRTC', icon: <SiWebrtc /> },
+        { name: 'Node.js', icon: <SiNodedotjs /> },
+        { name: 'Socket.io', icon: <FaVideo /> }
+      ],
+      icon: <FaVideo />,
+      github: 'https://github.com/SatharakaNilmantha/ProConnect_WebRTC-online-meeting-platform.git',
+      highlights: ['Real-time Communication', 'WebRTC', 'Socket Programming', 'Media Streaming']
+    },
+    {
+      id: 4,
+      title: 'BookMyDoctor – Appointment System',
+      period: 'Nov 2024 - Jun 2025',
+      status: 'Completed',
+      description: [
+        'Developed comprehensive doctor appointment booking system with secure user authentication',
+        'Integrated React-based AI chatbot for intelligent patient assistance and symptom assessment',
+        'Implemented Twilio API for SMS notifications, appointment reminders, and verification codes',
+        'Built admin dashboard for managing doctors, appointments, and system analytics',
+        'Created responsive design with intuitive user experience for patients and healthcare providers',
+        'Added file upload functionality for medical documents and prescription management'
+      ],
+      techStack: [
+        { name: 'Spring Boot', icon: <SiSpring /> },
+        { name: 'React.js', icon: <SiReact /> },
+        { name: 'AI Chatbot', icon: <FaRobot /> },
+        { name: 'Twilio API', icon: <SiTwilio /> }
+      ],
+      icon: <FaServer />,
+      github: 'https://github.com/SatharakaNilmantha/BookMyDoctor.git',
+      highlights: ['Healthcare Tech', 'AI Integration', 'SMS Integration', 'File Management', 'Admin Dashboard']
     },
     {
       id: 5,
       title: 'ML-Based Intrusion Detection System',
       period: 'Jan 2025 - Present',
+      status: 'In Development',
       description: [
-        'Researching real-time IDS to detect Layer 2 attacks on public Wi-Fi',
-        'Implementing model quantization for edge device deployment',
-        'Integrating SmartIDS plugin with pfSense for live traffic analysis',
-        'Benchmarking against Arpwatch and Snort'
+        'Researching and developing real-time IDS for detecting Layer 2 network attacks on public Wi-Fi',
+        'Implementing machine learning models with quantization techniques for edge device deployment',
+        'Integrating custom SmartIDS plugin with pfSense firewall for live network traffic analysis',
+        'Conducting performance benchmarking against industry standards like Arpwatch and Snort',
+        'Focusing on ARP spoofing, MAC flooding, and DHCP starvation attack detection'
       ],
       techStack: [
-        { name: 'Python', icon: <FaShieldAlt /> },
-        { name: 'Machine Learning', icon: <FaShieldAlt /> },
-        { name: 'Network Security', icon: <FaShieldAlt /> }
+        { name: 'Python/ML', icon: <FaShieldAlt /> },
+        { name: 'Network Security', icon: <FaShieldAlt /> },
+        { name: 'pfSense', icon: <FaShieldAlt /> }
       ],
       icon: <FaShieldAlt />,
-      github: '#'
+      github: '#',
+      highlights: ['Machine Learning', 'Cybersecurity', 'Network Analysis', 'Research Project']
     }
   ];
 
   useEffect(() => {
-    // Simulate loading data
     const timer = setTimeout(() => {
       setLoading(false);
     }, 500);
@@ -112,10 +128,8 @@ const Projects = () => {
   const handleLinkClick = (e, url) => {
     if (url === '#') {
       e.preventDefault();
-      // Optional: Add toast notification or other feedback
-      console.log('This repository is private');
+      console.log('This repository is private or in development');
     }
-    // For all other links, default behavior (opening in new tab) will occur
   };
 
   if (loading) {
@@ -131,14 +145,20 @@ const Projects = () => {
   return (
     <section id="projects" className="projects-section">
       <div className="container">
-        <motion.h2 
-          className="section-title"
+        <motion.div 
+          className="projects-header"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          PROJECTS
-        </motion.h2>
+          <span className="section-tag">MY WORK</span>
+          <h2 className="section-title">
+            Featured <span className="highlight">Projects</span>
+          </h2>
+          <p className="section-subtitle">
+            A showcase of my full-stack development expertise, from web applications to IoT systems
+          </p>
+        </motion.div>
 
         <div className="timeline">
           {projects.map((project, index) => (
@@ -153,8 +173,13 @@ const Projects = () => {
               <div className="timeline-content">
                 <div className="project-icon">{project.icon}</div>
                 <div className="project-header">
-                  <h3 className="project-title">{project.title}</h3>
-                  <span className="project-period">{project.period}</span>
+                  <div className="project-title-row">
+                    <h3 className="project-title">{project.title}</h3>
+                    <span className={`project-status ${project.status.toLowerCase().replace(' ', '-')}`}>
+                      {project.status}
+                    </span>
+                    <span className="project-period">{project.period}</span>
+                  </div>
                 </div>
                 
                 <ul className="project-description">
@@ -162,6 +187,15 @@ const Projects = () => {
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
+
+                {/* Project Highlights */}
+                <div className="project-highlights">
+                  {project.highlights.map((highlight, i) => (
+                    <span key={i} className="highlight-tag">
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
                 
                 <div className="tech-stack">
                   {project.techStack.map((tech, i) => (
@@ -172,20 +206,38 @@ const Projects = () => {
                   ))}
                 </div>
                 
-                <a 
-                  href={project.github} 
-                  target={project.github === '#' ? '_self' : '_blank'}
-                  rel="noopener noreferrer"
-                  className={`github-link ${project.github === '#' ? 'private-link' : ''}`}
-                  onClick={(e) => handleLinkClick(e, project.github)}
-                >
-                  <FaGithub />
-                  {project.github === '#' ? 'Private Repository' : 'View on GitHub'}
-                </a>
+                <div className="project-links">
+                  <a 
+                    href={project.github} 
+                    target={project.github === '#' ? '_self' : '_blank'}
+                    rel="noopener noreferrer"
+                    className={`project-link github-link ${project.github === '#' ? 'private-link' : ''}`}
+                    onClick={(e) => handleLinkClick(e, project.github)}
+                  >
+                    <FaGithub />
+                    {project.github === '#' ? 'Private Repository' : 'View Source Code'}
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Call to Action */}
+        <motion.div 
+          className="projects-cta"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h3>Interested in collaborating?</h3>
+          <p>I'm always open to discussing new opportunities and innovative projects.</p>
+          <a href="#contact" className="cta-button">
+            Let's Connect
+            <FaExternalLinkAlt />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

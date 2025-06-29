@@ -1,14 +1,69 @@
-/* Cyberpunk/Neon Styled Footer */
+/* Enhanced Cyberpunk/Neon Styled Footer with Real-time Animations */
 .cyber-footer {
   background: linear-gradient(135deg, #0a0a2a 0%, #050515 100%);
   padding: 80px 0 30px;
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(0, 243, 255, 0.2);
-
 }
 
+/* Real-time Animated Background */
 .cyber-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(199, 36, 255, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 42, 146, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 55%);
+  z-index: -2;
+  animation: footerBackgroundShift 16s ease-in-out infinite alternate;
+}
+
+@keyframes footerBackgroundShift {
+  0% {
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(199, 36, 255, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(255, 42, 146, 0.08) 0%, transparent 60%),
+      radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 55%);
+  }
+  25% {
+    background: 
+      radial-gradient(circle at 80% 60%, rgba(255, 107, 53, 0.14) 0%, transparent 55%),
+      radial-gradient(circle at 20% 40%, rgba(0, 243, 255, 0.11) 0%, transparent 50%),
+      radial-gradient(circle at 60% 20%, rgba(199, 36, 255, 0.13) 0%, transparent 65%),
+      radial-gradient(circle at 40% 90%, rgba(255, 255, 0, 0.09) 0%, transparent 45%);
+  }
+  50% {
+    background: 
+      radial-gradient(circle at 10% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 90% 20%, rgba(255, 42, 146, 0.12) 0%, transparent 55%),
+      radial-gradient(circle at 30% 50%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(199, 36, 255, 0.13) 0%, transparent 60%);
+  }
+  75% {
+    background: 
+      radial-gradient(circle at 60% 10%, rgba(255, 255, 0, 0.13) 0%, transparent 50%),
+      radial-gradient(circle at 40% 70%, rgba(255, 107, 53, 0.11) 0%, transparent 55%),
+      radial-gradient(circle at 90% 90%, rgba(0, 243, 255, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 10% 30%, rgba(0, 255, 136, 0.12) 0%, transparent 50%);
+  }
+  100% {
+    background: 
+      radial-gradient(circle at 70% 40%, rgba(199, 36, 255, 0.17) 0%, transparent 55%),
+      radial-gradient(circle at 30% 80%, rgba(255, 42, 146, 0.14) 0%, transparent 50%),
+      radial-gradient(circle at 90% 60%, rgba(0, 255, 136, 0.13) 0%, transparent 60%),
+      radial-gradient(circle at 20% 20%, rgba(0, 243, 255, 0.11) 0%, transparent 55%);
+  }
+}
+
+/* Animated Scanline Effect */
+.cyber-footer::after {
   content: '';
   position: absolute;
   top: 0;
@@ -22,6 +77,7 @@
     #00f3ff 80%, 
     transparent 100%);
   animation: scanline 4s linear infinite;
+  z-index: -1;
 }
 
 @keyframes scanline {
@@ -33,6 +89,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .cyber-grid {
@@ -49,6 +107,16 @@
   margin-bottom: 30px;
   position: relative;
   display: inline-block;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  0% { 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% { 
+    text-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.4);
+  }
 }
 
 .cyber-glitch {
@@ -87,14 +155,35 @@
   100% { transform: translate(0); }
 }
 
-/* Contact Form Styles */
+/* Enhanced Contact Form Styles */
 .cyber-contact-form {
-  background: rgba(10, 10, 42, 0.6);
-  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 42, 0.7);
+  backdrop-filter: blur(15px);
   padding: 30px;
   border-radius: 8px;
   border: 1px solid rgba(0, 243, 255, 0.1);
   box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-contact-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, transparent 30%, rgba(0, 243, 255, 0.03) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(199, 36, 255, 0.03) 50%, transparent 70%);
+  animation: formShimmer 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes formShimmer {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.6; }
 }
 
 .cyber-input-group {
@@ -112,6 +201,14 @@
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
   outline: none;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.cyber-input:focus {
+  background: rgba(5, 5, 21, 0.9);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
 }
 
 .cyber-input::placeholder {
@@ -127,6 +224,12 @@
   height: 2px;
   background: linear-gradient(90deg, #00f3ff, #c724ff);
   transition: width 0.3s ease;
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.3); }
+  50% { box-shadow: 0 0 15px rgba(199, 36, 255, 0.5); }
 }
 
 .cyber-input:focus ~ .cyber-input-border {
@@ -138,6 +241,7 @@
   resize: vertical;
 }
 
+/* Enhanced Button Styles */
 .cyber-button {
   position: relative;
   background: linear-gradient(90deg, #00f3ff, #c724ff);
@@ -152,11 +256,33 @@
   overflow: hidden;
   border-radius: 4px;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  min-width: 150px;
+}
+
+.cyber-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .cyber-button-text {
   position: relative;
   z-index: 2;
+}
+
+.cyber-button-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 0.9rem;
+  animation: iconFloat 2s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(3px); }
 }
 
 .cyber-button-glitch {
@@ -170,18 +296,83 @@
   transition: opacity 0.3s ease;
 }
 
-.cyber-button:hover .cyber-button-glitch {
+.cyber-button:hover:not(:disabled) .cyber-button-glitch {
   opacity: 0.7;
+  animation: buttonGlitch 0.3s ease;
+}
+
+@keyframes buttonGlitch {
+  0% { transform: translate(0); }
+  25% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, -2px); }
+  75% { transform: translate(-1px, 1px); }
+  100% { transform: translate(0); }
+}
+
+/* Form Status Messages */
+.submit-success {
+  color: #00ff88;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 4px;
+  animation: successGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes successGlow {
+  0% { box-shadow: 0 0 5px rgba(0, 255, 136, 0.3); }
+  100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.5); }
+}
+
+.submit-error {
+  color: #ff2a92;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(255, 42, 146, 0.1);
+  border: 1px solid rgba(255, 42, 146, 0.3);
+  border-radius: 4px;
+  animation: errorGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes errorGlow {
+  0% { box-shadow: 0 0 5px rgba(255, 42, 146, 0.3); }
+  100% { box-shadow: 0 0 15px rgba(255, 42, 146, 0.5); }
 }
 
 /* Contact Info Styles */
 .cyber-contact-info {
-  background: rgba(10, 10, 42, 0.6);
-  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 42, 0.7);
+  backdrop-filter: blur(15px);
   padding: 30px;
   border-radius: 8px;
   border: 1px solid rgba(0, 243, 255, 0.1);
   box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-contact-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(135deg, transparent 30%, rgba(199, 36, 255, 0.03) 50%, transparent 70%),
+    linear-gradient(-135deg, transparent 30%, rgba(0, 243, 255, 0.03) 50%, transparent 70%);
+  animation: contactInfoShimmer 7s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes contactInfoShimmer {
+  0% { opacity: 0.4; transform: rotate(0deg); }
+  100% { opacity: 0.7; transform: rotate(1deg); }
 }
 
 .cyber-contact-list {
@@ -194,12 +385,56 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-contact-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.cyber-contact-item:hover::before {
+  left: 100%;
+}
+
+.cyber-contact-item:hover {
+  background: rgba(0, 243, 255, 0.05);
+  transform: translateX(5px);
 }
 
 .cyber-contact-icon {
   font-size: 1.2rem;
   color: #00f3ff;
   min-width: 30px;
+  transition: all 0.3s ease;
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% { 
+    text-shadow: 0 0 5px #00f3ff;
+    transform: scale(1);
+  }
+  50% { 
+    text-shadow: 0 0 15px #00f3ff, 0 0 25px #00f3ff;
+    transform: scale(1.1);
+  }
+}
+
+.cyber-contact-item:hover .cyber-contact-icon {
+  transform: scale(1.2) rotate(5deg);
+  color: #c724ff;
+  text-shadow: 0 0 15px #c724ff;
 }
 
 .cyber-contact-details {
@@ -213,22 +448,35 @@
   transition: all 0.3s ease;
   display: block;
   position: relative;
+  padding: 5px 0;
+}
+
+.cyber-contact-link.resume-download {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  font-size: inherit;
+  text-align: left;
+  width: 100%;
 }
 
 .cyber-contact-link:hover {
   color: #00f3ff;
   text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  transform: translateX(5px);
 }
 
 .cyber-contact-link::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 1px;
   background: #00f3ff;
   transition: width 0.3s ease;
+  box-shadow: 0 0 5px #00f3ff;
 }
 
 .cyber-contact-link:hover::after {
@@ -247,11 +495,36 @@
   color: #e0e0e0;
   font-size: 1.5rem;
   transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-social-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 243, 255, 0.2), transparent);
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.cyber-social-icon:hover::before {
+  transform: scale(1);
 }
 
 .cyber-social-icon:hover {
   color: #00f3ff;
-  transform: translateY(-5px);
+  background: rgba(0, 243, 255, 0.1);
+  border-color: rgba(0, 243, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+  transform: translateY(-5px) rotate(5deg);
 }
 
 /* Footer Bottom */
@@ -259,6 +532,23 @@
   text-align: center;
   padding-top: 30px;
   border-top: 1px solid rgba(0, 243, 255, 0.1);
+  position: relative;
+}
+
+.cyber-footer-bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00f3ff, #c724ff, #00f3ff, transparent);
+  animation: footerBorderGlow 4s linear infinite;
+}
+
+@keyframes footerBorderGlow {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .cyber-copyright {
@@ -266,16 +556,34 @@
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
   margin-bottom: 10px;
+  animation: copyrightGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes copyrightGlow {
+  0% { text-shadow: 0 0 5px rgba(224, 224, 224, 0.3); }
+  100% { text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
 }
 
 .cyber-crypto {
   color: #00f3ff;
   font-weight: bold;
+  animation: cryptoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes cryptoGlow {
+  0% { text-shadow: 0 0 5px #00f3ff; }
+  100% { text-shadow: 0 0 15px #00f3ff, 0 0 25px #00f3ff; }
 }
 
 .cyber-highlight {
   color: #ff2a92;
   font-weight: bold;
+  animation: highlightGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes highlightGlow {
+  0% { text-shadow: 0 0 5px #ff2a92; }
+  100% { text-shadow: 0 0 15px #ff2a92, 0 0 25px #ff2a92; }
 }
 
 .cyber-credits {
@@ -286,10 +594,22 @@
 
 .cyber-powered {
   color: #00ff88;
+  animation: poweredGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes poweredGlow {
+  0% { text-shadow: 0 0 5px #00ff88; }
+  100% { text-shadow: 0 0 10px #00ff88, 0 0 15px #00ff88; }
 }
 
 .cyber-tech {
   color: #c724ff;
+  animation: techGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes techGlow {
+  0% { text-shadow: 0 0 5px #c724ff; }
+  100% { text-shadow: 0 0 10px #c724ff, 0 0 15px #c724ff; }
 }
 
 /* Responsive Design */
@@ -325,5 +645,11 @@
   
   .cyber-social-links {
     margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .cyber-button {
+    width: 100%;
   }
 }
