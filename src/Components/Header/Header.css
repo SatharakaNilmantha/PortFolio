@@ -1,10 +1,9 @@
-/* 3D Gaming Color Palette with Enhanced Background */
+/* 3D Gaming Color Palette */
 :root {
   --neon-blue: #00f3ff;
   --neon-pink: #ff2a92;
   --neon-purple: #c724ff;
   --neon-green: #00ff88;
-  --neon-orange: #ff6b35;
   --deep-blue: #0a0a2a;
   --text-glow: 0 0 10px currentColor;
   --game-glow: 0 0 15px currentColor;
@@ -21,80 +20,6 @@
   border-bottom: 1px solid rgba(0, 243, 255, 0.3);
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  overflow: hidden;
-}
-
-/* Enhanced Gaming Background for Header */
-.neon-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 80% 50%, rgba(199, 36, 255, 0.06) 0%, transparent 40%),
-    linear-gradient(90deg, rgba(0, 243, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(rgba(0, 243, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
-  animation: headerBackgroundShift 12s ease-in-out infinite alternate, headerGridMove 20s linear infinite;
-  opacity: 0.6;
-  z-index: -1;
-}
-
-@keyframes headerBackgroundShift {
-  0% {
-    background: 
-      radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 80% 50%, rgba(199, 36, 255, 0.06) 0%, transparent 40%),
-      linear-gradient(90deg, rgba(0, 243, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(rgba(0, 243, 255, 0.02) 1px, transparent 1px);
-  }
-  50% {
-    background: 
-      radial-gradient(circle at 80% 50%, rgba(255, 42, 146, 0.1) 0%, transparent 45%),
-      radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.08) 0%, transparent 40%),
-      linear-gradient(90deg, rgba(199, 36, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(rgba(199, 36, 255, 0.02) 1px, transparent 1px);
-  }
-  100% {
-    background: 
-      radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.06) 0%, transparent 35%),
-      linear-gradient(90deg, rgba(0, 255, 136, 0.02) 1px, transparent 1px),
-      linear-gradient(rgba(0, 255, 136, 0.02) 1px, transparent 1px);
-  }
-}
-
-@keyframes headerGridMove {
-  0% { background-position: 0 0, 0 0, 0 0, 0 0; }
-  100% { background-position: 0 0, 0 0, 50px 50px, 50px 50px; }
-}
-
-/* Floating particles for header */
-.neon-header::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(1px 1px at 25px 15px, rgba(0, 243, 255, 0.4), transparent),
-    radial-gradient(1px 1px at 75px 35px, rgba(199, 36, 255, 0.4), transparent),
-    radial-gradient(1px 1px at 125px 25px, rgba(255, 42, 146, 0.4), transparent),
-    radial-gradient(1px 1px at 175px 45px, rgba(0, 255, 136, 0.4), transparent);
-  background-repeat: repeat-x;
-  background-size: 200px 60px;
-  animation: headerFloatingDots 15s linear infinite;
-  opacity: 0.3;
-  z-index: -1;
-}
-
-@keyframes headerFloatingDots {
-  0% { transform: translateX(0px); }
-  100% { transform: translateX(200px); }
 }
 
 .header-container {
@@ -104,8 +29,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 1;
 }
 
 /* Gaming Logo Styling */
