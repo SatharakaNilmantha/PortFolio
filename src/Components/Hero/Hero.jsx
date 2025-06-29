@@ -11,9 +11,9 @@ const Hero = () => {
   const [showCursor, setShowCursor] = useState(true);
 
   const fullText = "Hello, I'm Satharaka Nilmantha";
-  const typingSpeed = 120;
-  const deletingSpeed = 60;
-  const pauseTime = 3000;
+  const typingSpeed = 100;
+  const deletingSpeed = 50;
+  const pauseTime = 2000;
 
   useEffect(() => {
     const handleTyping = () => {
@@ -42,11 +42,11 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [currentIndex, isDeleting, fullText]);
 
-  // Enhanced cursor blinking effect
+  // Cursor blinking effect
   useEffect(() => {
     const cursorTimer = setInterval(() => {
       setShowCursor(prev => !prev);
-    }, 600);
+    }, 500);
     return () => clearInterval(cursorTimer);
   }, []);
 
@@ -56,40 +56,33 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
         ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        duration: 1,
+        duration: 0.8,
         ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
   const profileVariants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.7, 
-      rotateY: 180,
-      filter: 'blur(10px)'
-    },
+    hidden: { opacity: 0, scale: 0.8, rotateY: 180 },
     visible: {
       opacity: 1,
       scale: 1,
       rotateY: 0,
-      filter: 'blur(0px)',
       transition: {
-        duration: 2,
+        duration: 1.5,
         ease: [0.16, 1, 0.3, 1]
       }
     }
@@ -124,10 +117,7 @@ const Hero = () => {
 
   return (
     <section className="cyber-hero">
-      {/* Enhanced Gaming Background System */}
       <div className="hero-background"></div>
-      <div className="gaming-grid"></div>
-      <div className="scanlines"></div>
       
       <motion.div 
         className="hero-container"
@@ -135,7 +125,7 @@ const Hero = () => {
         animate="visible"
         variants={containerVariants}
       >
-        {/* Enhanced Profile Picture Column */}
+        {/* Profile Picture Column */}
         <motion.div 
           className="profile-column"
           variants={profileVariants}
@@ -143,31 +133,25 @@ const Hero = () => {
           <div className="profile-image-container">
             <motion.img 
               src={profilePic} 
-              alt="Satharaka Nilmantha - Gaming Developer" 
+              alt="Satharaka Nilmantha" 
               className="profile-image"
               whileHover={{ 
                 scale: 1.05,
-                rotate: 2,
-                transition: { duration: 0.4 }
+                transition: { duration: 0.3 }
               }}
             />
-            {/* Multiple Gaming Frames */}
-            <div className="profile-frame"></div>
-            <div className="profile-frame"></div>
-            <div className="profile-frame"></div>
-            {/* Hologram Effect */}
-            <div className="profile-hologram"></div>
+            <div className="profile-frame rgb-glow"></div>
           </div>
         </motion.div>
 
-        {/* Enhanced Content Column */}
+        {/* Content Column */}
         <div className="content-column">
-          {/* Advanced Real-time Typing Title */}
+          {/* Real-time Typing Title */}
           <motion.div 
             className="typing-title-container"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
           >
             <h1 className="typing-title">
               <span className="typing-text">{displayText}</span>
@@ -178,9 +162,9 @@ const Hero = () => {
           <motion.div 
             className="description-section"
             variants={itemVariants}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 1 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
           >
             <p className="hero-description">
               I'm a passionate <strong>Computer Engineering undergraduate</strong> 
@@ -189,7 +173,7 @@ const Hero = () => {
               with expertise in <strong>IoT systems</strong>, <strong>problem solving</strong>, and <strong>modern web technologies</strong>.
             </p>
             
-            {/* Enhanced Gaming Expertise Layout */}
+            {/* Perfect Two-Row Expertise Layout */}
             <div className="expertise-section">
               {[
                 "🚀 Full-Stack Development", 
@@ -202,21 +186,19 @@ const Hero = () => {
                 <motion.div 
                   key={index}
                   className="expertise-item"
-                  initial={{ opacity: 0, scale: 0.7, y: 30 }}
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ 
-                    delay: 1.8 + (index * 0.15), 
-                    duration: 0.8,
+                    delay: 1.2 + (index * 0.1), 
+                    duration: 0.5,
                     type: "spring",
-                    stiffness: 150,
-                    damping: 12
+                    stiffness: 200
                   }}
                   whileHover={{ 
-                    scale: 1.08, 
-                    y: -8,
-                    transition: { duration: 0.3 }
+                    scale: 1.05, 
+                    y: -5,
+                    transition: { duration: 0.2 }
                   }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   {item}
                 </motion.div>
@@ -224,13 +206,13 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Enhanced Gaming Social Links */}
+          {/* Social Links in One Line */}
           <motion.div 
             className="social-container"
             variants={itemVariants}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.8, duration: 1 }}
+            transition={{ delay: 2.0, duration: 0.8 }}
           >
             <div className="social-title">
               Let's Connect & Collaborate
@@ -243,21 +225,20 @@ const Hero = () => {
                   className={`social-link ${item.className}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ 
-                    delay: 3.2 + (index * 0.15), 
-                    duration: 0.8,
+                    delay: 2.3 + (index * 0.1), 
+                    duration: 0.5,
                     type: "spring",
-                    stiffness: 200,
-                    damping: 15
+                    stiffness: 200
                   }}
                   whileHover={{ 
-                    y: -12, 
-                    scale: 1.08,
-                    transition: { duration: 0.3 }
+                    y: -8, 
+                    scale: 1.05,
+                    transition: { duration: 0.2 }
                   }}
-                  whileTap={{ scale: 0.92 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {item.icon}
                   <span>{item.text}</span>
