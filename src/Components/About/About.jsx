@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaBootstrap, 
   FaReact, FaNodeJs, FaJava, FaDatabase,
-  FaCode, FaServer, FaMobile, FaCloud
+  FaCode, FaServer, FaMobile, FaCloud, FaVideo
 } from 'react-icons/fa';
 import { 
   SiSpringboot, SiMongodb, SiMysql, SiFirebase, 
