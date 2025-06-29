@@ -173,7 +173,7 @@ const Hero = () => {
               with expertise in <strong>IoT systems</strong>, <strong>problem solving</strong>, and <strong>modern web technologies</strong>.
             </p>
             
-            {/* Two-Row Expertise Layout */}
+            {/* Perfect Two-Row Expertise Layout */}
             <div className="expertise-section">
               {[
                 "🚀 Full-Stack Development", 
