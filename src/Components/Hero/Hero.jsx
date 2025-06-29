@@ -6,10 +6,19 @@ import './Hero.css';
 
 const Hero = () => {
   const [typingComplete, setTypingComplete] = useState(false);
-  const [particles, setParticles] = useState([]);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
   const controls = useAnimation();
-  const cursorControls = useAnimation();
+
+  const roles = [
+    "Full-Stack Developer",
+    "Backend Engineer", 
+    "Frontend Developer",
+    "IoT Developer",
+    "Problem Solver"
+  ];
 
   const titleParts = [
     { text: "Hello, ", color: "var(--neon-blue)" },
@@ -18,85 +27,37 @@ const Hero = () => {
     { text: "Nilmantha", color: "var(--neon-purple)" }
   ];
 
-  const fullText = titleParts.map(part => part.text).join('');
-
-  // Generate particles for background effect
+  // Enhanced typing animation for roles
   useEffect(() => {
-    const generateParticles = () => {
-      const newParticles = [];
-      for (let i = 0; i < 30; i++) {
-        newParticles.push({
-          id: i,
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          size: Math.random() * 3 + 1,
-          speedX: (Math.random() - 0.5) * 1,
-          speedY: (Math.random() - 0.5) * 1,
-          color: ['var(--neon-blue)', 'var(--neon-pink)', 'var(--neon-purple)', 'var(--neon-green)'][Math.floor(Math.random() * 4)]
-        });
+    const typeSpeed = 100;
+    const deleteSpeed = 50;
+    const pauseTime = 2000;
+
+    const timer = setTimeout(() => {
+      const currentRole = roles[currentWordIndex];
+      
+      if (!isDeleting && currentCharIndex < currentRole.length) {
+        setCurrentCharIndex(prev => prev + 1);
+      } else if (isDeleting && currentCharIndex > 0) {
+        setCurrentCharIndex(prev => prev - 1);
+      } else if (!isDeleting && currentCharIndex === currentRole.length) {
+        setTimeout(() => setIsDeleting(true), pauseTime);
+      } else if (isDeleting && currentCharIndex === 0) {
+        setIsDeleting(false);
+        setCurrentWordIndex(prev => (prev + 1) % roles.length);
       }
-      setParticles(newParticles);
-    };
+    }, isDeleting ? deleteSpeed : typeSpeed);
 
-    generateParticles();
-    
-    const animateParticles = () => {
-      setParticles(prev => prev.map(particle => ({
-        ...particle,
-        x: (particle.x + particle.speedX + window.innerWidth) % window.innerWidth,
-        y: (particle.y + particle.speedY + window.innerHeight) % window.innerHeight
-      })));
-    };
+    return () => clearTimeout(timer);
+  }, [currentCharIndex, currentWordIndex, isDeleting, roles]);
 
-    const interval = setInterval(animateParticles, 100);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Mouse tracking for interactive effects
+  // Cursor blinking effect
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
+    const cursorTimer = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 500);
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Typing animation sequence
-  const startTyping = async () => {
-    await controls.start("hidden");
-    setTypingComplete(false);
-    
-    // Typing animation
-    await controls.start("typing", {
-      duration: 0.08 * fullText.length,
-      ease: "linear"
-    });
-    
-    setTypingComplete(true);
-    
-    // Blinking cursor animation
-    while (true) {
-      await cursorControls.start({ opacity: 1 }, { duration: 0.5 });
-      await cursorControls.start({ opacity: 0 }, { duration: 0.5 });
-    }
-  };
-
-  useEffect(() => {
-    // Defer the initial call to ensure component is mounted
-    const initialTimeout = setTimeout(() => {
-      startTyping();
-    }, 0);
-    
-    // Restart typing every 10 seconds
-    const interval = setInterval(() => {
-      startTyping();
-    }, 10000);
-    
-    return () => {
-      clearTimeout(initialTimeout);
-      clearInterval(interval);
-    };
+    return () => clearInterval(cursorTimer);
   }, []);
 
   // Animation variants
@@ -105,20 +66,34 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
         ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
-  const typingVariants = {
-    hidden: { width: 0 },
-    typing: {
-      width: "100%",
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
       transition: {
-        duration: 0.08 * fullText.length,
-        ease: "linear"
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  const profileVariants = {
+    hidden: { opacity: 0, scale: 0.8, rotateY: 180 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+      transition: {
+        duration: 1.2,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
@@ -150,40 +125,19 @@ const Hero = () => {
     }
   ];
 
+  const handleResumeDownload = () => {
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Make sure this file exists in public folder
+    link.download = 'Satharaka_Nilmantha_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="cyber-hero">
-      {/* Enhanced Animated Background */}
-      <div className="hero-background">
-        <div className="matrix-rain"></div>
-        <div className="circuit-pattern"></div>
-      </div>
-      
-      {/* Floating Particles */}
-      <div className="particles-container">
-        {particles.map(particle => (
-          <div
-            key={particle.id}
-            className="particle"
-            style={{
-              left: `${particle.x}px`,
-              top: `${particle.y}px`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              backgroundColor: particle.color,
-              boxShadow: `0 0 ${particle.size * 3}px ${particle.color}`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Mouse Follower Effect */}
-      <div 
-        className="mouse-follower"
-        style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y}px`
-        }}
-      />
+      <div className="hero-background"></div>
       
       <motion.div 
         className="hero-container"
@@ -191,67 +145,59 @@ const Hero = () => {
         animate="visible"
         variants={containerVariants}
       >
-        {/* Profile Picture Column - SAME LAYOUT, ENHANCED ANIMATIONS */}
-        <motion.div className="profile-column">
+        {/* Profile Picture Column */}
+        <motion.div 
+          className="profile-column"
+          variants={profileVariants}
+        >
           <div className="profile-image-container">
             <motion.img 
               src={profilePic} 
               alt="Satharaka Nilmantha" 
               className="profile-image"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 1 }}
               whileHover={{ 
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
             />
             <div className="profile-frame rgb-glow"></div>
-            <div className="profile-scanner"></div>
-            
-            {/* Gaming HUD Elements */}
-            <div className="hud-elements">
-              <div className="hud-corner top-left"></div>
-              <div className="hud-corner top-right"></div>
-              <div className="hud-corner bottom-left"></div>
-              <div className="hud-corner bottom-right"></div>
-            </div>
           </div>
         </motion.div>
 
-        {/* Content Column - SAME LAYOUT, ENHANCED ANIMATIONS */}
+        {/* Content Column */}
         <div className="content-column">
-          <div className="typing-container">
-            <motion.div
-              className="typing-wrapper"
-              initial={{ width: 0 }}
-              animate={controls}
-              variants={typingVariants}
-            >
-              <h1 className="hero-title">
-                {titleParts.map((part, index) => (
-                  <span 
-                    key={index}
-                    className="title-part"
-                    style={{ color: part.color }}
-                  >
-                    {part.text}
-                  </span>
-                ))}
-              </h1>
-            </motion.div>
-            <motion.span
-              className="typing-cursor"
-              initial={{ opacity: 0 }}
-              animate={cursorControls}
-            />
-          </div>
+          <motion.div variants={itemVariants}>
+            <h1 className="hero-title">
+              {titleParts.map((part, index) => (
+                <motion.span 
+                  key={index}
+                  className="title-part"
+                  style={{ color: part.color }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.2, duration: 0.6 }}
+                >
+                  {part.text}
+                </motion.span>
+              ))}
+            </h1>
+          </motion.div>
+
+          <motion.div 
+            className="role-container"
+            variants={itemVariants}
+          >
+            <h2 className="hero-role">
+              <span className="role-text">
+                {roles[currentWordIndex].substring(0, currentCharIndex)}
+              </span>
+              <span className={`typing-cursor ${showCursor ? 'visible' : 'hidden'}`}>|</span>
+            </h2>
+          </motion.div>
 
           <motion.div 
             className="description-section"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0 + (0.08 * fullText.length), duration: 0.8 }}
+            variants={itemVariants}
           >
             <p className="hero-description">
               I'm a passionate <strong>Full-Stack Developer</strong> and Computer Engineering undergraduate 
@@ -271,12 +217,13 @@ const Hero = () => {
                 <motion.div 
                   key={index}
                   className="expertise-item"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 + (0.08 * fullText.length) + (index * 0.1), duration: 0.5 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.5 + (index * 0.1), duration: 0.5 }}
                   whileHover={{ 
-                    scale: 1.1,
-                    y: -5
+                    scale: 1.05, 
+                    y: -3,
+                    transition: { duration: 0.2 }
                   }}
                 >
                   {item}
@@ -287,35 +234,31 @@ const Hero = () => {
             {/* Resume Download Button */}
             <motion.div 
               className="resume-section"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 + (0.08 * fullText.length), duration: 0.5 }}
+              variants={itemVariants}
             >
-              <motion.a 
-                href="/resume.pdf" 
-                download="Satharaka_Nilmantha_Resume.pdf"
+              <motion.button 
+                onClick={handleResumeDownload}
                 className="resume-download-btn"
                 whileHover={{ 
-                  scale: 1.05,
-                  y: -3
+                  scale: 1.05, 
+                  y: -3,
+                  boxShadow: "0 10px 30px rgba(199, 36, 255, 0.4)"
                 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FaDownload className="download-icon" />
                 <span>Download Resume</span>
-              </motion.a>
+              </motion.button>
             </motion.div>
           </motion.div>
 
-          <div className="social-container">
-            <motion.div 
-              className="social-title"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 + (0.08 * fullText.length), duration: 0.5 }}
-            >
+          <motion.div 
+            className="social-container"
+            variants={itemVariants}
+          >
+            <div className="social-title">
               Let's Connect & Collaborate:
-            </motion.div>
+            </div>
             <div className="social-links">
               {socialLinks.map((item, index) => (
                 <motion.a
@@ -324,12 +267,13 @@ const Hero = () => {
                   className={`social-link ${item.className}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.1 + (0.08 * fullText.length) + (index * 0.1), duration: 0.5 }}
+                  transition={{ delay: 2 + (index * 0.1), duration: 0.5 }}
                   whileHover={{ 
                     y: -5, 
-                    scale: 1.05
+                    scale: 1.05,
+                    transition: { duration: 0.2 }
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -338,15 +282,9 @@ const Hero = () => {
                 </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
-
-      {/* Gaming UI Overlay */}
-      <div className="gaming-overlay">
-        <div className="scan-lines"></div>
-        <div className="vignette"></div>
-      </div>
     </section>
   );
 };

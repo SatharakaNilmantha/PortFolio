@@ -1,11 +1,10 @@
-/* Cyberpunk/Neon Styled Footer */
+/* Enhanced Cyberpunk/Neon Styled Footer */
 .cyber-footer {
   background: linear-gradient(135deg, #0a0a2a 0%, #050515 100%);
   padding: 80px 0 30px;
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(0, 243, 255, 0.2);
-
 }
 
 .cyber-footer::before {
@@ -87,7 +86,7 @@
   100% { transform: translate(0); }
 }
 
-/* Contact Form Styles */
+/* Enhanced Contact Form Styles */
 .cyber-contact-form {
   background: rgba(10, 10, 42, 0.6);
   backdrop-filter: blur(10px);
@@ -112,6 +111,12 @@
   font-family: 'Fira Code', monospace;
   font-size: 0.9rem;
   outline: none;
+  transition: all 0.3s ease;
+}
+
+.cyber-input:focus {
+  background: rgba(5, 5, 21, 0.9);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
 }
 
 .cyber-input::placeholder {
@@ -138,6 +143,7 @@
   resize: vertical;
 }
 
+/* Enhanced Button Styles */
 .cyber-button {
   position: relative;
   background: linear-gradient(90deg, #00f3ff, #c724ff);
@@ -152,11 +158,27 @@
   overflow: hidden;
   border-radius: 4px;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  min-width: 150px;
+}
+
+.cyber-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .cyber-button-text {
   position: relative;
   z-index: 2;
+}
+
+.cyber-button-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 0.9rem;
 }
 
 .cyber-button-glitch {
@@ -170,8 +192,31 @@
   transition: opacity 0.3s ease;
 }
 
-.cyber-button:hover .cyber-button-glitch {
+.cyber-button:hover:not(:disabled) .cyber-button-glitch {
   opacity: 0.7;
+}
+
+/* Form Status Messages */
+.submit-success {
+  color: #00ff88;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  border-radius: 4px;
+}
+
+.submit-error {
+  color: #ff2a92;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(255, 42, 146, 0.1);
+  border: 1px solid rgba(255, 42, 146, 0.3);
+  border-radius: 4px;
 }
 
 /* Contact Info Styles */
@@ -194,12 +239,25 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.cyber-contact-item:hover {
+  background: rgba(0, 243, 255, 0.05);
 }
 
 .cyber-contact-icon {
   font-size: 1.2rem;
   color: #00f3ff;
   min-width: 30px;
+  transition: all 0.3s ease;
+}
+
+.cyber-contact-item:hover .cyber-contact-icon {
+  transform: scale(1.1);
+  color: #c724ff;
 }
 
 .cyber-contact-details {
@@ -213,17 +271,29 @@
   transition: all 0.3s ease;
   display: block;
   position: relative;
+  padding: 5px 0;
+}
+
+.cyber-contact-link.resume-download {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Fira Code', monospace;
+  font-size: inherit;
+  text-align: left;
+  width: 100%;
 }
 
 .cyber-contact-link:hover {
   color: #00f3ff;
   text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+  transform: translateX(5px);
 }
 
 .cyber-contact-link::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 1px;
@@ -247,11 +317,17 @@
   color: #e0e0e0;
   font-size: 1.5rem;
   transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cyber-social-icon:hover {
   color: #00f3ff;
-  transform: translateY(-5px);
+  background: rgba(0, 243, 255, 0.1);
+  border-color: rgba(0, 243, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
 }
 
 /* Footer Bottom */
@@ -325,5 +401,11 @@
   
   .cyber-social-links {
     margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .cyber-button {
+    width: 100%;
   }
 }
