@@ -1,54 +1,15 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import profilePic from '../../Images/satharaka.jpg';
 import './Hero.css';
 
 const Hero = () => {
-  const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
-
-  const fullText = "Hello, I'm Satharaka Nilmantha";
-  const typingSpeed = 100;
-  const deletingSpeed = 50;
-  const pauseTime = 2000;
-
-  useEffect(() => {
-    const handleTyping = () => {
-      if (!isDeleting) {
-        // Typing forward
-        if (currentIndex < fullText.length) {
-          setDisplayText(fullText.substring(0, currentIndex + 1));
-          setCurrentIndex(prev => prev + 1);
-        } else {
-          // Pause before deleting
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        }
-      } else {
-        // Deleting backward
-        if (currentIndex > 0) {
-          setDisplayText(fullText.substring(0, currentIndex - 1));
-          setCurrentIndex(prev => prev - 1);
-        } else {
-          // Start typing again
-          setIsDeleting(false);
-        }
-      }
-    };
-
-    const timer = setTimeout(handleTyping, isDeleting ? deletingSpeed : typingSpeed);
-    return () => clearTimeout(timer);
-  }, [currentIndex, isDeleting, fullText]);
-
-  // Cursor blinking effect
-  useEffect(() => {
-    const cursorTimer = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
-    return () => clearInterval(cursorTimer);
-  }, []);
+  const titleParts = [
+    { text: "Hello,", color: "var(--neon-blue)" },
+    { text: "I'm", color: "var(--neon-green)" },
+    { text: "Satharaka", color: "var(--neon-pink)" },
+    { text: "Nilmantha", color: "var(--neon-purple)" }
+  ];
 
   // Animation variants
   const containerVariants = {
@@ -83,6 +44,18 @@ const Hero = () => {
       rotateY: 0,
       transition: {
         duration: 1.5,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1,
         ease: [0.16, 1, 0.3, 1]
       }
     }
@@ -146,16 +119,25 @@ const Hero = () => {
 
         {/* Content Column */}
         <div className="content-column">
-          {/* Real-time Typing Title */}
-          <motion.div 
-            className="typing-title-container"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <h1 className="typing-title">
-              <span className="typing-text">{displayText}</span>
-              <span className={`typing-cursor ${showCursor ? 'visible' : 'hidden'}`}>|</span>
+          <motion.div variants={titleVariants}>
+            <h1 className="hero-title">
+              {titleParts.map((part, index) => (
+                <motion.span 
+                  key={index}
+                  className="title-part"
+                  style={{ color: part.color }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    delay: index * 0.2, 
+                    duration: 0.6,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                >
+                  {part.text}
+                </motion.span>
+              ))}
             </h1>
           </motion.div>
 
@@ -213,7 +195,7 @@ const Hero = () => {
             transition={{ delay: 2.0, duration: 0.8 }}
           >
             <div className="social-title">
-              Let's Connect & Collaborate
+              Let's Connect & Collaborate:
             </div>
             <div className="social-links">
               {socialLinks.map((item, index) => (
