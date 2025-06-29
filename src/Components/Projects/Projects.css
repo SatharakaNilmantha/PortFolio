@@ -285,7 +285,7 @@
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
   position: relative;
   transition: all 0.3s ease;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to visible */
 }
 
 .timeline-content::before {
@@ -316,11 +316,11 @@
   border-color: rgba(0, 243, 255, 0.4);
 }
 
-/* Fixed Project Icon Visibility */
+/* Fixed Project Icon Positioning */
 .project-icon {
   position: absolute;
   top: -25px;
-  left: 25px;
+  right: 20px; /* Changed from left to right */
   width: 50px;
   height: 50px;
   background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);
@@ -335,7 +335,18 @@
   box-shadow: 
     0 0 20px rgba(0, 243, 255, 0.4),
     inset 0 0 10px rgba(0, 243, 255, 0.1);
-  animation: projectIconFloat 3s ease-in-out infinite;
+  animation: projectIconFloat 4s ease-in-out infinite;
+}
+
+/* For left timeline items, position icon on the right side */
+.left .project-icon {
+  right: 20px;
+}
+
+/* For right timeline items, position icon on the left side */
+.right .project-icon {
+  left: 20px;
+  right: auto;
 }
 
 @keyframes projectIconFloat {
@@ -756,8 +767,12 @@
     align-items: flex-start;
   }
 
-  .project-icon {
-    left: 15px;
+  /* Mobile icon positioning */
+  .project-icon,
+  .left .project-icon,
+  .right .project-icon {
+    right: 15px;
+    left: auto;
     top: -20px;
     width: 45px;
     height: 45px;
@@ -783,11 +798,14 @@
     padding: 30px 20px;
   }
 
-  .project-icon {
+  .project-icon,
+  .left .project-icon,
+  .right .project-icon {
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
-    left: 10px;
+    right: 10px;
+    left: auto;
   }
 }
 
@@ -821,11 +839,14 @@
     justify-content: center;
   }
 
-  .project-icon {
+  .project-icon,
+  .left .project-icon,
+  .right .project-icon {
     width: 35px;
     height: 35px;
     font-size: 1rem;
-    left: 8px;
+    right: 8px;
+    left: auto;
     top: -15px;
   }
 }
