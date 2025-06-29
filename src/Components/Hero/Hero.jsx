@@ -83,14 +83,20 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    startTyping();
+    // Defer the initial call to ensure component is mounted
+    const initialTimeout = setTimeout(() => {
+      startTyping();
+    }, 0);
     
     // Restart typing every 10 seconds
     const interval = setInterval(() => {
       startTyping();
     }, 10000);
     
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+    };
   }, []);
 
   // Animation variants
