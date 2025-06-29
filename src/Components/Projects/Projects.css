@@ -1,14 +1,101 @@
-/* Enhanced Projects.css */
+/* Enhanced Projects.css with Gaming Background */
 .projects-section {
   background: #0a0a1a;
   padding: 100px 0;
   position: relative;
+  overflow: hidden;
+}
+
+/* Enhanced Gaming Background with Multiple Layers */
+.projects-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 15% 85%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(255, 42, 146, 0.12) 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(199, 36, 255, 0.08) 0%, transparent 60%),
+    linear-gradient(135deg, #0a0a1a 0%, #050510 100%);
+  z-index: -2;
+  animation: projectsBackgroundShift 20s ease-in-out infinite alternate;
+}
+
+@keyframes projectsBackgroundShift {
+  0% {
+    background: 
+      radial-gradient(circle at 15% 85%, rgba(0, 243, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 85% 15%, rgba(255, 42, 146, 0.12) 0%, transparent 55%),
+      radial-gradient(circle at 50% 50%, rgba(199, 36, 255, 0.08) 0%, transparent 60%),
+      linear-gradient(135deg, #0a0a1a 0%, #050510 100%);
+  }
+  25% {
+    background: 
+      radial-gradient(circle at 75% 25%, rgba(0, 255, 136, 0.18) 0%, transparent 55%),
+      radial-gradient(circle at 25% 75%, rgba(255, 107, 53, 0.14) 0%, transparent 50%),
+      radial-gradient(circle at 60% 40%, rgba(0, 243, 255, 0.1) 0%, transparent 65%),
+      linear-gradient(135deg, #0a0a1a 0%, #050510 100%);
+  }
+  50% {
+    background: 
+      radial-gradient(circle at 80% 80%, rgba(199, 36, 255, 0.2) 0%, transparent 60%),
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 0, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 40% 70%, rgba(255, 42, 146, 0.14) 0%, transparent 55%),
+      linear-gradient(135deg, #0a0a1a 0%, #050510 100%);
+  }
+  75% {
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(0, 243, 255, 0.16) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(0, 255, 136, 0.15) 0%, transparent 55%),
+      radial-gradient(circle at 50% 20%, rgba(199, 36, 255, 0.12) 0%, transparent 60%),
+      linear-gradient(135deg, #0a0a1a 0%, #050510 100%);
+  }
+  100% {
+    background: 
+      radial-gradient(circle at 60% 20%, rgba(255, 42, 146, 0.18) 0%, transparent 55%),
+      radial-gradient(circle at 40% 80%, rgba(0, 243, 255, 0.16) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(199, 36, 255, 0.14) 0%, transparent 60%),
+      linear-gradient(135deg, #0a0a1a 0%, #050510 100%);
+  }
+}
+
+/* Floating Gaming Elements */
+.projects-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(3px 3px at 35px 45px, rgba(0, 243, 255, 0.4), transparent),
+    radial-gradient(2px 2px at 75px 85px, rgba(199, 36, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 115px 25px, rgba(255, 42, 146, 0.4), transparent),
+    radial-gradient(2px 2px at 155px 65px, rgba(0, 255, 136, 0.4), transparent),
+    radial-gradient(3px 3px at 195px 105px, rgba(255, 107, 53, 0.4), transparent);
+  background-repeat: repeat;
+  background-size: 240px 130px;
+  animation: projectsFloatingDots 22s linear infinite;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+@keyframes projectsFloatingDots {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  25% { transform: translateY(-35px) translateX(25px) rotate(90deg); }
+  50% { transform: translateY(-20px) translateX(-20px) rotate(180deg); }
+  75% { transform: translateY(-45px) translateX(30px) rotate(270deg); }
+  100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Projects Header */
@@ -65,6 +152,7 @@
   left: 50%;
   margin-left: -2px;
   border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
 }
 
 .timeline-item {
@@ -84,6 +172,7 @@
   border-radius: 50%;
   top: 30px;
   z-index: 1;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
 }
 
 .left {
@@ -110,6 +199,23 @@
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
   position: relative;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+  transition: all 0.8s ease;
+}
+
+.timeline-content:hover::before {
+  left: 100%;
 }
 
 .timeline-content:hover {
@@ -132,6 +238,7 @@
   justify-content: center;
   font-size: 1.2rem;
   color: #00f3ff;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
 }
 
 .project-header {
@@ -224,6 +331,12 @@
   font-size: 0.8rem;
   font-weight: 500;
   border: 1px solid rgba(199, 36, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.highlight-tag:hover {
+  background: rgba(199, 36, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .tech-stack {
@@ -243,6 +356,29 @@
   font-size: 0.85rem;
   color: #00f3ff;
   font-family: 'Fira Code', monospace;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: all 0.5s ease;
+}
+
+.tech-item:hover::before {
+  left: 100%;
+}
+
+.tech-item:hover {
+  background: rgba(0, 243, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .project-links {
@@ -264,12 +400,30 @@
   border: 1px solid rgba(0, 243, 255, 0.3);
   font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.2), transparent);
+  transition: all 0.6s ease;
+}
+
+.project-link:hover::before {
+  left: 100%;
 }
 
 .project-link:hover {
   background: rgba(0, 243, 255, 0.2);
   color: #00f3ff;
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
 }
 
 .project-link.private-link {
@@ -287,6 +441,30 @@
   background: rgba(10, 10, 30, 0.6);
   border-radius: 12px;
   border: 1px solid rgba(0, 243, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(rgba(0, 243, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: ctaGridShift 15s linear infinite;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+@keyframes ctaGridShift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, 30px); }
 }
 
 .projects-cta h3 {
@@ -316,6 +494,23 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s ease;
+}
+
+.cta-button:hover::before {
+  left: 100%;
 }
 
 .cta-button:hover {
