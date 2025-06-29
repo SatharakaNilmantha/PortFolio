@@ -1,6 +1,6 @@
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaDownload } from 'react-icons/fa';
 import profilePic from '../../Images/satharaka.jpg';
 import './Hero.css';
 
@@ -10,10 +10,10 @@ const Hero = () => {
   const cursorControls = useAnimation();
 
   const titleParts = [
-    { text: "Hello , ", color: "var(--neon-blue)" },
-    { text: " I'm ", color: "var(--neon-green)" },
-    { text: " Satharaka ", color: "var(--neon-pink)" },
-    { text: " Nilmantha", color: "var(--neon-purple)" }
+    { text: "Hello, ", color: "var(--neon-blue)" },
+    { text: "I'm ", color: "var(--neon-green)" },
+    { text: "Satharaka ", color: "var(--neon-pink)" },
+    { text: "Nilmantha", color: "var(--neon-purple)" }
   ];
 
   const fullText = titleParts.map(part => part.text).join('');
@@ -160,13 +160,20 @@ const Hero = () => {
             transition={{ delay: 0 + (0.08 * fullText.length), duration: 0.8 }}
           >
             <p className="hero-description">
-              I'm a Computer Engineering undergraduate passionate about building innovative, 
-              efficient, and scalable solutions. I specialize in full-stack development, 
-              IoT systems, and machine learning applications.
+              I'm a passionate <strong>Full-Stack Developer</strong> and Computer Engineering undergraduate 
+              specializing in building innovative, scalable, and efficient digital solutions. 
+              I excel in both <strong>frontend</strong> and <strong>backend development</strong>, 
+              with expertise in <strong>IoT systems</strong> and <strong>modern web technologies</strong>.
             </p>
             
             <div className="expertise-section">
-              {["🚀 Full Stack Development", "🔌 IoT & Embedded Systems", "🧠 Machine Learning"].map((item, index) => (
+              {[
+                "🚀 Full-Stack Development", 
+                "⚡ Backend Architecture", 
+                "🎨 Frontend Design", 
+                "🔌 IoT & Embedded Systems", 
+                "🧠 Problem Solving"
+              ].map((item, index) => (
                 <motion.div 
                   key={index}
                   className="expertise-item"
@@ -178,6 +185,23 @@ const Hero = () => {
                 </motion.div>
               ))}
             </div>
+
+            {/* Resume Download Button */}
+            <motion.div 
+              className="resume-section"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 + (0.08 * fullText.length), duration: 0.5 }}
+            >
+              <a 
+                href="/resume.pdf" 
+                download="Satharaka_Nilmantha_Resume.pdf"
+                className="resume-download-btn"
+              >
+                <FaDownload className="download-icon" />
+                <span>Download Resume</span>
+              </a>
+            </motion.div>
           </motion.div>
 
           <div className="social-container">
@@ -187,7 +211,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9 + (0.08 * fullText.length), duration: 0.5 }}
             >
-              Connect With Me:
+              Let's Connect & Collaborate:
             </motion.div>
             <div className="social-links">
               {socialLinks.map((item, index) => (

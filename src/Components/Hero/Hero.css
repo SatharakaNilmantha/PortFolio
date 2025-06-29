@@ -195,22 +195,19 @@ body {
   gap: 2px;
 }
 
-
-/* Add this to your existing CSS */
 .word-space {
   display: inline-block;
-  width: 0.5em; /* Adjust this value to control space width */
+  width: 0.5em;
 }
 
-/* Or alternatively, you could add margin to title-part */
 .title-part {
-  margin-right: 0.5em; /* Space after each word */
+  margin-right: 0.5em;
 }
 
-/* If you want to remove space after last word */
 .title-part:last-child {
   margin-right: 0;
 }
+
 .typing-cursor {
   display: inline-block;
   width: 3px;
@@ -243,6 +240,11 @@ body {
   max-width: 800px;
 }
 
+.hero-description strong {
+  color: var(--neon-blue);
+  font-weight: 600;
+}
+
 .expertise-section {
   display: flex;
   flex-wrap: wrap;
@@ -266,6 +268,36 @@ body {
   background: rgba(0, 243, 255, 0.2);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+}
+
+/* Resume Download Button */
+.resume-section {
+  margin: var(--space-lg) 0;
+}
+
+.resume-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.4s var(--ease-bounce);
+  box-shadow: 0 4px 15px rgba(199, 36, 255, 0.3);
+}
+
+.resume-download-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(199, 36, 255, 0.4);
+  color: white;
+}
+
+.download-icon {
+  font-size: 1.1rem;
 }
 
 /* Social Links */
@@ -450,5 +482,10 @@ body {
   
   .expertise-item {
     font-size: 0.85rem;
+  }
+  
+  .resume-download-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
   }
 }

@@ -1,4 +1,4 @@
-/* Projects.css */
+/* Enhanced Projects.css */
 .projects-section {
   background: #0a0a1a;
   padding: 100px 0;
@@ -11,16 +11,44 @@
   padding: 0 20px;
 }
 
+/* Projects Header */
+.projects-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-tag {
+  display: inline-block;
+  color: #00f3ff;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 .section-title {
   font-size: 2.5rem;
   color: #ffffff;
-  text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 20px;
   font-family: 'Orbitron', sans-serif;
   text-transform: uppercase;
   letter-spacing: 3px;
 }
 
+.highlight {
+  color: #00f3ff;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Timeline */
 .timeline {
   position: relative;
   max-width: 1200px;
@@ -108,16 +136,47 @@
 
 .project-header {
   margin-bottom: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.project-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .project-title {
   color: #ff2a92;
   font-size: 1.3rem;
-  margin-bottom: 5px;
+  margin: 0;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
+  flex: 1;
+}
+
+.project-status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-status.completed {
+  background: rgba(0, 255, 136, 0.2);
+  color: #00ff88;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.project-status.in-development {
+  background: rgba(255, 165, 0, 0.2);
+  color: #ffa500;
+  border: 1px solid rgba(255, 165, 0, 0.3);
 }
 
 .project-period {
@@ -145,6 +204,24 @@
   left: -20px;
 }
 
+/* Project Highlights */
+.project-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.highlight-tag {
+  background: rgba(199, 36, 255, 0.1);
+  color: #c724ff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(199, 36, 255, 0.2);
+}
+
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
@@ -164,7 +241,13 @@
   font-family: 'Fira Code', monospace;
 }
 
-.github-link {
+.project-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.project-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -179,9 +262,62 @@
   font-weight: 600;
 }
 
-.github-link:hover {
+.project-link:hover {
   background: rgba(0, 243, 255, 0.2);
   color: #00f3ff;
+  transform: translateY(-2px);
+}
+
+.project-link.private-link {
+  background: rgba(128, 128, 128, 0.1);
+  border-color: rgba(128, 128, 128, 0.3);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: not-allowed;
+}
+
+/* Call to Action */
+.projects-cta {
+  text-align: center;
+  margin-top: 80px;
+  padding: 40px;
+  background: rgba(10, 10, 30, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.projects-cta h3 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.projects-cta p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #00f3ff, #c724ff);
+  color: #0a0a1a;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 243, 255, 0.3);
+  color: #0a0a1a;
 }
 
 /* Responsive Design */
@@ -203,6 +339,11 @@
   .left::after, .right::after {
     left: 18px;
   }
+  
+  .project-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 768px) {
@@ -212,6 +353,15 @@
   
   .section-title {
     font-size: 2rem;
+  }
+  
+  .projects-header {
+    margin-bottom: 60px;
+  }
+  
+  .projects-cta {
+    margin-top: 60px;
+    padding: 30px 20px;
   }
 }
 
@@ -231,5 +381,17 @@
   .tech-item {
     font-size: 0.8rem;
     padding: 4px 10px;
+  }
+  
+  .timeline-content {
+    padding: 20px;
+  }
+  
+  .project-links {
+    flex-direction: column;
+  }
+  
+  .project-link {
+    justify-content: center;
   }
 }
