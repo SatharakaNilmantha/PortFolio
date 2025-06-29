@@ -4,6 +4,8 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaDiscord, FaFileAlt, FaPape
 import { SiLeetcode } from 'react-icons/si';
 import './Footer.css';
 
+import pdf from '../cv/Satharaka_Nilmantha_cv.pdf';
+
 const Footer = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -48,7 +50,7 @@ const Footer = () => {
       type: 'resume',
       icon: <FaDownload className="cyber-contact-icon" />,
       value: 'Download Resume',
-      action: '/resume.pdf',
+      action: pdf,
       isDownload: true
     }
   ];
@@ -67,17 +69,12 @@ const Footer = () => {
     setSubmitStatus('');
 
     try {
-      // Simulate form submission (replace with actual form handling)
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // For now, we'll just create a mailto link with the form data
       const subject = encodeURIComponent(`Contact Request from ${formData.name}`);
       const body = encodeURIComponent(
         `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
       );
-      
       window.location.href = `mailto:satharakanilmantha1@gmail.com?subject=${subject}&body=${body}`;
-      
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
@@ -88,10 +85,9 @@ const Footer = () => {
   };
 
   const handleResumeDownload = () => {
-    // Create a temporary link element to trigger download
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'Satharaka_Nilmantha_Resume.pdf';
+    link.href = pdf;
+    link.download = 'Satharaka_Nilmantha_cv.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -107,7 +103,6 @@ const Footer = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* Left Column - Contact Form */}
           <div className="cyber-contact-form">
             <motion.h3 
               className="cyber-title"
@@ -211,7 +206,6 @@ const Footer = () => {
             </form>
           </div>
 
-          {/* Right Column - Contact Info */}
           <div className="cyber-contact-info">
             <motion.h3 
               className="cyber-title"
@@ -255,7 +249,6 @@ const Footer = () => {
               ))}
             </div>
 
-            {/* Social Links */}
             <div className="cyber-social-links">
               {contacts.filter(c => ['github', 'linkedin', 'leetcode'].includes(c.type)).map((contact, index) => (
                 <motion.a
@@ -277,7 +270,6 @@ const Footer = () => {
           </div>
         </motion.div>
 
-        {/* Footer Bottom */}
         <motion.div 
           className="cyber-footer-bottom"
           initial={{ opacity: 0 }}

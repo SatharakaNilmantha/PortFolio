@@ -16,7 +16,7 @@ const Projects = () => {
       description: [
         'Architected and developed a comprehensive role-based hospital management system serving 4 user types',
         'Built responsive React.js frontend with modern UI/UX design and real-time data synchronization',
-        'Designed RESTful APIs using Spring Boot with JWT authentication and role-based access control',
+        'Designed RESTful APIs using Spring Boot with authentication and role-based access control',
         'Implemented advanced features: appointment scheduling, prescription management, and patient records',
         'Conducted comprehensive testing including unit tests, integration tests, and API validation with Postman'
       ],
@@ -79,7 +79,7 @@ const Projects = () => {
       description: [
         'Developed comprehensive doctor appointment booking system with secure user authentication',
         'Integrated React-based AI chatbot for intelligent patient assistance and symptom assessment',
-        'Implemented Twilio API for SMS notifications, appointment reminders, and verification codes',
+        'Implemented Twilio API for SMS notifications, appointment reminders',
         'Built admin dashboard for managing doctors, appointments, and system analytics',
         'Created responsive design with intuitive user experience for patients and healthcare providers',
         'Added file upload functionality for medical documents and prescription management'

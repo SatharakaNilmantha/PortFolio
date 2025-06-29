@@ -61,7 +61,6 @@ const About = () => {
       tech: [
         { name: 'Git', icon: <SiGit color="#F05032" /> },
         { name: 'Postman', icon: <SiPostman color="#FF6C37" /> },
-        { name: 'Docker', icon: <SiDocker color="#2496ED" /> },
         { name: 'Linux', icon: <SiLinux color="#FCC624" /> },
         { name: 'Figma', icon: <SiFigma color="#F24E1E" /> }
       ] 
