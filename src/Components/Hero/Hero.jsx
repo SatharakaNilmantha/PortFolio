@@ -5,33 +5,35 @@ import profilePic from '../../Images/satharaka.jpg';
 import './Hero.css';
 
 const Hero = () => {
-  const [typingComplete, setTypingComplete] = useState(false);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
-  const controls = useAnimation();
+  const [isPaused, setIsPaused] = useState(false);
 
   const roles = [
     "Full-Stack Developer",
-    "Backend Engineer", 
+    "Backend Developer", 
     "Frontend Developer",
-    "IoT Developer",
-    "Problem Solver"
+    "Problem Solver",
+    "UI/UX Designer"
   ];
 
   const titleParts = [
-    { text: "Hello, ", color: "var(--neon-blue)" },
-    { text: "I'm ", color: "var(--neon-green)" },
-    { text: "Satharaka ", color: "var(--neon-pink)" },
+    { text: "Hello,", color: "var(--neon-blue)" },
+    { text: "I'm", color: "var(--neon-green)" },
+    { text: "Satharaka", color: "var(--neon-pink)" },
     { text: "Nilmantha", color: "var(--neon-purple)" }
   ];
 
-  // Enhanced typing animation for roles
+  // Enhanced typing animation for roles with better timing
   useEffect(() => {
-    const typeSpeed = 100;
-    const deleteSpeed = 50;
-    const pauseTime = 2000;
+    const typeSpeed = 120;
+    const deleteSpeed = 80;
+    const pauseTime = 2500;
+    const deleteDelay = 1500;
+
+    if (isPaused) return;
 
     const timer = setTimeout(() => {
       const currentRole = roles[currentWordIndex];
@@ -41,21 +43,29 @@ const Hero = () => {
       } else if (isDeleting && currentCharIndex > 0) {
         setCurrentCharIndex(prev => prev - 1);
       } else if (!isDeleting && currentCharIndex === currentRole.length) {
-        setTimeout(() => setIsDeleting(true), pauseTime);
+        setIsPaused(true);
+        setTimeout(() => {
+          setIsPaused(false);
+          setIsDeleting(true);
+        }, deleteDelay);
       } else if (isDeleting && currentCharIndex === 0) {
         setIsDeleting(false);
         setCurrentWordIndex(prev => (prev + 1) % roles.length);
+        setIsPaused(true);
+        setTimeout(() => {
+          setIsPaused(false);
+        }, pauseTime);
       }
     }, isDeleting ? deleteSpeed : typeSpeed);
 
     return () => clearTimeout(timer);
-  }, [currentCharIndex, currentWordIndex, isDeleting, roles]);
+  }, [currentCharIndex, currentWordIndex, isDeleting, isPaused, roles]);
 
-  // Cursor blinking effect
+  // Enhanced cursor blinking effect
   useEffect(() => {
     const cursorTimer = setInterval(() => {
       setShowCursor(prev => !prev);
-    }, 500);
+    }, 530);
 
     return () => clearInterval(cursorTimer);
   }, []);
@@ -66,8 +76,8 @@ const Hero = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
         ease: [0.16, 1, 0.3, 1]
       }
     }
@@ -92,7 +102,19 @@ const Hero = () => {
       scale: 1,
       rotateY: 0,
       transition: {
-        duration: 1.2,
+        duration: 1.5,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  const titleVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1,
         ease: [0.16, 1, 0.3, 1]
       }
     }
@@ -156,16 +178,21 @@ const Hero = () => {
 
         {/* Content Column */}
         <div className="content-column">
-          <motion.div variants={itemVariants}>
+          <motion.div variants={titleVariants}>
             <h1 className="hero-title">
               {titleParts.map((part, index) => (
                 <motion.span 
                   key={index}
                   className="title-part"
                   style={{ color: part.color }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.2, duration: 0.6 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    delay: index * 0.2, 
+                    duration: 0.6,
+                    type: "spring",
+                    stiffness: 200
+                  }}
                 >
                   {part.text}
                 </motion.span>
@@ -176,6 +203,9 @@ const Hero = () => {
           <motion.div 
             className="role-container"
             variants={itemVariants}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
           >
             <h2 className="hero-role">
               <span className="role-text">
@@ -188,12 +218,15 @@ const Hero = () => {
           <motion.div 
             className="description-section"
             variants={itemVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
           >
             <p className="hero-description">
               I'm a passionate <strong>Full-Stack Developer</strong> and Computer Engineering undergraduate 
               specializing in building innovative, scalable, and efficient digital solutions. 
               I excel in both <strong>frontend</strong> and <strong>backend development</strong>, 
-              with expertise in <strong>IoT systems</strong> and <strong>modern web technologies</strong>.
+              with expertise in <strong>IoT systems</strong>, <strong>problem solving</strong>, and <strong>modern web technologies</strong>.
             </p>
             
             <div className="expertise-section">
@@ -202,17 +235,23 @@ const Hero = () => {
                 "⚡ Backend Architecture", 
                 "🎨 Frontend Design", 
                 "🔌 IoT & Embedded Systems", 
-                "🧠 Problem Solving"
+                "🧠 Problem Solving",
+                "🎯 UI/UX Design"
               ].map((item, index) => (
                 <motion.div 
                   key={index}
                   className="expertise-item"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.5 + (index * 0.1), duration: 0.5 }}
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ 
+                    delay: 1.8 + (index * 0.1), 
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 200
+                  }}
                   whileHover={{ 
                     scale: 1.05, 
-                    y: -3,
+                    y: -5,
                     transition: { duration: 0.2 }
                   }}
                 >
@@ -225,6 +264,9 @@ const Hero = () => {
           <motion.div 
             className="social-container"
             variants={itemVariants}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.5, duration: 0.8 }}
           >
             <div className="social-title">
               Let's Connect & Collaborate:
@@ -237,11 +279,16 @@ const Hero = () => {
                   className={`social-link ${item.className}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2 + (index * 0.1), duration: 0.5 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    delay: 2.8 + (index * 0.1), 
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 200
+                  }}
                   whileHover={{ 
-                    y: -5, 
+                    y: -8, 
                     scale: 1.05,
                     transition: { duration: 0.2 }
                   }}
