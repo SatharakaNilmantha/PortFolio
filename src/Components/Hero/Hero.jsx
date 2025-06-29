@@ -1,60 +1,37 @@
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaDownload, FaGamepad, FaCode, FaRocket } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaDownload } from 'react-icons/fa';
 import profilePic from '../../Images/satharaka.jpg';
 import './Hero.css';
 
 const Hero = () => {
   const [typingComplete, setTypingComplete] = useState(false);
-  const [currentPhase, setCurrentPhase] = useState(0);
   const [particles, setParticles] = useState([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const controls = useAnimation();
   const cursorControls = useAnimation();
 
-  // Gaming-style title phases
-  const titlePhases = [
-    [
-      { text: "Hello, ", color: "var(--neon-blue)", glow: true },
-      { text: "I'm ", color: "var(--neon-green)", glow: true },
-      { text: "Satharaka ", color: "var(--neon-pink)", glow: true },
-      { text: "Nilmantha", color: "var(--neon-purple)", glow: true }
-    ],
-    [
-      { text: "Full-Stack ", color: "var(--neon-blue)", glow: true },
-      { text: "Developer ", color: "var(--neon-green)", glow: true },
-      { text: "& ", color: "var(--neon-pink)", glow: true },
-      { text: "Problem Solver", color: "var(--neon-purple)", glow: true }
-    ],
-    [
-      { text: "Backend ", color: "var(--neon-blue)", glow: true },
-      { text: "Architect ", color: "var(--neon-green)", glow: true },
-      { text: "& ", color: "var(--neon-pink)", glow: true },
-      { text: "Frontend Master", color: "var(--neon-purple)", glow: true }
-    ],
-    [
-      { text: "IoT ", color: "var(--neon-blue)", glow: true },
-      { text: "Engineer ", color: "var(--neon-green)", glow: true },
-      { text: "& ", color: "var(--neon-pink)", glow: true },
-      { text: "Tech Innovator", color: "var(--neon-purple)", glow: true }
-    ]
+  const titleParts = [
+    { text: "Hello, ", color: "var(--neon-blue)" },
+    { text: "I'm ", color: "var(--neon-green)" },
+    { text: "Satharaka ", color: "var(--neon-pink)" },
+    { text: "Nilmantha", color: "var(--neon-purple)" }
   ];
 
-  const currentTitle = titlePhases[currentPhase];
-  const fullText = currentTitle.map(part => part.text).join('');
+  const fullText = titleParts.map(part => part.text).join('');
 
   // Generate particles for background effect
   useEffect(() => {
     const generateParticles = () => {
       const newParticles = [];
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 30; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
           size: Math.random() * 3 + 1,
-          speedX: (Math.random() - 0.5) * 2,
-          speedY: (Math.random() - 0.5) * 2,
+          speedX: (Math.random() - 0.5) * 1,
+          speedY: (Math.random() - 0.5) * 1,
           color: ['var(--neon-blue)', 'var(--neon-pink)', 'var(--neon-purple)', 'var(--neon-green)'][Math.floor(Math.random() * 4)]
         });
       }
@@ -71,7 +48,7 @@ const Hero = () => {
       })));
     };
 
-    const interval = setInterval(animateParticles, 50);
+    const interval = setInterval(animateParticles, 100);
     return () => clearInterval(interval);
   }, []);
 
@@ -85,79 +62,57 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Enhanced typing animation sequence
+  // Typing animation sequence
   const startTyping = async () => {
     await controls.start("hidden");
     setTypingComplete(false);
     
-    // Glitch effect before typing
-    await controls.start("glitch", { duration: 0.3 });
-    
     // Typing animation
     await controls.start("typing", {
-      duration: 0.1 * fullText.length,
-      ease: "easeInOut"
+      duration: 0.08 * fullText.length,
+      ease: "linear"
     });
     
     setTypingComplete(true);
     
     // Blinking cursor animation
-    let blinkCount = 0;
-    const blinkInterval = setInterval(async () => {
-      await cursorControls.start({ opacity: 1, scale: 1.2 }, { duration: 0.3 });
-      await cursorControls.start({ opacity: 0, scale: 1 }, { duration: 0.3 });
-      blinkCount++;
-      
-      if (blinkCount >= 5) {
-        clearInterval(blinkInterval);
-        // Move to next phase
-        setTimeout(() => {
-          setCurrentPhase(prev => (prev + 1) % titlePhases.length);
-          startTyping();
-        }, 2000);
-      }
-    }, 600);
+    while (true) {
+      await cursorControls.start({ opacity: 1 }, { duration: 0.5 });
+      await cursorControls.start({ opacity: 0 }, { duration: 0.5 });
+    }
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      startTyping();
-    }, 1000);
+    startTyping();
     
-    return () => clearTimeout(timer);
-  }, [currentPhase]);
+    // Restart typing every 10 seconds
+    const interval = setInterval(() => {
+      startTyping();
+    }, 10000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
-  // Enhanced animation variants
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
         ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
   const typingVariants = {
-    hidden: { 
-      width: 0,
-      opacity: 0
-    },
-    glitch: {
-      width: "100%",
-      opacity: [0, 1, 0, 1, 0, 1],
-      x: [0, -5, 5, -3, 3, 0],
-      transition: { duration: 0.3 }
-    },
+    hidden: { width: 0 },
     typing: {
       width: "100%",
-      opacity: 1,
-      x: 0,
       transition: {
-        width: { duration: 0.1 * fullText.length, ease: "easeInOut" },
-        opacity: { duration: 0.2 }
+        duration: 0.08 * fullText.length,
+        ease: "linear"
       }
     }
   };
@@ -167,43 +122,31 @@ const Hero = () => {
       icon: <FaGithub className="social-icon" />, 
       text: "GitHub", 
       href: "https://github.com/SatharakaNilmantha",
-      className: "github-link",
-      description: "Open Source Projects"
+      className: "github-link" 
     },
     { 
       icon: <FaLinkedin className="social-icon" />, 
       text: "LinkedIn", 
       href: "https://www.linkedin.com/in/satharaka-nilmantha-aa7b96297/",
-      className: "linkedin-link",
-      description: "Professional Network"
+      className: "linkedin-link" 
     },
     { 
       icon: <FaEnvelope className="social-icon" />, 
       text: "Email", 
       href: "mailto:satharakanilmantha1@gmail.com",
-      className: "email-link",
-      description: "Direct Contact"
+      className: "email-link" 
     },
     { 
       icon: <FaWhatsapp className="social-icon" />, 
       text: "WhatsApp", 
       href: "https://wa.me/94765871905",
-      className: "whatsapp-link",
-      description: "Quick Chat"
+      className: "whatsapp-link" 
     }
-  ];
-
-  const expertiseItems = [
-    { icon: <FaRocket />, text: "Full-Stack Development", level: 95 },
-    { icon: <FaCode />, text: "Backend Architecture", level: 92 },
-    { icon: <FaGamepad />, text: "Frontend Design", level: 90 },
-    { icon: <FaRocket />, text: "IoT & Embedded Systems", level: 88 },
-    { icon: <FaCode />, text: "Problem Solving", level: 96 }
   ];
 
   return (
     <section className="cyber-hero">
-      {/* Animated Background */}
+      {/* Enhanced Animated Background */}
       <div className="hero-background">
         <div className="matrix-rain"></div>
         <div className="circuit-pattern"></div>
@@ -242,34 +185,21 @@ const Hero = () => {
         animate="visible"
         variants={containerVariants}
       >
-        {/* Enhanced Profile Picture Column */}
+        {/* Profile Picture Column - SAME LAYOUT, ENHANCED ANIMATIONS */}
         <motion.div className="profile-column">
           <div className="profile-image-container">
-            <motion.div
-              className="profile-hologram"
-              animate={{
-                rotateY: [0, 360],
-                scale: [1, 1.05, 1]
+            <motion.img 
+              src={profilePic} 
+              alt="Satharaka Nilmantha" 
+              className="profile-image"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.3 }
               }}
-              transition={{
-                rotateY: { duration: 8, repeat: Infinity, ease: "linear" },
-                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-              }}
-            >
-              <motion.img 
-                src={profilePic} 
-                alt="Satharaka Nilmantha" 
-                className="profile-image"
-                initial={{ opacity: 0, scale: 0.8, rotateY: -180 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                transition={{ delay: 0.5, duration: 1.5, ease: "backOut" }}
-                whileHover={{ 
-                  scale: 1.1,
-                  rotateY: 15,
-                  transition: { duration: 0.3 }
-                }}
-              />
-            </motion.div>
+            />
             <div className="profile-frame rgb-glow"></div>
             <div className="profile-scanner"></div>
             
@@ -283,7 +213,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Enhanced Content Column */}
+        {/* Content Column - SAME LAYOUT, ENHANCED ANIMATIONS */}
         <div className="content-column">
           <div className="typing-container">
             <motion.div
@@ -292,26 +222,20 @@ const Hero = () => {
               animate={controls}
               variants={typingVariants}
             >
-              <h1 className="hero-title gaming-title">
-                {currentTitle.map((part, index) => (
-                  <motion.span 
-                    key={`${currentPhase}-${index}`}
+              <h1 className="hero-title">
+                {titleParts.map((part, index) => (
+                  <span 
+                    key={index}
                     className="title-part"
-                    style={{ 
-                      color: part.color,
-                      textShadow: part.glow ? `0 0 20px ${part.color}, 0 0 40px ${part.color}` : 'none'
-                    }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    style={{ color: part.color }}
                   >
                     {part.text}
-                  </motion.span>
+                  </span>
                 ))}
               </h1>
             </motion.div>
             <motion.span
-              className="typing-cursor gaming-cursor"
+              className="typing-cursor"
               initial={{ opacity: 0 }}
               animate={cursorControls}
             />
@@ -319,128 +243,92 @@ const Hero = () => {
 
           <motion.div 
             className="description-section"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
+            transition={{ delay: 0 + (0.08 * fullText.length), duration: 0.8 }}
           >
-            <div className="hero-description gaming-text">
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2 }}
-              >
-                I'm a passionate <span className="highlight-text">Full-Stack Developer</span> and Computer Engineering undergraduate 
-                specializing in building innovative, scalable, and efficient digital solutions. 
-                I excel in both <span className="highlight-text">frontend</span> and <span className="highlight-text">backend development</span>, 
-                with expertise in <span className="highlight-text">IoT systems</span> and <span className="highlight-text">modern web technologies</span>.
-              </motion.p>
-              
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2.5 }}
-              >
-                My mission is to create <span className="highlight-text">next-generation applications</span> that push the boundaries 
-                of technology while delivering exceptional user experiences. From crafting responsive React interfaces 
-                to architecting robust backend systems, I bring ideas to life with precision and innovation.
-              </motion.p>
-            </div>
+            <p className="hero-description">
+              I'm a passionate <strong>Full-Stack Developer</strong> and Computer Engineering undergraduate 
+              specializing in building innovative, scalable, and efficient digital solutions. 
+              I excel in both <strong>frontend</strong> and <strong>backend development</strong>, 
+              with expertise in <strong>IoT systems</strong> and <strong>modern web technologies</strong>.
+            </p>
             
-            {/* Enhanced Expertise Section */}
-            <div className="expertise-section gaming-stats">
-              {expertiseItems.map((item, index) => (
+            <div className="expertise-section">
+              {[
+                "🚀 Full-Stack Development", 
+                "⚡ Backend Architecture", 
+                "🎨 Frontend Design", 
+                "🔌 IoT & Embedded Systems", 
+                "🧠 Problem Solving"
+              ].map((item, index) => (
                 <motion.div 
                   key={index}
-                  className="expertise-item gaming-stat"
-                  initial={{ opacity: 0, x: -20, scale: 0.8 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  transition={{ delay: 2.2 + (index * 0.15), duration: 0.6 }}
+                  className="expertise-item"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 + (0.08 * fullText.length) + (index * 0.1), duration: 0.5 }}
                   whileHover={{ 
-                    scale: 1.1, 
-                    y: -5,
-                    boxShadow: "0 10px 30px rgba(0, 243, 255, 0.3)"
+                    scale: 1.1,
+                    y: -5
                   }}
                 >
-                  <div className="stat-icon">{item.icon}</div>
-                  <div className="stat-content">
-                    <span className="stat-text">{item.text}</span>
-                    <div className="stat-bar">
-                      <motion.div 
-                        className="stat-fill"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${item.level}%` }}
-                        transition={{ delay: 2.5 + (index * 0.1), duration: 1.5 }}
-                      />
-                      <span className="stat-percentage">{item.level}%</span>
-                    </div>
-                  </div>
+                  {item}
                 </motion.div>
               ))}
             </div>
 
-            {/* Enhanced Resume Download Button */}
+            {/* Resume Download Button */}
             <motion.div 
               className="resume-section"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3, duration: 0.5 }}
+              transition={{ delay: 1.2 + (0.08 * fullText.length), duration: 0.5 }}
             >
               <motion.a 
                 href="/resume.pdf" 
                 download="Satharaka_Nilmantha_Resume.pdf"
-                className="resume-download-btn gaming-button"
+                className="resume-download-btn"
                 whileHover={{ 
                   scale: 1.05,
-                  boxShadow: "0 0 30px var(--neon-purple)"
+                  y: -3
                 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FaDownload className="download-icon" />
                 <span>Download Resume</span>
-                <div className="button-glow"></div>
               </motion.a>
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Social Links */}
           <div className="social-container">
             <motion.div 
-              className="social-title gaming-subtitle"
+              className="social-title"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 3.2, duration: 0.5 }}
+              transition={{ delay: 0.9 + (0.08 * fullText.length), duration: 0.5 }}
             >
-              <FaGamepad className="title-icon" />
-              Let's Connect & Level Up Together:
+              Let's Connect & Collaborate:
             </motion.div>
-            <div className="social-links gaming-links">
+            <div className="social-links">
               {socialLinks.map((item, index) => (
                 <motion.a
                   key={index}
                   href={item.href}
-                  className={`social-link gaming-link ${item.className}`}
+                  className={`social-link ${item.className}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20, rotateX: -90 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{ delay: 3.4 + (index * 0.15), duration: 0.6 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.1 + (0.08 * fullText.length) + (index * 0.1), duration: 0.5 }}
                   whileHover={{ 
-                    y: -8, 
-                    scale: 1.05,
-                    rotateY: 5,
-                    boxShadow: "0 15px 35px rgba(0, 243, 255, 0.3)"
+                    y: -5, 
+                    scale: 1.05
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="link-icon-container">
-                    {item.icon}
-                    <div className="icon-pulse"></div>
-                  </div>
-                  <div className="link-content">
-                    <span className="link-title">{item.text}</span>
-                    <span className="link-description">{item.description}</span>
-                  </div>
-                  <div className="link-arrow">→</div>
+                  {item.icon}
+                  <span>{item.text}</span>
                 </motion.a>
               ))}
             </div>
