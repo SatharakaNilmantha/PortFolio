@@ -1,6 +1,7 @@
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaReact, FaHtml5, FaJs, FaJava, FaNodeJs, FaCss3Alt } from 'react-icons/fa';
+import { SiSpringboot, SiMysql } from 'react-icons/si';
 import profilePic from '../../Images/satharaka.jpg';
 import './Hero.css';
 
@@ -17,6 +18,18 @@ const Hero = () => {
   ];
 
   const fullText = titleParts.map(part => part.text).join('');
+
+  // Tech icons for orbit animation
+  const techIcons = [
+    { icon: <FaReact />, className: 'tech-icon-1' },
+    { icon: <FaHtml5 />, className: 'tech-icon-2' },
+    { icon: <SiSpringboot />, className: 'tech-icon-3' },
+    { icon: <FaJava />, className: 'tech-icon-4' },
+    { icon: <FaNodeJs />, className: 'tech-icon-5' },
+    { icon: <FaCss3Alt />, className: 'tech-icon-6' },
+    { icon: <FaJs />, className: 'tech-icon-7' },
+    { icon: <SiMysql />, className: 'tech-icon-8' }
+  ];
 
   // Typing animation sequence
   const startTyping = async () => {
@@ -148,7 +161,7 @@ const Hero = () => {
         animate="visible"
         variants={containerVariants}
       >
-        {/* Profile Picture Column */}
+        {/* Profile Picture Column with Animated Tech Icons */}
         <motion.div 
           className="profile-column"
           variants={profileVariants}
@@ -164,6 +177,26 @@ const Hero = () => {
               }}
             />
             <div className="profile-frame rgb-glow"></div>
+            
+            {/* Animated Tech Icons Orbit */}
+            <div className="tech-orbit">
+              {techIcons.map((tech, index) => (
+                <motion.div
+                  key={index}
+                  className={`tech-icon-orbit ${tech.className}`}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    delay: 2 + (index * 0.2), 
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                >
+                  {tech.icon}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -224,8 +257,8 @@ const Hero = () => {
                       stiffness: 200
                     }}
                     whileHover={{ 
-                      scale: 1.05, 
-                      y: -5,
+                      scale: 1.02, 
+                      y: -2,
                       transition: { duration: 0.2 }
                     }}
                   >
@@ -249,8 +282,8 @@ const Hero = () => {
                       stiffness: 200
                     }}
                     whileHover={{ 
-                      scale: 1.05, 
-                      y: -5,
+                      scale: 1.02, 
+                      y: -2,
                       transition: { duration: 0.2 }
                     }}
                   >
@@ -288,11 +321,11 @@ const Hero = () => {
                     stiffness: 200
                   }}
                   whileHover={{ 
-                    y: -8, 
-                    scale: 1.05,
+                    y: -4, 
+                    scale: 1.02,
                     transition: { duration: 0.2 }
                   }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {item.icon}
                   <span>{item.text}</span>
