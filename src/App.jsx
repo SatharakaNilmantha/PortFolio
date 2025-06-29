@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import About from './pages/AboutPage';
 import Projects from './pages/ProjectsPage';
 import Header from './Components/Header/Header';
-import './app.css';
+import './App.css';
 import ContactPage from './pages/ContactPage';
 
 function App() {
