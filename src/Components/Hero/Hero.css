@@ -55,7 +55,7 @@ body {
   display: flex;
   align-items: center;
   min-height: 100vh;
-  padding: 120px 10px 40px;
+  padding: 180px 10px 80px;
   overflow: hidden;
 }
 
@@ -174,11 +174,11 @@ body {
 /* Main Container Layout */
 .hero-container {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 300px 1fr;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  gap: 50px;
+  gap: 70px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -192,8 +192,8 @@ body {
 
 .profile-image-container {
   position: relative;
-  width: 280px;
-  height: 280px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   perspective: 1000px;
 }
@@ -284,7 +284,7 @@ body {
   font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
   display: flex;
   flex-wrap: nowrap;
   gap: 0.2em;
@@ -297,6 +297,52 @@ body {
   position: relative;
 }
 
+/* Simple Role Display - No Typing Animation */
+.role-container {
+  margin-bottom: var(--space-lg);
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.role-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+  animation: roleShimmer 3s linear infinite;
+}
+
+@keyframes roleShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.hero-role {
+  font-family: var(--font-main);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  color: var(--neon-green);
+  text-shadow: 
+    0 0 15px var(--neon-green),
+    0 0 30px var(--neon-green);
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  position: relative;
+  z-index: 1;
+}
+
 /* Content Styles */
 .content-column {
   display: flex;
@@ -304,11 +350,11 @@ body {
 }
 
 .hero-description {
-  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
-  line-height: 1.7;
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  line-height: 1.8;
   margin-bottom: var(--space-lg);
   color: rgba(255, 255, 255, 0.9);
-  max-width: 700px;
+  max-width: 800px;
   text-align: justify;
 }
 
@@ -318,25 +364,41 @@ body {
   text-shadow: 0 0 8px var(--neon-blue);
 }
 
-/* Compact Expertise Section - Two Rows */
+/* Single Line Expertise Section */
 .expertise-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: nowrap;
   gap: var(--space-sm);
   margin: var(--space-lg) 0;
-  max-width: 700px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-blue) transparent;
+}
+
+.expertise-section::-webkit-scrollbar {
+  height: 4px;
+}
+
+.expertise-section::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+.expertise-section::-webkit-scrollbar-thumb {
+  background: var(--neon-blue);
+  border-radius: 2px;
 }
 
 .expertise-item {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  gap: var(--space-sm);
   background: rgba(0, 243, 255, 0.1);
-  padding: 0.5rem 0.8rem;
-  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
   border: 1px solid rgba(0, 243, 255, 0.3);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.4s var(--ease-bounce);
   cursor: pointer;
@@ -344,7 +406,7 @@ body {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
-  text-align: center;
+  flex-shrink: 0;
 }
 
 .expertise-item::before {
@@ -373,34 +435,32 @@ body {
 
 /* Social Links */
 .social-container {
-  margin: var(--space-lg) 0 0;
+  margin: var(--space-xl) 0;
 }
 
 .social-title {
   font-weight: 600;
   margin-bottom: var(--space-md);
   color: var(--neon-green);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 1px;
   text-shadow: 0 0 15px var(--neon-green);
 }
 
 .social-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-sm);
-  max-width: 500px;
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
 }
 
 .social-link {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-sm);
   color: white;
   text-decoration: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
+  padding: 1rem 2rem;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.4s var(--ease-bounce);
@@ -408,7 +468,6 @@ body {
   overflow: hidden;
   backdrop-filter: blur(15px);
   font-weight: 500;
-  font-size: 0.9rem;
 }
 
 .social-link::before {
@@ -427,20 +486,20 @@ body {
 }
 
 .social-icon {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: var(--neon-blue);
   transition: all 0.4s var(--ease-smooth);
 }
 
 .social-link:hover .social-icon {
-  transform: scale(1.2) rotate(10deg);
+  transform: scale(1.3) rotate(10deg);
 }
 
 /* Specific Social Link Hover Effects */
 .social-link.github-link:hover {
   background: rgba(36, 41, 46, 0.25);
   border-color: var(--github-black);
-  box-shadow: 0 8px 25px rgba(36, 41, 46, 0.4);
+  box-shadow: 0 10px 30px rgba(36, 41, 46, 0.4);
 }
 
 .social-link.github-link:hover .social-icon {
@@ -450,7 +509,7 @@ body {
 .social-link.linkedin-link:hover {
   background: rgba(10, 102, 194, 0.25);
   border-color: var(--linkedin-blue);
-  box-shadow: 0 8px 25px rgba(10, 102, 194, 0.4);
+  box-shadow: 0 10px 30px rgba(10, 102, 194, 0.4);
 }
 
 .social-link.linkedin-link:hover .social-icon {
@@ -460,7 +519,7 @@ body {
 .social-link.email-link:hover {
   background: rgba(219, 68, 55, 0.25);
   border-color: var(--email-red);
-  box-shadow: 0 8px 25px rgba(219, 68, 55, 0.4);
+  box-shadow: 0 10px 30px rgba(219, 68, 55, 0.4);
 }
 
 .social-link.email-link:hover .social-icon {
@@ -470,7 +529,7 @@ body {
 .social-link.whatsapp-link:hover {
   background: rgba(37, 211, 102, 0.25);
   border-color: var(--whatsapp-green);
-  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
 }
 
 .social-link.whatsapp-link:hover .social-icon {
@@ -494,11 +553,11 @@ body {
   }
   
   .social-links {
-    justify-self: center;
+    justify-content: center;
   }
   
   .expertise-section {
-    justify-self: center;
+    justify-content: flex-start;
   }
   
   .hero-description {
@@ -506,16 +565,24 @@ body {
     margin-right: auto;
     text-align: center;
   }
+  
+  .role-container {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 768px) {
   .cyber-hero {
-    padding: 100px 1rem 30px;
+    padding: 140px 1rem 60px;
   }
   
   .profile-image-container {
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
+  }
+  
+  .social-link {
+    padding: 0.8rem 1.5rem;
   }
   
   .hero-title {
@@ -523,13 +590,8 @@ body {
   }
   
   .expertise-section {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-  }
-  
-  .social-links {
-    grid-template-columns: 1fr;
-    max-width: 300px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
@@ -539,30 +601,41 @@ body {
     align-items: center;
     text-align: center;
     white-space: normal;
-    gap: 0.1em;
   }
   
-  .profile-image-container {
-    width: 180px;
-    height: 180px;
-  }
-  
-  .expertise-item {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.6rem;
-  }
-  
-  .expertise-section {
-    grid-template-columns: 1fr;
-    gap: 0.4rem;
+  .social-links {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
   }
   
   .social-link {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.85rem;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
   }
   
-  .social-icon {
-    font-size: 1.1rem;
+  .profile-image-container {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .expertise-item {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .role-container {
+    min-height: 50px;
+    padding: 12px 20px;
+  }
+  
+  .hero-role {
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+  }
+  
+  .expertise-section {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 }

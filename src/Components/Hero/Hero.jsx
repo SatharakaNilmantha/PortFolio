@@ -142,14 +142,26 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
+            className="role-container"
+            variants={itemVariants}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
+            <h2 className="hero-role">
+              Full-Stack Developer & Problem Solver
+            </h2>
+          </motion.div>
+
+          <motion.div 
             className="description-section"
             variants={itemVariants}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
           >
             <p className="hero-description">
-              I'm a passionate <strong>Computer Engineering undergraduate</strong> 
+              I'm a passionate <strong>Full-Stack Developer</strong> and Computer Engineering undergraduate 
               specializing in building innovative, scalable, and efficient digital solutions. 
               I excel in both <strong>frontend</strong> and <strong>backend development</strong>, 
               with expertise in <strong>IoT systems</strong>, <strong>problem solving</strong>, and <strong>modern web technologies</strong>.
@@ -170,7 +182,7 @@ const Hero = () => {
                   initial={{ opacity: 0, scale: 0.8, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ 
-                    delay: 1.2 + (index * 0.1), 
+                    delay: 1.8 + (index * 0.1), 
                     duration: 0.5,
                     type: "spring",
                     stiffness: 200
@@ -192,7 +204,7 @@ const Hero = () => {
             variants={itemVariants}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.0, duration: 0.8 }}
+            transition={{ delay: 2.5, duration: 0.8 }}
           >
             <div className="social-title">
               Let's Connect & Collaborate:
@@ -208,7 +220,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ 
-                    delay: 2.3 + (index * 0.1), 
+                    delay: 2.8 + (index * 0.1), 
                     duration: 0.5,
                     type: "spring",
                     stiffness: 200
