@@ -175,11 +175,11 @@ const Projects = () => {
                 <div className="project-header">
                   <div className="project-title-row">
                     <h3 className="project-title">{project.title}</h3>
+                    <span className={`project-status ${project.status.toLowerCase().replace(' ', '-')}`}>
+                      {project.status}
+                    </span>
+                    <span className="project-period">{project.period}</span>
                   </div>
-                  <span className={`project-status ${project.status.toLowerCase().replace(' ', '-')}`}>
-                    {project.status}
-                  </span>
-                  <span className="project-period">{project.period}</span>
                 </div>
                 
                 <ul className="project-description">

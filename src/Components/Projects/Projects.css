@@ -143,8 +143,8 @@
 .project-title-row {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
 .project-title {
@@ -157,14 +157,16 @@
 }
 
 .project-status {
-  padding: 4px 12px;
-  border-radius: 12px;
+  padding: 6px 16px;
+  border-radius: 15px;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   align-self: flex-start;
   order: 2;
+  display: inline-block;
+  width: fit-content;
 }
 
 .project-status.completed {
@@ -184,6 +186,7 @@
   font-size: 0.9rem;
   font-family: 'Fira Code', monospace;
   order: 3;
+  margin-top: 5px;
 }
 
 .project-description {
