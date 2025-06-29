@@ -370,13 +370,29 @@ body {
   text-shadow: 0 0 8px var(--neon-blue);
 }
 
-/* Compact Expertise Section - Two Rows */
+/* Expertise Section - Two Rows Layout */
 .expertise-section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: var(--space-sm);
   margin: var(--space-lg) 0;
-  max-width: 700px;
+  max-width: 800px;
+}
+
+/* First Row - Full-Stack, Backend, Frontend, UI/UX */
+.expertise-item:nth-child(1),
+.expertise-item:nth-child(2),
+.expertise-item:nth-child(3),
+.expertise-item:nth-child(6) {
+  grid-row: 1;
+}
+
+/* Second Row - IoT & Embedded, Problem Solving */
+.expertise-item:nth-child(4),
+.expertise-item:nth-child(5) {
+  grid-row: 2;
+  grid-column: span 2;
 }
 
 .expertise-item {
@@ -438,11 +454,12 @@ body {
   white-space: nowrap;
 }
 
+/* Social Links in One Line */
 .social-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: var(--space-sm);
-  max-width: 500px;
+  flex-wrap: wrap;
+  max-width: 600px;
 }
 
 .social-link {
@@ -452,7 +469,7 @@ body {
   gap: var(--space-sm);
   color: white;
   text-decoration: none;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -461,7 +478,9 @@ body {
   overflow: hidden;
   backdrop-filter: blur(15px);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  flex: 1;
+  min-width: 120px;
 }
 
 .social-link::before {
@@ -480,7 +499,7 @@ body {
 }
 
 .social-icon {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--neon-blue);
   transition: all 0.4s var(--ease-smooth);
 }
@@ -547,7 +566,7 @@ body {
   }
   
   .social-links {
-    justify-self: center;
+    justify-content: center;
   }
   
   .expertise-section {
@@ -578,12 +597,31 @@ body {
   
   .expertise-section {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  
+  .expertise-item:nth-child(1),
+  .expertise-item:nth-child(2) {
+    grid-row: 1;
+    grid-column: span 1;
+  }
+  
+  .expertise-item:nth-child(3),
+  .expertise-item:nth-child(6) {
+    grid-row: 2;
+    grid-column: span 1;
+  }
+  
+  .expertise-item:nth-child(4),
+  .expertise-item:nth-child(5) {
+    grid-row: 3;
+    grid-column: span 1;
   }
   
   .social-links {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     max-width: 300px;
+    margin: 0 auto;
   }
   
   .social-title {
@@ -611,12 +649,22 @@ body {
   
   .expertise-section {
     grid-template-columns: 1fr;
-    gap: 0.4rem;
+    grid-template-rows: repeat(6, 1fr);
+  }
+  
+  .expertise-item:nth-child(1),
+  .expertise-item:nth-child(2),
+  .expertise-item:nth-child(3),
+  .expertise-item:nth-child(4),
+  .expertise-item:nth-child(5),
+  .expertise-item:nth-child(6) {
+    grid-row: auto;
+    grid-column: span 1;
   }
   
   .social-link {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.85rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
   }
   
   .social-icon {

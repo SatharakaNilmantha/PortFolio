@@ -173,6 +173,7 @@ const Hero = () => {
               with expertise in <strong>IoT systems</strong>, <strong>problem solving</strong>, and <strong>modern web technologies</strong>.
             </p>
             
+            {/* Two-Row Expertise Layout */}
             <div className="expertise-section">
               {[
                 "🚀 Full-Stack Development", 
@@ -205,6 +206,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
+          {/* Social Links in One Line */}
           <motion.div 
             className="social-container"
             variants={itemVariants}
