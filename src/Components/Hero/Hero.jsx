@@ -1,15 +1,53 @@
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import profilePic from '../../Images/satharaka.jpg';
 import './Hero.css';
 
 const Hero = () => {
+  const [typingComplete, setTypingComplete] = useState(false);
+  const controls = useAnimation();
+  const cursorControls = useAnimation();
+
   const titleParts = [
-    { text: "Hello,", color: "var(--neon-blue)" },
-    { text: "I'm", color: "var(--neon-green)" },
-    { text: "Satharaka", color: "var(--neon-pink)" },
+    { text: "Hello, ", color: "var(--neon-blue)" },
+    { text: "I'm ", color: "var(--neon-green)" },
+    { text: "Satharaka ", color: "var(--neon-pink)" },
     { text: "Nilmantha", color: "var(--neon-purple)" }
   ];
+
+  const fullText = titleParts.map(part => part.text).join('');
+
+  // Typing animation sequence
+  const startTyping = async () => {
+    await controls.start("hidden");
+    setTypingComplete(false);
+    
+    // Typing animation
+    await controls.start("typing", {
+      duration: 0.08 * fullText.length,
+      ease: "linear"
+    });
+    
+    setTypingComplete(true);
+    
+    // Blinking cursor animation
+    while (true) {
+      await cursorControls.start({ opacity: 1 }, { duration: 0.5 });
+      await cursorControls.start({ opacity: 0 }, { duration: 0.5 });
+    }
+  };
+
+  useEffect(() => {
+    startTyping();
+    
+    // Restart typing every 8 seconds
+    const interval = setInterval(() => {
+      startTyping();
+    }, 8000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   // Animation variants
   const containerVariants = {
@@ -20,6 +58,17 @@ const Hero = () => {
         staggerChildren: 0.15,
         delayChildren: 0.2,
         ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  const typingVariants = {
+    hidden: { width: 0 },
+    typing: {
+      width: "100%",
+      transition: {
+        duration: 0.08 * fullText.length,
+        ease: "linear"
       }
     }
   };
@@ -44,18 +93,6 @@ const Hero = () => {
       rotateY: 0,
       transition: {
         duration: 1.5,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    }
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 1,
         ease: [0.16, 1, 0.3, 1]
       }
     }
@@ -86,6 +123,19 @@ const Hero = () => {
       href: "https://wa.me/94765871905",
       className: "whatsapp-link" 
     }
+  ];
+
+  // Two-line expertise organization
+  const expertiseFirstLine = [
+    "🚀 Full-Stack Development", 
+    "⚡ Backend Architecture", 
+    "🎨 Frontend Developer",
+    "🎯 UI/UX Designer"
+  ];
+
+  const expertiseSecondLine = [
+    "🔌 IoT & Embedded Systems", 
+    "🧠 Problem Solving"
   ];
 
   return (
@@ -119,83 +169,95 @@ const Hero = () => {
 
         {/* Content Column */}
         <div className="content-column">
-          <motion.div variants={titleVariants}>
-            <h1 className="hero-title">
-              {titleParts.map((part, index) => (
-                <motion.span 
-                  key={index}
-                  className="title-part"
-                  style={{ color: part.color }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
-                    delay: index * 0.2, 
-                    duration: 0.6,
-                    type: "spring",
-                    stiffness: 200
-                  }}
-                >
-                  {part.text}
-                </motion.span>
-              ))}
-            </h1>
-          </motion.div>
-
-          <motion.div 
-            className="role-container"
-            variants={itemVariants}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-          >
-            <h2 className="hero-role">
-              Full-Stack Developer & Problem Solver
-            </h2>
-          </motion.div>
+          <div className="typing-container">
+            <motion.div
+              className="typing-wrapper"
+              initial={{ width: 0 }}
+              animate={controls}
+              variants={typingVariants}
+            >
+              <h1 className="hero-title">
+                {titleParts.map((part, index) => (
+                  <span 
+                    key={index}
+                    className="title-part"
+                    style={{ color: part.color }}
+                  >
+                    {part.text}
+                  </span>
+                ))}
+              </h1>
+            </motion.div>
+            <motion.span
+              className="typing-cursor"
+              initial={{ opacity: 0 }}
+              animate={cursorControls}
+            />
+          </div>
 
           <motion.div 
             className="description-section"
-            variants={itemVariants}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
+            transition={{ delay: 0.5 + (0.08 * fullText.length), duration: 0.8 }}
           >
             <p className="hero-description">
-              I'm a passionate <strong>Full-Stack Developer</strong> and Computer Engineering undergraduate 
+              I'm a passionate <strong>Computer Engineering undergraduate</strong> 
               specializing in building innovative, scalable, and efficient digital solutions. 
               I excel in both <strong>frontend</strong> and <strong>backend development</strong>, 
               with expertise in <strong>IoT systems</strong>, <strong>problem solving</strong>, and <strong>modern web technologies</strong>.
             </p>
             
             <div className="expertise-section">
-              {[
-                "🚀 Full-Stack Development", 
-                "⚡ Backend Architecture", 
-                "🎨 Frontend Design", 
-                "🔌 IoT & Embedded Systems", 
-                "🧠 Problem Solving",
-                "🎯 UI/UX Design"
-              ].map((item, index) => (
-                <motion.div 
-                  key={index}
-                  className="expertise-item"
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ 
-                    delay: 1.8 + (index * 0.1), 
-                    duration: 0.5,
-                    type: "spring",
-                    stiffness: 200
-                  }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    y: -5,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  {item}
-                </motion.div>
-              ))}
+              {/* First Line */}
+              <div className="expertise-row">
+                {expertiseFirstLine.map((item, index) => (
+                  <motion.div 
+                    key={index}
+                    className="expertise-item"
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ 
+                      delay: 1.2 + (0.08 * fullText.length) + (index * 0.1), 
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -5,
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    {item}
+                  </motion.div>
+                ))}
+              </div>
+              
+              {/* Second Line */}
+              <div className="expertise-row">
+                {expertiseSecondLine.map((item, index) => (
+                  <motion.div 
+                    key={index}
+                    className="expertise-item"
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ 
+                      delay: 1.6 + (0.08 * fullText.length) + (index * 0.1), 
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -5,
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    {item}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
@@ -204,7 +266,7 @@ const Hero = () => {
             variants={itemVariants}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.5, duration: 0.8 }}
+            transition={{ delay: 2.5 + (0.08 * fullText.length), duration: 0.8 }}
           >
             <div className="social-title">
               Let's Connect & Collaborate:
@@ -220,7 +282,7 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ 
-                    delay: 2.8 + (index * 0.1), 
+                    delay: 2.8 + (0.08 * fullText.length) + (index * 0.1), 
                     duration: 0.5,
                     type: "spring",
                     stiffness: 200

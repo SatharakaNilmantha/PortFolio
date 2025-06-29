@@ -277,70 +277,54 @@ body {
   }
 }
 
-/* Simple Title Styles - No Shining Effect */
+/* Typing Animation Styles */
+.typing-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+}
+
+.typing-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
 .hero-title {
   font-family: var(--font-heading);
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
-  margin-bottom: var(--space-sm);
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0.2em;
+  display: inline-block;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 .title-part {
   display: inline-block;
-  position: relative;
+  margin-right: 0.3em;
 }
 
-/* Simple Role Display - No Typing Animation */
-.role-container {
-  margin-bottom: var(--space-lg);
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 15px 25px;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 243, 255, 0.2);
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
+.title-part:last-child {
+  margin-right: 0;
 }
 
-.role-container::before {
-  content: '';
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--neon-blue);
+  margin-left: 4px;
+  vertical-align: middle;
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
-  animation: roleShimmer 3s linear infinite;
+  bottom: 0.15em;
+  animation: blink 1s infinite;
 }
 
-@keyframes roleShimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-.hero-role {
-  font-family: var(--font-main);
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  font-weight: 600;
-  color: var(--neon-green);
-  text-shadow: 
-    0 0 15px var(--neon-green),
-    0 0 30px var(--neon-green);
-  display: flex;
-  align-items: center;
-  min-height: 40px;
-  position: relative;
-  z-index: 1;
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Content Styles */
@@ -364,30 +348,19 @@ body {
   text-shadow: 0 0 8px var(--neon-blue);
 }
 
-/* Single Line Expertise Section */
+/* Two-Line Expertise Section */
 .expertise-section {
   display: flex;
-  flex-wrap: nowrap;
-  gap: var(--space-sm);
+  flex-direction: column;
+  gap: var(--space-md);
   margin: var(--space-lg) 0;
-  overflow-x: auto;
-  padding: 10px 0;
-  scrollbar-width: thin;
-  scrollbar-color: var(--neon-blue) transparent;
 }
 
-.expertise-section::-webkit-scrollbar {
-  height: 4px;
-}
-
-.expertise-section::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
-}
-
-.expertise-section::-webkit-scrollbar-thumb {
-  background: var(--neon-blue);
-  border-radius: 2px;
+.expertise-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: flex-start;
 }
 
 .expertise-item {
@@ -556,18 +529,14 @@ body {
     justify-content: center;
   }
   
-  .expertise-section {
-    justify-content: flex-start;
+  .expertise-row {
+    justify-content: center;
   }
   
   .hero-description {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-  }
-  
-  .role-container {
-    justify-content: center;
   }
 }
 
@@ -589,18 +558,23 @@ body {
     font-size: clamp(1.5rem, 4vw, 2.2rem);
   }
   
-  .expertise-section {
-    flex-wrap: wrap;
+  .expertise-row {
     justify-content: center;
   }
 }
 
 @media (max-width: 576px) {
-  .hero-title {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .typing-container {
     white-space: normal;
+  }
+  
+  .typing-wrapper {
+    white-space: normal;
+  }
+  
+  .hero-title {
+    white-space: normal;
+    text-align: center;
   }
   
   .social-links {
@@ -625,17 +599,7 @@ body {
     padding: 0.5rem 1rem;
   }
   
-  .role-container {
-    min-height: 50px;
-    padding: 12px 20px;
-  }
-  
-  .hero-role {
-    font-size: clamp(1.1rem, 4vw, 1.4rem);
-  }
-  
-  .expertise-section {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .expertise-row {
+    justify-content: center;
   }
 }
