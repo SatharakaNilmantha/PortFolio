@@ -6,9 +6,10 @@ import {
   FaCode, 
   FaEnvelope,
   FaGamepad,
-  FaHeadset
+  FaHeadset,
+  FaRocket
 } from 'react-icons/fa';
-import { useEffect } from 'react'; // Import useEffect
+import { useEffect } from 'react';
 import './Header.css';
 
 const Header = () => {
@@ -20,10 +21,10 @@ const Header = () => {
   }, [location.pathname]);
 
   const navItems = [
-    { name: 'Home', path: '/', icon: <FaHome /> },
-    { name: 'About', path: '/about', icon: <FaUserAlt /> },
-    { name: 'Projects', path: '/projects', icon: <FaCode /> },
-    { name: 'Contact', path: '/contact', icon: <FaEnvelope /> },
+    { name: 'Home', path: '/', icon: <FaHome />, color: 'var(--neon-blue)' },
+    { name: 'About', path: '/about', icon: <FaUserAlt />, color: 'var(--neon-green)' },
+    { name: 'Projects', path: '/projects', icon: <FaCode />, color: 'var(--neon-purple)' },
+    { name: 'Contact', path: '/contact', icon: <FaEnvelope />, color: 'var(--neon-pink)' },
   ];
 
   const isActive = (path) => {
@@ -31,7 +32,12 @@ const Header = () => {
   };
 
   return (
-    <header className="neon-header">
+    <motion.header 
+      className="neon-header"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
       <div className="header-container">
         <motion.div
           className="logo-container"
@@ -40,13 +46,81 @@ const Header = () => {
         >
           <Link to="/" className="logo-link">
             <div className="gamepad-icon-container">
-              <FaGamepad className="gamepad-icon" />
-              <FaHeadset className="headset-icon" />
+              <motion.div
+                animate={{ 
+                  rotate: [0, 5, -5, 0],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <FaGamepad className="gamepad-icon" />
+              </motion.div>
+              <motion.div
+                animate={{ 
+                  rotate: [15, 25, 15],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <FaHeadset className="headset-icon" />
+              </motion.div>
+              <motion.div
+                className="rocket-icon"
+                animate={{ 
+                  y: [0, -5, 0],
+                  rotate: [0, 10, 0]
+                }}
+                transition={{ 
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <FaRocket />
+              </motion.div>
             </div>
-            <h1 className="logo-text">
-              <span className="logo-3d">Satharaka</span>
-              <span className="logo-3d-alt">Nilmantha</span>
-            </h1>
+            <motion.h1 
+              className="logo-text"
+              whileHover={{
+                scale: 1.05,
+                textShadow: "0 0 20px var(--neon-blue)"
+              }}
+            >
+              <motion.span 
+                className="logo-3d"
+                animate={{
+                  textShadow: [
+                    "0 0 10px var(--neon-blue)",
+                    "0 0 20px var(--neon-blue)",
+                    "0 0 10px var(--neon-blue)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                Satharaka
+              </motion.span>
+              <motion.span 
+                className="logo-3d-alt"
+                animate={{
+                  textShadow: [
+                    "0 0 10px var(--neon-pink)",
+                    "0 0 20px var(--neon-pink)",
+                    "0 0 10px var(--neon-pink)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+              >
+                Nilmantha
+              </motion.span>
+            </motion.h1>
           </Link>
         </motion.div>
 
@@ -65,21 +139,77 @@ const Header = () => {
               >
                 <motion.div
                   whileHover={{ 
-                    scale: 1.1,
-                    y: -3
+                    scale: 1.15,
+                    y: -5,
+                    rotateY: 10
                   }}
                   whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400 }}
                 >
                   <Link 
                     className={`nav-link ${isActive(item.path) ? 'active' : ''}`} 
                     to={item.path}
                   >
-                    <span className="nav-icon">{item.icon}</span>
-                    <span className="nav-text">{item.name}</span>
-                    <span className="nav-underline"></span>
+                    <motion.span 
+                      className="nav-icon"
+                      animate={isActive(item.path) ? {
+                        color: item.color,
+                        filter: `drop-shadow(0 0 10px ${item.color})`,
+                        rotate: [0, 5, -5, 0]
+                      } : {}}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      {item.icon}
+                    </motion.span>
+                    <motion.span 
+                      className="nav-text"
+                      animate={isActive(item.path) ? {
+                        color: item.color,
+                        textShadow: `0 0 10px ${item.color}`
+                      } : {}}
+                    >
+                      {item.name}
+                    </motion.span>
+                    <motion.span 
+                      className="nav-underline"
+                      animate={isActive(item.path) ? {
+                        scaleX: 1,
+                        background: item.color,
+                        boxShadow: `0 0 15px ${item.color}`
+                      } : {}}
+                    />
                     {isActive(item.path) && (
-                      <span className="active-indicator"></span>
+                      <motion.span 
+                        className="active-indicator"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        style={{ background: item.color, boxShadow: `0 0 10px ${item.color}` }}
+                      />
                     )}
+                    
+                    {/* Gaming particle effect on hover */}
+                    <motion.div
+                      className="nav-particles"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      {[...Array(3)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className="nav-particle"
+                          animate={{
+                            y: [0, -20, 0],
+                            x: [0, Math.random() * 20 - 10, 0],
+                            opacity: [0, 1, 0]
+                          }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            delay: i * 0.2
+                          }}
+                        />
+                      ))}
+                    </motion.div>
                   </Link>
                 </motion.div>
               </motion.li>
@@ -87,7 +217,17 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-    </header>
+      
+      {/* Header glow effect */}
+      <motion.div
+        className="header-glow"
+        animate={{
+          opacity: [0.3, 0.6, 0.3],
+          scale: [1, 1.02, 1]
+        }}
+        transition={{ duration: 4, repeat: Infinity }}
+      />
+    </motion.header>
   );
 };
 

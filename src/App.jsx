@@ -8,15 +8,16 @@ import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/PortFolio">
       <div className="app gaming-theme">
         <Header />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
-             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
       </div>
