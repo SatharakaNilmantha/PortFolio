@@ -142,11 +142,9 @@
 
 .project-title-row {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 .project-title {
@@ -155,8 +153,7 @@
   margin: 0;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  flex: 1;
-  margin-bottom: 10px;
+  order: 1;
 }
 
 .project-status {
@@ -166,7 +163,8 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 10px;
+  align-self: flex-start;
+  order: 2;
 }
 
 .project-status.completed {
@@ -185,6 +183,7 @@
   color: #c724ff;
   font-size: 0.9rem;
   font-family: 'Fira Code', monospace;
+  order: 3;
 }
 
 .project-description {
