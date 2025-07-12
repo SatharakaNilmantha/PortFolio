@@ -30,6 +30,7 @@ const Header = () => {
     return location.pathname === path;
   };
 
+  
   return (
     <header className="neon-header">
       <div className="header-container">

@@ -12,7 +12,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  
   "dependencies": {
     "bootstrap": "^5.3.7",
     "framer-motion": "^12.19.1",
