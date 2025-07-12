@@ -14,6 +14,7 @@ import './Header.css';
 const Header = () => {
   const location = useLocation();
   
+  
   // Scroll to top whenever pathname changes
   useEffect(() => {
     window.scrollTo(0, 0);
