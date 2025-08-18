@@ -4,7 +4,7 @@ import { FaGithub, FaMobileAlt, FaServer, FaShieldAlt, FaVideo, FaExternalLinkAl
 import { SiSpring, SiReact, SiMysql, SiFirebase, SiWebrtc, SiTwilio, SiNodedotjs } from 'react-icons/si';
 import './Projects.css';
 
-const Projects = () => {
+function Projects() {
   const [loading, setLoading] = useState(true);
 
   const projects = [

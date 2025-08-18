@@ -235,8 +235,7 @@ const Hero = () => {
             transition={{ delay: 0.5 + (0.08 * fullText.length), duration: 0.8 }}
           >
             <p className="hero-description">
-              I'm a passionate <strong>Computer Engineering undergraduate</strong> 
-              specializing in building innovative, scalable, and efficient digital solutions. 
+              I'm a passionate <strong>Computer Engineering undergraduate </strong> specializing in building innovative, scalable, and efficient digital solutions. 
               I excel in both <strong>frontend</strong> and <strong>backend development</strong>, 
               with expertise in <strong>IoT systems</strong>, <strong>problem solving</strong>, and <strong>modern web technologies</strong>.
             </p>
