@@ -13,16 +13,6 @@ import {
 import './About.css';
 
 function About() {
-  const [activeStack, setActiveStack] = useState(0);
-
-  // JavaScript for rotating tech stacks
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStack(prev => (prev + 1) % techStacks.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   const techStacks = [
     { 
       name: 'Programming Languages', 
@@ -111,46 +101,46 @@ function About() {
   ];
 
   return (
-    <section id="about" className="about-section container-fluid">
-      <div className="container-lg">
+    <section id="about" className="about-section">
+      <div className="container">
         <motion.div 
-          className="about-card card bg-dark border-info"
+          className="about-card"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="about-header text-center mb-5">
-            <span className="section-tag badge bg-info text-dark mb-3">ABOUT ME</span>
-            <h2 className="section-title display-4 fw-bold text-white">
+          <div className="about-header">
+            <span className="section-tag">ABOUT ME</span>
+            <h2 className="section-title">
               Full-Stack <span className="highlight">Developer</span> & <span className="highlight">Problem Solver</span>
             </h2>
-            <hr className="divider bg-info mx-auto" style={{width: '80px', height: '3px'}} />
+            <div className="divider"></div>
           </div>
 
-          <div className="about-content row">
+          <div className="about-content">
             <motion.div 
-              className="about-description col-12 mb-4 p-4 bg-dark rounded border border-info"
+              className="about-description"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <p className="description-text text-light lead">
+              <p className="description-text">
                 I'm <span className="text-highlight">Satharaka Nilmantha</span>, a passionate Computer Engineering undergraduate 
                 specializing in <span className="text-highlight">Full-Stack Development</span> and <span className="text-highlight">IoT Systems</span>. 
                 With expertise spanning both frontend and backend technologies, I create comprehensive digital solutions 
                 that bridge the gap between user experience and robust system architecture.
               </p>
-              <p className="description-text text-light">
+              <p className="description-text">
                 My development philosophy centers on building <span className="text-highlight">scalable, efficient, and user-centric applications</span>. 
                 From crafting responsive React interfaces to designing RESTful APIs with Spring Boot, I ensure every project 
                 delivers both technical excellence and exceptional user experience.
               </p>
-              <p className="description-text text-light">
+              <p className="description-text">
                 <span className="list-highlight">Core Competencies:</span>
               </p>
-              <ul className="expertise-list list-unstyled text-light">
+              <ul className="expertise-list">
                 <li><span className="list-highlight">Frontend:</span> React.js, HTML5, CSS3, Bootstrap, Responsive Design</li>
                 <li><span className="list-highlight">Backend:</span> Spring Boot, Node.js, Express.js, RESTful APIs</li>
                 <li><span className="list-highlight">Databases:</span> MySQL, MongoDB, Firebase, Database Design</li>
@@ -162,7 +152,7 @@ function About() {
 
             {/* Achievements Section */}
             <motion.div 
-              className="achievements-grid row g-4 mb-5"
+              className="achievements-grid"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -171,58 +161,60 @@ function About() {
               {achievements.map((achievement, index) => (
                 <motion.div 
                   key={index}
-                  className="achievement-card col-lg-3 col-md-6 col-sm-12"
+                  className="achievement-card"
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
-                  <div className="card bg-dark border-info h-100 text-center p-3">
-                    <div className="achievement-icon text-info fs-1 mb-3">{achievement.icon}</div>
-                    <h4 className="achievement-title text-white mb-2">{achievement.title}</h4>
-                    <p className="achievement-description text-light small">{achievement.description}</p>
-                  </div>
+                  <div className="achievement-icon">{achievement.icon}</div>
+                  <h4 className="achievement-title">{achievement.title}</h4>
+                  <p className="achievement-description">{achievement.description}</p>
                 </motion.div>
               ))}
             </motion.div>
 
-            <div className="tech-stacks col-12">
+            <div className="tech-stacks">
               {techStacks.map((stack, index) => (
                 <motion.div 
                   key={index}
-                  className={`tech-stack card bg-dark border-secondary mb-4 p-4 ${index === activeStack ? 'border-info' : ''}`}
+                  className="tech-stack"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <div className="stack-header d-flex justify-content-between align-items-center mb-3">
-                    <h3 className="stack-title text-white h5 mb-0">{stack.name}</h3>
-                    <span className="stack-level badge bg-info text-dark">{stack.level}%</span>
+                  <div className="stack-header">
+                    <h3 className="stack-title">{stack.name}</h3>
+                    <span className="stack-level">{stack.level}%</span>
                   </div>
-                  <div className="progress mb-4" style={{height: '8px'}}>
+                  <div className="progress-container">
                     <motion.div 
-                      className="progress-bar bg-info"
+                      className="progress-bar"
                       initial={{ width: 0 }}
                       whileInView={{ width: `${stack.level}%` }}
                       transition={{ duration: 1, delay: 0.3 }}
                       viewport={{ once: true }}
+                      style={{
+                        background: `linear-gradient(90deg, 
+                          var(--neon-blue), 
+                          var(--neon-purple))`
+                      }}
                     ></motion.div>
                   </div>
-                  <div className="tech-icons d-flex flex-wrap gap-3 justify-content-center">
+                  <div className="tech-icons">
                     {stack.tech.map((tech, techIndex) => (
                       <motion.div 
                         key={techIndex}
-                        className="tech-icon text-center"
+                        className="tech-icon"
                         whileHover={{ scale: 1.1 }}
                         transition={{ type: 'spring', stiffness: 400 }}
                       >
-                        <div className="icon-wrapper bg-dark border border-info rounded-circle d-flex align-items-center justify-content-center mb-2" 
-                             style={{ width: '50px', height: '50px', color: tech.icon.props.color }}>
+                        <div className="icon-wrapper" style={{ color: tech.icon.props.color }}>
                           {tech.icon}
                         </div>
-                        <span className="text-light small">{tech.name}</span>
+                        <span>{tech.name}</span>
                       </motion.div>
                     ))}
                   </div>
