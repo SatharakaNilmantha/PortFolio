@@ -6,7 +6,7 @@ import './Footer.css';
 
 import pdf from '../cv/Satharaka_Nilmantha_cv.pdf';
 
-const Footer = () => {
+function Footer() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

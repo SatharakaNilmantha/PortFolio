@@ -12,7 +12,7 @@ import {
 } from 'react-icons/si';
 import './About.css';
 
-const About = () => {
+function About() {
   const techStacks = [
     { 
       name: 'Programming Languages', 

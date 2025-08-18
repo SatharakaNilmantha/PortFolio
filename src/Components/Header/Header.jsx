@@ -11,7 +11,7 @@ import {
 import { useEffect } from 'react'; // Import useEffect
 import './Header.css';
 
-const Header = () => {
+function Header() {
   const location = useLocation();
   
   
