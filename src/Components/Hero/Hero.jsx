@@ -7,6 +7,7 @@ import './Hero.css';
 
 const Hero = () => {
   const [typingComplete, setTypingComplete] = useState(false);
+  const [currentExpertise, setCurrentExpertise] = useState(0);
   const controls = useAnimation();
   const cursorControls = useAnimation();
 
@@ -18,6 +19,23 @@ const Hero = () => {
   ];
 
   const fullText = titleParts.map(part => part.text).join('');
+
+  // Expertise rotation with JavaScript
+  const allExpertise = [
+    "🚀 Full-Stack Development", 
+    "⚡ Backend Architecture", 
+    "🎨 Frontend Developer",
+    "🎯 UI/UX Designer",
+    "🔌 IoT & Embedded Systems", 
+    "🧠 Problem Solving"
+  ];
+
+  useEffect(() => {
+    const expertiseInterval = setInterval(() => {
+      setCurrentExpertise(prev => (prev + 1) % allExpertise.length);
+    }, 2000);
+    return () => clearInterval(expertiseInterval);
+  }, []);
 
   // Tech icons for orbit animation
   const techIcons = [
@@ -139,51 +157,42 @@ const Hero = () => {
   ];
 
   // Two-line expertise organization
-  const expertiseFirstLine = [
-    "🚀 Full-Stack Development", 
-    "⚡ Backend Architecture", 
-    "🎨 Frontend Developer",
-    "🎯 UI/UX Designer"
-  ];
-
-  const expertiseSecondLine = [
-    "🔌 IoT & Embedded Systems", 
-    "🧠 Problem Solving"
-  ];
+  const expertiseFirstLine = allExpertise.slice(0, 4);
+  const expertiseSecondLine = allExpertise.slice(4);
 
   return (
-    <section className="cyber-hero">
+    <section className="cyber-hero container-fluid">
       <div className="hero-background"></div>
       
       <motion.div 
-        className="hero-container"
+        className="hero-container row align-items-center"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
         {/* Profile Picture Column with Animated Tech Icons */}
         <motion.div 
-          className="profile-column"
+          className="profile-column col-lg-4 col-md-12 d-flex justify-content-center"
           variants={profileVariants}
         >
-          <div className="profile-image-container">
+          <div className="profile-image-container position-relative">
             <motion.img 
               src={profilePic} 
               alt="Satharaka Nilmantha" 
-              className="profile-image"
+              className="profile-image rounded-circle img-fluid"
               whileHover={{ 
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
             />
-            <div className="profile-frame rgb-glow"></div>
+            <div className="profile-frame rgb-glow position-absolute"></div>
             
             {/* Animated Tech Icons Orbit */}
-            <div className="tech-orbit">
+            <div className="tech-orbit position-absolute">
               {techIcons.map((tech, index) => (
                 <motion.div
                   key={index}
-                  className={`tech-icon-orbit ${tech.className}`}
+                  className={`tech-icon-orbit position-absolute d-flex align-items-center justify-content-center ${tech.className}`}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ 
@@ -201,7 +210,7 @@ const Hero = () => {
         </motion.div>
 
         {/* Content Column */}
-        <div className="content-column">
+        <div className="content-column col-lg-8 col-md-12">
           <div className="typing-container">
             <motion.div
               className="typing-wrapper"
@@ -209,7 +218,7 @@ const Hero = () => {
               animate={controls}
               variants={typingVariants}
             >
-              <h1 className="hero-title">
+              <h1 className="hero-title display-3 fw-bold">
                 {titleParts.map((part, index) => (
                   <span 
                     key={index}
@@ -234,19 +243,19 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 + (0.08 * fullText.length), duration: 0.8 }}
           >
-            <p className="hero-description">
+            <p className="hero-description lead">
               I'm a passionate <strong>Computer Engineering undergraduate </strong> specializing in building innovative, scalable, and efficient digital solutions. 
               I excel in both <strong>frontend</strong> and <strong>backend development</strong>, 
               with expertise in <strong>IoT systems</strong>, <strong>problem solving</strong>, and <strong>modern web technologies</strong>.
             </p>
             
-            <div className="expertise-section">
+            <div className="expertise-section mb-4">
               {/* First Line */}
-              <div className="expertise-row">
+              <div className="expertise-row d-flex flex-wrap gap-2 justify-content-start mb-3">
                 {expertiseFirstLine.map((item, index) => (
                   <motion.div 
                     key={index}
-                    className="expertise-item"
+                    className={`expertise-item badge rounded-pill px-3 py-2 ${index === currentExpertise ? 'expertise-active' : ''}`}
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ 
@@ -267,11 +276,11 @@ const Hero = () => {
               </div>
               
               {/* Second Line */}
-              <div className="expertise-row">
+              <div className="expertise-row d-flex flex-wrap gap-2 justify-content-start">
                 {expertiseSecondLine.map((item, index) => (
                   <motion.div 
                     key={index}
-                    className="expertise-item"
+                    className={`expertise-item badge rounded-pill px-3 py-2 ${(index + 4) === currentExpertise ? 'expertise-active' : ''}`}
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ 
@@ -294,21 +303,21 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            className="social-container"
+            className="social-container mt-4"
             variants={itemVariants}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.5 + (0.08 * fullText.length), duration: 0.8 }}
           >
-            <div className="social-title">
+            <div className="social-title h5 text-success mb-3">
               Let's Connect & Collaborate:
             </div>
-            <div className="social-links">
+            <div className="social-links d-flex flex-wrap gap-3">
               {socialLinks.map((item, index) => (
                 <motion.a
                   key={index}
                   href={item.href}
-                  className={`social-link ${item.className}`}
+                  className={`social-link btn btn-outline-info d-flex align-items-center gap-2 ${item.className}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20, scale: 0.9 }}
