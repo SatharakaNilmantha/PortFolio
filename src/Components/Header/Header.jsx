@@ -1,13 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  FaHome, 
-  FaUserAlt, 
-  FaCode, 
-  FaEnvelope,
-  FaGamepad,
-  FaHeadset
-} from 'react-icons/fa';
+import { FaHome, FaUserAlt, FaCode, FaEnvelope, FaGamepad, FaHeadset, FaBriefcase } from 'react-icons/fa';
 import { useEffect } from 'react'; // Import useEffect
 import './Header.css';
 
@@ -23,6 +16,7 @@ function Header() {
   const navItems = [
     { name: 'Home', path: '/', icon: <FaHome /> },
     { name: 'About', path: '/about', icon: <FaUserAlt /> },
+    { name: 'Experience', path: '/experience', icon: <FaBriefcase /> },
     { name: 'Projects', path: '/projects', icon: <FaCode /> },
     { name: 'Contact', path: '/contact', icon: <FaEnvelope /> },
   ];

@@ -5,6 +5,7 @@ import Projects from './pages/ProjectsPage';
 import Header from './Components/Header/Header';
 import './App.css';
 import ContactPage from './pages/ContactPage';
+import ExperiencePage from './pages/ExperiencePage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/experience" element={<ExperiencePage />} />
             {/* Redirect any unknown routes to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

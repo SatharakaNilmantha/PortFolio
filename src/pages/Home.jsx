@@ -1,6 +1,7 @@
 import Header from '../Components/Header/Header';
 import About from '../Components/About/About';
 import Footer from '../Components/Footer/Footer';
+import ExperiencePage from '../pages/ExperiencePage';
 import Projects from '../Components/Projects/Projects';
 import Hero from '../Components/Hero/Hero';
 
@@ -9,9 +10,10 @@ const Home = () => {
     <>
       <Header />
       <Hero />
-      <About/>
-      <Projects/>
-      <Footer/>
+      <About />
+      <ExperiencePage />
+      <Projects />
+      <Footer />
     </>
   );
 };

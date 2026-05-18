@@ -1,55 +1,73 @@
-/* Global Variables */
+/* ═══════════════════════════════════════════════════════
+   GLOBAL THEME — Neon Blue Professional Portfolio
+   ═══════════════════════════════════════════════════════ */
+
 :root {
-  --primary: #8b0000;
-  --secondary: #0080ff;
-  --background: #0a0a0a;
-  --foreground: #ffffff;
-  --accent: #ff4081;
-  --muted: #666666;
-  --rgb-1: rgb(255, 0, 0);
-  --rgb-2: rgb(0, 255, 0);
-  --rgb-3: rgb(0, 0, 255);
-  --loading-bg: rgba(10, 10, 10, 0.95);
+  /* ── Primary Palette ── */
+  --neon-blue:     #00f3ff;
+  --neon-cyan:     #00d4ff;
+  --neon-blue-mid: #0099ff;
+  --neon-blue-dim: #0066cc;
+  --neon-light:    #64dfff;
+  --neon-glow:     #00c8ff;
+
+  /* ── Backgrounds ── */
+  --bg-primary:  #060614;
+  --bg-section:  #0a0a1e;
+  --bg-card:     rgba(8, 8, 30, 0.85);
+  --bg-card-alt: rgba(6, 6, 24, 0.7);
+
+  /* ── Text ── */
+  --text-primary:   #ffffff;
+  --text-secondary:  rgba(255, 255, 255, 0.75);
+  --text-muted:      rgba(255, 255, 255, 0.5);
+
+  /* ── Utility ── */
+  --border-glow: rgba(0, 243, 255, 0.25);
+  --shadow-glow: rgba(0, 200, 255, 0.15);
+
+  /* ── Social brand colors ── */
+  --whatsapp-green: #25D366;
+  --github-gray:    #e0e0e0;
+  --linkedin-blue:  #0a66c2;
+  --email-red:      #db4437;
+
+  /* ── Typography ── */
+  --font-main:    'Rajdhani', sans-serif;
+  --font-heading: 'Orbitron', sans-serif;
+  --font-code:    'Fira Code', monospace;
+
+  /* ── Spacing ── */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* ── Easing ── */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Base Styles */
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: 'Roboto', sans-serif;
-  overflow-x: hidden;
+/* ── Base Reset ── */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-
-
-/* RGB Animations */
-@keyframes rgb-shift {
-  0% { border-color: var(--rgb-1); box-shadow: 0 0 15px var(--rgb-1); }
-  33% { border-color: var(--rgb-2); box-shadow: 0 0 15px var(--rgb-2); }
-  66% { border-color: var(--rgb-3); box-shadow: 0 0 15px var(--rgb-3); }
-  100% { border-color: var(--rgb-1); box-shadow: 0 0 15px var(--rgb-1); }
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes rgb-text-shift {
-  0% { color: var(--rgb-1); }
-  33% { color: var(--rgb-2); }
-  66% { color: var(--rgb-3); }
-  100% { color: var(--rgb-1); }
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  overflow-x: hidden;
 }
 
-.rgb-border {
-  border: 4px solid var(--rgb-1);
-  animation: rgb-shift 3s infinite;
-  border-radius: 8px;
-}
-
-.rgb-text {
-  animation: rgb-text-shift 3s infinite;
-}
-
-/* Layout */
+/* ── Layout ── */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -58,4 +76,24 @@ body {
 
 .main-content {
   min-height: calc(100vh - 120px);
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-blue-dim);
+  border-radius: 5px;
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue);
 }

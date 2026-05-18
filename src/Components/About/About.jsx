@@ -2,13 +2,14 @@ import { motion } from 'framer-motion';
 import { 
   FaHtml5, FaCss3Alt, FaJs, FaBootstrap, 
   FaReact, FaNodeJs, FaJava, FaDatabase,
-  FaCode, FaServer, FaMobile, FaCloud, FaVideo
+  FaCode, FaServer, FaMobile, FaCloud, FaVideo, FaAws, FaDocker, FaJenkins
 } from 'react-icons/fa';
 import { 
   SiSpringboot, SiMongodb, SiMysql, SiFirebase, 
   SiPhp, SiTwilio, SiPython, SiCplusplus, 
   SiPostman, SiFigma, SiC, SiExpress,
-  SiSocketdotio, SiGit, SiDocker, SiLinux
+  SiSocketdotio, SiGit, SiDocker, SiLinux,
+  SiGrafana, SiNginx
 } from 'react-icons/si';
 import './About.css';
 
@@ -60,6 +61,11 @@ function About() {
       level: 85,
       tech: [
         { name: 'Git', icon: <SiGit color="#F05032" /> },
+        { name: 'Docker', icon: <FaDocker color="#2496ED" /> },
+        { name: 'Nginx', icon: <SiNginx color="#009639" /> },
+        { name: 'Grafana', icon: <SiGrafana color="#F46800" /> },
+        { name: 'Jenkins', icon: <FaJenkins color="#D24939" /> },
+        { name: 'AWS', icon: <FaAws color="#FF9900" /> },
         { name: 'Postman', icon: <SiPostman color="#FF6C37" /> },
         { name: 'Linux', icon: <SiLinux color="#FCC624" /> },
         { name: 'Figma', icon: <SiFigma color="#F24E1E" /> }
@@ -127,7 +133,7 @@ function About() {
               viewport={{ once: true }}
             >
               <p className="description-text">
-                I'm <span className="text-highlight">Satharaka Nilmantha</span>, a passionate Computer Engineering undergraduate 
+                I'm <span className="text-highlight">Satharaka Nilmantha</span>, a <span className="text-highlight">Software Developer – Junior Associate</span> at <span className="text-highlight">Cyber Mas Solutions (Pvt) Ltd</span> and a passionate Computer Engineering undergraduate 
                 specializing in <span className="text-highlight">Full-Stack Development</span> and <span className="text-highlight">IoT Systems</span>. 
                 With expertise spanning both frontend and backend technologies, I create comprehensive digital solutions 
                 that bridge the gap between user experience and robust system architecture.
@@ -145,8 +151,9 @@ function About() {
                 <li><span className="list-highlight">Backend:</span> Spring Boot, Node.js, Express.js, RESTful APIs</li>
                 <li><span className="list-highlight">Databases:</span> MySQL, MongoDB, Firebase, Database Design</li>
                 <li><span className="list-highlight">Languages:</span> Java, JavaScript, Python, C++, C, PHP</li>
+                <li><span className="list-highlight">DevOps:</span> Docker, Nginx, Grafana, Jenkins, AWS, Git, Linux</li>
                 <li><span className="list-highlight">Specialized:</span> IoT Development, WebRTC, Real-time Applications</li>
-                <li><span className="list-highlight">Tools:</span> Git, Docker, Postman, Linux, Agile Development</li>
+                <li><span className="list-highlight">Tools:</span> Postman, Figma, Agile Development</li>
               </ul>
             </motion.div>
 
