@@ -5,7 +5,7 @@ import {
   FaPaperPlane, FaDownload
 } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
-import cvFile from '../../assets/Satharaka_Nilmantha_cv.pdf';
+import cvFile from '../../assets/Gunarathna A.M.S.N. cv.pdf';
 import './Contact.css';
 
 const contactItems = [
