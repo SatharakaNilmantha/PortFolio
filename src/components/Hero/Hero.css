@@ -1,0 +1,747 @@
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--grad-hero);
+}
+
+/* Animated mesh gradient background */
+.hero-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.25;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+
+.hero-blob-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--accent-violet);
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.hero-blob-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--accent-pink);
+  top: 100px;
+  right: -80px;
+  animation-delay: 2.5s;
+}
+
+.hero-blob-3 {
+  width: 350px;
+  height: 350px;
+  background: var(--accent-sky);
+  bottom: -60px;
+  left: 40%;
+  animation-delay: 5s;
+}
+
+[data-theme="light"] .hero-blob {
+  opacity: 0.15;
+}
+
+@keyframes blobFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -40px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.97);
+  }
+}
+
+/* Grid lines decoration */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(108, 99, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 99, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 24px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+
+/* ---- Content Side ---- */
+.hero-content {
+  order: 1;
+}
+
+.hero-greeting {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-violet);
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.greeting-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-mint);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(67, 233, 123, 0.7);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(67, 233, 123, 0);
+  }
+}
+
+.hero-name {
+  font-size: clamp(2rem, 6vw, 60px);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+/* Keep "Satharaka Nilmantha" on one line, never wrap */
+.hero-name-names {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-role-line {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  min-height: 2em;
+}
+
+.hero-role-static {
+  margin-right: 6px;
+}
+
+.hero-role-animated {
+  font-weight: 700;
+  background: var(--grad-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+.hero-desc strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hero-expertise {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.expertise-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+
+.expertise-chip:hover {
+  border-color: var(--accent-violet);
+  color: var(--accent-violet);
+  background: rgba(108, 99, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+/* Socials row */
+.hero-socials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-socials-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.social-icon-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.social-icon-link:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-violet);
+  color: var(--accent-violet);
+  box-shadow: 0 8px 24px rgba(108, 99, 255, 0.3);
+}
+
+.soc-github:hover {
+  border-color: #fff;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.soc-linkedin:hover {
+  border-color: #0A66C2;
+  color: #0A66C2;
+  box-shadow: 0 8px 24px rgba(10, 102, 194, 0.3);
+}
+
+.soc-email:hover {
+  border-color: var(--accent-pink);
+  color: var(--accent-pink);
+  box-shadow: 0 8px 24px rgba(255, 107, 157, 0.3);
+}
+
+.soc-whatsapp:hover {
+  border-color: #25D366;
+  color: #25D366;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+}
+
+.soc-leetcode:hover {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  box-shadow: 0 8px 24px rgba(247, 151, 30, 0.3);
+}
+
+/* ---- Profile Side ---- */
+.hero-visual {
+  order: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-wrapper {
+  position: relative;
+  width: 360px;
+  height: 360px;
+}
+
+.profile-glow-ring {
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--accent-violet), var(--accent-pink), var(--accent-sky), var(--accent-mint), var(--accent-violet));
+  animation: spin-ring 6s linear infinite;
+  z-index: 0;
+}
+
+@keyframes spin-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.profile-glow-mask {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  z-index: 0;
+  margin: 12px;
+}
+
+.profile-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 4px solid var(--bg);
+}
+
+/* ======= MULTI-RING CIRCULAR ORBIT SYSTEM (24 icons / 3 rings) ======= */
+
+/* Centred anchor — zero-size, all children position via transform */
+.tech-orbit-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---- Decorative pulsing guide rings ---- */
+.guide-ring {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: ring-pulse 4s ease-in-out infinite alternate;
+}
+
+.guide-inner {
+  width: 310px;
+  height: 310px;
+  border: 1px dashed rgba(108, 99, 255, 0.3);
+  animation-delay: 0s;
+}
+
+.guide-mid {
+  width: 440px;
+  height: 440px;
+  border: 1px dashed rgba(255, 107, 157, 0.22);
+  animation-delay: 1.4s;
+}
+
+.guide-outer {
+  width: 570px;
+  height: 570px;
+  border: 1px dashed rgba(79, 172, 254, 0.18);
+  animation-delay: 2.8s;
+}
+
+@keyframes ring-pulse {
+  from {
+    opacity: 0.2;
+  }
+
+  to {
+    opacity: 0.6;
+  }
+}
+
+/* ---- Base icon bubble ---- */
+.orbit-icon {
+  /* Position & origin */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+
+  /* Size & shape */
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+
+  /* Visual */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  /* Icon colour set per-icon via inline style */
+  color: var(--icon-color, #fff);
+
+  /* Allow pointer interaction so tooltip (title) shows */
+  pointer-events: all;
+  cursor: default;
+
+  transition: box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.orbit-icon:hover {
+  box-shadow:
+    0 0 22px var(--icon-color, rgba(108, 99, 255, 0.7)),
+    0 6px 28px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.35) saturate(1.2);
+  z-index: 20;
+}
+
+/* ---- 8 angular positions (45° apart — one full circle) ---- */
+.a-0 {
+  --angle: 0deg;
+}
+
+.a-1 {
+  --angle: 45deg;
+}
+
+.a-2 {
+  --angle: 90deg;
+}
+
+.a-3 {
+  --angle: 135deg;
+}
+
+.a-4 {
+  --angle: 180deg;
+}
+
+.a-5 {
+  --angle: 225deg;
+}
+
+.a-6 {
+  --angle: 270deg;
+}
+
+.a-7 {
+  --angle: 315deg;
+}
+
+/* ---- Ring configs: radius + speed + direction ---- */
+.ring-inner {
+  --radius: 155px;
+  animation: orbit-cw 14s linear infinite;
+}
+
+.ring-mid {
+  --radius: 220px;
+  animation: orbit-ccw 22s linear infinite;
+}
+
+.ring-outer {
+  --radius: 285px;
+  animation: orbit-cw 32s linear infinite;
+}
+
+/* ---- Clockwise orbit (inner + outer rings) ---- */
+@keyframes orbit-cw {
+  from {
+    transform:
+      rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle))) translate(-50%, -50%);
+  }
+
+  to {
+    transform:
+      rotate(calc(var(--angle) + 360deg)) translateX(var(--radius)) rotate(calc(-1 * var(--angle) - 360deg)) translate(-50%, -50%);
+  }
+}
+
+/* ---- Counter-clockwise orbit (middle ring) ---- */
+@keyframes orbit-ccw {
+  from {
+    transform:
+      rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle))) translate(-50%, -50%);
+  }
+
+  to {
+    transform:
+      rotate(calc(var(--angle) - 360deg)) translateX(var(--radius)) rotate(calc(-1 * var(--angle) + 360deg)) translate(-50%, -50%);
+  }
+}
+
+/* Stats row — flows below the profile, no absolute positioning */
+.hero-stats {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding: 0 8px;
+}
+
+.hero-stat {
+  text-align: center;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  min-width: 90px;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.hero-stat:hover {
+  border-color: rgba(108, 99, 255, 0.45);
+}
+
+.stat-icon {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--accent-violet);
+  margin-bottom: 4px;
+}
+
+.stat-num {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: var(--grad-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 3px;
+}
+
+/* hero-visual is column so orbit + stats stack cleanly */
+.hero-visual {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+/* Expertise chip icon */
+.chip-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 6px;
+  font-size: 0.85em;
+  color: var(--accent-violet);
+  flex-shrink: 0;
+}
+
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.scroll-mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--accent-violet);
+  border-radius: 999px;
+  animation: scroll-anim 2s infinite;
+}
+
+@keyframes scroll-anim {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 60px;
+    padding-top: 130px;
+  }
+
+  .hero-visual {
+    order: 1;
+  }
+
+  .hero-content {
+    order: 2;
+  }
+
+  .hero-desc,
+  .hero-expertise,
+  .hero-cta,
+  .hero-socials {
+    justify-content: center;
+  }
+
+  .profile-wrapper {
+    width: 260px;
+    height: 260px;
+  }
+
+  /* Scale all 3 ring radii for tablet */
+  .ring-inner {
+    --radius: 115px;
+  }
+
+  .ring-mid {
+    --radius: 160px;
+  }
+
+  .ring-outer {
+    --radius: 205px;
+  }
+
+  /* Scale guide rings */
+  .guide-inner {
+    width: 230px;
+    height: 230px;
+  }
+
+  .guide-mid {
+    width: 320px;
+    height: 320px;
+  }
+
+  .guide-outer {
+    width: 410px;
+    height: 410px;
+  }
+
+  /* Smaller icon bubbles */
+  .orbit-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  /* Stats flow naturally — just tighten the gap */
+  .hero-stats {
+    gap: 12px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-wrapper {
+    width: 190px;
+    height: 190px;
+  }
+
+  .hero-name {
+    font-size: 1.9rem;
+  }
+
+  .hero-stats {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .hero-stat {
+    padding: 10px 14px;
+  }
+
+  /* Tight orbit for small phones */
+  .ring-inner {
+    --radius: 88px;
+  }
+
+  .ring-mid {
+    --radius: 122px;
+  }
+
+  .ring-outer {
+    --radius: 157px;
+  }
+
+  .guide-inner {
+    width: 176px;
+    height: 176px;
+  }
+
+  .guide-mid {
+    width: 244px;
+    height: 244px;
+  }
+
+  .guide-outer {
+    width: 314px;
+    height: 314px;
+  }
+
+  .orbit-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.82rem;
+  }
+}
