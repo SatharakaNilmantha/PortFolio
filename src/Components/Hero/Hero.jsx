@@ -13,7 +13,7 @@ import {
   SiPython, SiCplusplus, SiC, SiPhp, SiExpress
 } from 'react-icons/si';
 import profilePic from '../../assets/satharaka.jpg';
-import cvFile from '../../assets/Satharaka_Nilmantha_cv.pdf';
+import cvFile from '../../assets/Gunarathna A.M.S.N. cv.pdf';
 import './Hero.css';
 
 const roles = [
