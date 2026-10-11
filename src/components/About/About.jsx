@@ -15,7 +15,7 @@ import './About.css';
 
 const skills = [
   {
-    name: 'Programming Languages', level: 95, gradient: 'var(--grad-1)',
+    name: 'Programming Languages', level: 95, label: 'Expert', gradient: 'var(--grad-1)',
     tech: [
       { name: 'Java',       icon: <FaJava color="#007396" /> },
       { name: 'JavaScript', icon: <FaJs color="#F7DF1E" /> },
@@ -26,7 +26,7 @@ const skills = [
     ],
   },
   {
-    name: 'Frontend', level: 92, gradient: 'var(--grad-2)',
+    name: 'Frontend', level: 92, label: 'Expert', gradient: 'var(--grad-2)',
     tech: [
       { name: 'React.js', icon: <FaReact color="#61DAFB" /> },
       { name: 'HTML5',    icon: <FaHtml5 color="#E34F26" /> },
@@ -35,7 +35,7 @@ const skills = [
     ],
   },
   {
-    name: 'Backend', level: 90, gradient: 'var(--grad-4)',
+    name: 'Backend', level: 90, label: 'Expert', gradient: 'var(--grad-4)',
     tech: [
       { name: 'Spring Boot', icon: <SiSpringboot color="#6DB33F" /> },
       { name: 'Node.js',     icon: <FaNodeJs color="#68A063" /> },
@@ -44,7 +44,7 @@ const skills = [
     ],
   },
   {
-    name: 'Database & Cloud', level: 88, gradient: 'var(--grad-3)',
+    name: 'Database & Cloud', level: 95, label: 'Expert', gradient: 'var(--grad-3)',
     tech: [
       { name: 'MySQL',    icon: <SiMysql color="#4479A1" /> },
       { name: 'MongoDB',  icon: <SiMongodb color="#47A248" /> },
@@ -52,7 +52,7 @@ const skills = [
     ],
   },
   {
-    name: 'DevOps & Tools', level: 85, gradient: 'var(--grad-1)',
+    name: 'DevOps & Tools', level: 95, label: 'Expert', gradient: 'var(--grad-1)',
     tech: [
       { name: 'Git',     icon: <SiGit color="#F05032" /> },
       { name: 'Docker',  icon: <FaDocker color="#2496ED" /> },
@@ -65,7 +65,7 @@ const skills = [
     ],
   },
   {
-    name: 'Specialized', level: 82, gradient: 'var(--grad-2)',
+    name: 'Specialized', level: 95, label: 'Expert', gradient: 'var(--grad-2)',
     tech: [
       { name: 'IoT/Embedded', icon: <FaMobile color="#00D4AA" /> },
       { name: 'WebRTC',       icon: <FaVideo color="#FF6B6B" /> },
@@ -192,17 +192,24 @@ export default function About() {
               >
                 <div className="skill-group-header">
                   <span className="skill-group-name">{sk.name}</span>
-                  <span className="skill-level">{sk.level}%</span>
+                  <span className={`skill-label skill-label--${sk.label.toLowerCase()}`}>{sk.label}</span>
                 </div>
-                <div className="skill-bar-track">
-                  <motion.div
-                    className="skill-bar-fill"
-                    style={{ background: sk.gradient }}
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${sk.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.2, delay: 0.3 + i * 0.05, ease: 'easeOut' }}
-                  />
+                {/* Dot indicators — 5 dots, filled based on level */}
+                <div className="skill-dots">
+                  {[1,2,3,4,5].map(d => {
+                    const filled = d <= Math.round(sk.level / 20);
+                    return (
+                      <motion.span
+                        key={d}
+                        className={`skill-dot ${filled ? 'filled' : ''}`}
+                        style={filled ? { background: sk.gradient } : {}}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 + i * 0.05 + d * 0.06, duration: 0.3, type: 'spring' }}
+                      />
+                    );
+                  })}
                 </div>
                 <div className="skill-icons">
                   {sk.tech.map((t, j) => (

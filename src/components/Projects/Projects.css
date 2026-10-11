@@ -50,10 +50,44 @@
   transform: translateY(-6px);
   box-shadow: 0 20px 60px rgba(108,99,255,0.15);
 }
-.proj-card-top {
-  height: 6px;
+/* Project image banner */
+.proj-card-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
-.proj-card-body { padding: 24px; }
+.proj-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.proj-card:hover .proj-img {
+  transform: scale(1.06);
+}
+.proj-img-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+/* Fade bottom edge of image into card */
+.proj-card-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: linear-gradient(to bottom, transparent, var(--bg-card));
+  pointer-events: none;
+}
+.proj-card-body { padding: 20px 24px 24px; }
 
 .proj-icon-row {
   display: flex;

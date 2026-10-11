@@ -7,6 +7,13 @@ import {
 import { SiSpring, SiReact, SiMysql, SiFirebase, SiWebrtc, SiNodedotjs } from 'react-icons/si';
 import './Projects.css';
 
+// ✅ Import images so the bundler resolves them correctly
+import healthhubImg    from '../../assets/healthhub_hospital.jpg';
+import petFeederImg    from '../../assets/smart_pet_feeder.jpg';
+import proconnectImg   from '../../assets/proconnect_webrtc.jpg';
+import bookMyDoctorImg from '../../assets/bookmydoctor_app.jpg';
+import mlIdsImg        from '../../assets/ml_intrusion_detection.jpg';
+
 const projects = [
   {
     id: 1,
@@ -17,6 +24,7 @@ const projects = [
     gradient: 'linear-gradient(135deg, #6c63ff, #ff6b9d)',
     iconBg: 'linear-gradient(135deg, #6c63ff, #ff6b9d)',
     icon: <FaServer />,
+    image: healthhubImg,
     description: [
       'Contributed to full-stack development of role-based hospital management system using Spring Boot + React.js. Implemented admin employee management and receptionist access to doctor prescriptions.',
       'Designed responsive UI for patients, doctors, admins, and receptionists. Implemented real-time appointment booking and doctor prescription features for streamlined workflows.',
@@ -39,6 +47,7 @@ const projects = [
     gradient: 'linear-gradient(135deg, #43e97b, #4facfe)',
     iconBg: 'linear-gradient(135deg, #43e97b, #4facfe)',
     icon: <FaMobileAlt />,
+    image: petFeederImg,
     description: [
       'Developed IoT pet feeder using ESP32 + C with ultrasonic sensors for real-time food level monitoring and instant alerts via Firebase notifications.',
       'Built React Native mobile app for remote control, feeding schedule management, manual override, and dynamic portion control with offline support.',
@@ -61,6 +70,7 @@ const projects = [
     gradient: 'linear-gradient(135deg, #f7971e, #ffd200)',
     iconBg: 'linear-gradient(135deg, #f7971e, #ffd200)',
     icon: <FaVideo />,
+    image: proconnectImg,
     description: [
       'Built real-time video conferencing app with HD video/audio streaming capabilities.',
       'Implemented WebRTC technology for peer-to-peer communication with low latency.',
@@ -85,6 +95,7 @@ const projects = [
     gradient: 'linear-gradient(135deg, #c471ed, #12c2e9)',
     iconBg: 'linear-gradient(135deg, #c471ed, #12c2e9)',
     icon: <FaRobot />,
+    image: bookMyDoctorImg,
     description: [
       'Developed web-based appointment system with secure authentication using bcrypt, file handling, and responsive UI with Bootstrap.',
       'Integrated Twilio for SMS notifications including confirmations, cancellations, reminders, and next-day alerts for patients.',
@@ -108,6 +119,7 @@ const projects = [
     gradient: 'linear-gradient(135deg, #f43b47, #453a94)',
     iconBg: 'linear-gradient(135deg, #f43b47, #453a94)',
     icon: <FaShieldAlt />,
+    image: mlIdsImg,
     description: [
       'Developed real-time IDS to detect ARP Spoofing & MITM attacks on public Wi-Fi using supervised ML, engineering 15 behavioral features via Borda Count consensus (XGBoost Gain, Mutual Information, ANOVA, Permutation Importance).',
       'Deployed SmartIDS plugin on pfSense with dual-layer defense (heuristic + XGBoost), model quantization for <1ms inference, ensuring 100% offline, privacy-first operation with zero internet slowdown.',
@@ -185,7 +197,17 @@ export default function Projects() {
                 layout
                 whileHover={{ y: -6 }}
               >
-                <div className="proj-card-top" style={{ background: proj.gradient }} />
+                {/* Project Image Banner */}
+                <div className="proj-card-image">
+                  <img
+                    src={proj.image}
+                    alt={proj.title}
+                    className="proj-img"
+                    loading="lazy"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
+                  <div className="proj-img-overlay" style={{ background: proj.gradient }} />
+                </div>
                 <div className="proj-card-body">
                   <div className="proj-icon-row">
                     <div className="proj-icon" style={{ background: proj.iconBg }}>

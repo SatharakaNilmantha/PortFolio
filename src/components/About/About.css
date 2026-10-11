@@ -106,23 +106,38 @@
   font-weight: 700;
   color: var(--text-primary);
 }
-.skill-level {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--accent-violet);
-  font-weight: 600;
-}
-.skill-bar-track {
-  height: 5px;
-  background: var(--bg-2);
+/* Level badge */
+.skill-label {
+  padding: 3px 10px;
   border-radius: 999px;
-  overflow: hidden;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.skill-label--expert    { background: rgba(108,99,255,0.15); color: #a89cff; border: 1px solid rgba(108,99,255,0.35); }
+.skill-label--advanced  { background: rgba(79,172,254,0.15); color: #4facfe; border: 1px solid rgba(79,172,254,0.35); }
+.skill-label--proficient{ background: rgba(67,233,123,0.15); color: #43e97b; border: 1px solid rgba(67,233,123,0.35); }
+
+/* Dot indicators */
+.skill-dots {
+  display: flex;
+  gap: 7px;
+  align-items: center;
   margin-bottom: 14px;
 }
-.skill-bar-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: var(--grad-1);
+.skill-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.skill-dot.filled {
+  box-shadow: 0 0 6px rgba(108,99,255,0.5);
 }
 .skill-icons {
   display: flex;
