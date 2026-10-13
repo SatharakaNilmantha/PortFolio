@@ -90,6 +90,11 @@ const itemVariants = {
 export default function About() {
   return (
     <section className="section about" id="about">
+      {/*  Watermark */}
+      <div className="section-watermark watermark-center" aria-hidden="true">
+        <span className="watermark-text">PHILOSOPHY</span>
+      </div>
+
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -103,7 +108,7 @@ export default function About() {
             <span className="gradient-text-2">Problem Solver</span>
           </h2>
           <p className="section-subtitle">
-            Building scalable solutions from backend to frontend — and everything in between.
+            From the first spark of conceptual architecture to final cloud deployment.
           </p>
         </motion.div>
 
@@ -120,13 +125,18 @@ export default function About() {
               <span className="hl">Software Developer – Junior Associate</span> at{' '}
               <span className="hl">Cyber Mas Solutions (Pvt) Ltd</span> and a passionate
               Computer Engineering undergraduate specializing in{' '}
-              <span className="hl">Full-Stack Development</span> and{' '}
+              <span className="hl">Full-Stack Development</span>, <span className="hl">AI Architecture</span>, and{' '}
               <span className="hl">IoT Systems</span>.
             </p>
-            <p className="about-bio-text">
-              My philosophy centers on building <span className="hl">scalable, efficient, user-centric applications</span>.
-              From responsive React interfaces to RESTful APIs with Spring Boot, every project delivers
-              technical excellence and exceptional user experience.
+
+            <blockquote className="owner-quote">
+              "Technology should not just function; it should leave a lasting impression. Engineering the future requires synthesizing complex architecture into elegant, unified solutions."
+            </blockquote>
+
+            <p className="about-bio-text" style={{ marginTop: '1.2rem' }}>
+              My philosophy centers on building <span className="hl">scalable, secure, user-centric applications</span>.
+              From reactive interfaces to high-performance microservices, every system delivers
+              rigorous engineering and polished aesthetic excellence.
             </p>
 
             <ul className="competency-list">

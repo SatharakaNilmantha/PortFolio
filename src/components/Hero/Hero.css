@@ -27,7 +27,7 @@
 .hero-blob-1 {
   width: 500px;
   height: 500px;
-  background: var(--accent-violet);
+  background: var(--avidz-primary);
   top: -100px;
   left: -100px;
   animation-delay: 0s;
@@ -36,7 +36,7 @@
 .hero-blob-2 {
   width: 400px;
   height: 400px;
-  background: var(--accent-pink);
+  background: var(--accent-cyan);
   top: 100px;
   right: -80px;
   animation-delay: 2.5s;
@@ -45,7 +45,7 @@
 .hero-blob-3 {
   width: 350px;
   height: 350px;
-  background: var(--accent-sky);
+  background: var(--accent-purple);
   bottom: -60px;
   left: 40%;
   animation-delay: 5s;
@@ -292,14 +292,18 @@
   position: relative;
   width: 360px;
   height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-glow-ring {
   position: absolute;
-  inset: -16px;
+  inset: -14px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, var(--accent-violet), var(--accent-pink), var(--accent-sky), var(--accent-mint), var(--accent-violet));
-  animation: spin-ring 6s linear infinite;
+  background: conic-gradient(from 0deg, var(--avidz-primary), var(--accent-cyan), var(--accent-purple), var(--avidz-primary));
+  animation: spin-ring 8s linear infinite;
+  box-shadow: 0 0 50px rgba(0, 122, 255, 0.4), 0 0 80px rgba(0, 240, 255, 0.25);
   z-index: 0;
 }
 
@@ -315,19 +319,187 @@
   border-radius: 50%;
   background: var(--bg);
   z-index: 0;
-  margin: 12px;
+  margin: 10px;
 }
 
 .profile-img {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  object-position: top center;
-  border: 4px solid var(--bg);
+  object-position: center;
+  border: 4px solid rgba(0, 122, 255, 0.3);
+  box-shadow: 0 0 40px rgba(0, 122, 255, 0.35);
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+
+.profile-img.ai-active {
+  box-shadow: 0 0 45px rgba(0, 240, 255, 0.45), 0 0 80px rgba(0, 122, 255, 0.3);
+  border-color: rgba(0, 240, 255, 0.45);
+}
+
+/* Powder Dispersion Canvas */
+.powder-disperse-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 12;
+}
+
+/* Hide base image while canvas fractures and reassembles pieces */
+.profile-img.is-transitioning {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* Cyber Shockwave Ring on Powder Burst */
+.powder-shockwave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 240, 255, 0.8);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.6), inset 0 0 25px rgba(0, 240, 255, 0.4);
+  pointer-events: none;
+  z-index: 11;
+  animation: shockwaveExpand 0.85s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes shockwaveExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Floating HUD Chips */
+.hud-chip {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
+  animation: floatHud 4s ease-in-out infinite alternate;
+}
+
+.hud-chip-ai {
+  top: 15px;
+  right: -24px;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid rgba(0, 240, 255, 0.45);
+  color: #00F0FF;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+}
+
+.hud-chip-human {
+  bottom: 20px;
+  left: -24px;
+  background: rgba(0, 122, 255, 0.12);
+  border: 1px solid rgba(0, 122, 255, 0.45);
+  color: #F5F5F5;
+  box-shadow: 0 0 25px rgba(0, 122, 255, 0.35);
+  animation-delay: 2s;
+}
+
+@keyframes floatHud {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+.hud-beacon {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hud-beacon.cyan {
+  background: #00F0FF;
+  box-shadow: 0 0 8px #00F0FF;
+  animation: beaconPulse 1.5s infinite;
+}
+
+.hud-beacon.blue {
+  background: #007AFF;
+  box-shadow: 0 0 8px #007AFF;
+  animation: beaconPulse 1.5s infinite 0.75s;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+
+/* Portrait Mode Switcher */
+.portrait-mode-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+  margin-bottom: 24px;
+  z-index: 5;
+}
+
+.portrait-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.portrait-mode-btn:hover {
+  border-color: rgba(0, 122, 255, 0.4);
+  color: #fff;
+  background: rgba(0, 122, 255, 0.08);
+}
+
+.portrait-mode-btn.active {
+  background: rgba(0, 122, 255, 0.18);
+  border-color: var(--accent-cyan);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 122, 255, 0.35);
+}
+
+.mode-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.mode-dot.cyan { background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
+.mode-dot.blue { background: var(--avidz-primary); box-shadow: 0 0 8px var(--avidz-primary); }
 
 /* ======= MULTI-RING CIRCULAR ORBIT SYSTEM (24 icons / 3 rings) ======= */
 
@@ -353,34 +525,59 @@
   animation: ring-pulse 4s ease-in-out infinite alternate;
 }
 
+/* Futuristic Cyber Radar Scanner Beam */
+.guide-radar {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 610px;
+  height: 610px;
+  pointer-events: none;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(0, 240, 255, 0.06) 20deg, rgba(0, 122, 255, 0.14) 40deg, transparent 55deg);
+  animation: radarScanSweep 9s linear infinite;
+  mask-image: radial-gradient(circle, transparent 145px, black 165px, black 305px, transparent 308px);
+  -webkit-mask-image: radial-gradient(circle, transparent 145px, black 165px, black 305px, transparent 308px);
+  opacity: 0.85;
+}
+
+@keyframes radarScanSweep {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .guide-inner {
-  width: 310px;
-  height: 310px;
-  border: 1px dashed rgba(108, 99, 255, 0.3);
+  width: 370px;
+  height: 370px;
+  border: 1px dashed rgba(0, 122, 255, 0.35);
   animation-delay: 0s;
 }
 
 .guide-mid {
-  width: 440px;
-  height: 440px;
-  border: 1px dashed rgba(255, 107, 157, 0.22);
+  width: 490px;
+  height: 490px;
+  border: 1px dashed rgba(0, 240, 255, 0.25);
   animation-delay: 1.4s;
 }
 
 .guide-outer {
-  width: 570px;
-  height: 570px;
-  border: 1px dashed rgba(79, 172, 254, 0.18);
+  width: 610px;
+  height: 610px;
+  border: 1px dashed rgba(0, 122, 255, 0.2);
   animation-delay: 2.8s;
 }
 
 @keyframes ring-pulse {
   from {
-    opacity: 0.2;
+    opacity: 0.25;
   }
-
   to {
-    opacity: 0.6;
+    opacity: 0.65;
   }
 }
 
@@ -401,103 +598,204 @@
   justify-content: center;
   font-size: 1.2rem;
 
-  /* Visual */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: var(--bg-glass);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  /* Visual: Dark cyber glass bubble */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 14, 28, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 240, 255, 0.1);
 
   /* Icon colour set per-icon via inline style */
   color: var(--icon-color, #fff);
 
   /* Allow pointer interaction so tooltip (title) shows */
   pointer-events: all;
-  cursor: default;
+  cursor: pointer;
 
-  transition: box-shadow 0.3s ease, filter 0.3s ease;
+  /* Stagger the wave ripple across the 8 icons */
+  animation-delay: calc(var(--i) * -0.7s) !important;
+
+  transition: box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease, border-color 0.3s ease;
 }
 
 .orbit-icon:hover {
+  animation-play-state: paused;
+  transform:
+    rotate(calc(var(--angle) + var(--angle-offset, 0deg)))
+    translateX(calc(var(--radius) + 6px))
+    rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg))))
+    translate(-50%, -50%)
+    scale(1.24) !important;
   box-shadow:
-    0 0 22px var(--icon-color, rgba(108, 99, 255, 0.7)),
-    0 6px 28px rgba(0, 0, 0, 0.5);
-  filter: brightness(1.35) saturate(1.2);
-  z-index: 20;
+    0 0 28px var(--icon-color, #00f0ff),
+    0 10px 32px rgba(0, 0, 0, 0.6) !important;
+  filter: brightness(1.35) saturate(1.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(14, 20, 38, 0.94);
+  z-index: 60;
 }
 
-/* ---- 8 angular positions (45° apart — one full circle) ---- */
+/* ---- 8 angular positions (45° apart) with index variable ---- */
 .a-0 {
   --angle: 0deg;
+  --i: 0;
 }
 
 .a-1 {
   --angle: 45deg;
+  --i: 1;
 }
 
 .a-2 {
   --angle: 90deg;
+  --i: 2;
 }
 
 .a-3 {
   --angle: 135deg;
+  --i: 3;
 }
 
 .a-4 {
   --angle: 180deg;
+  --i: 4;
 }
 
 .a-5 {
   --angle: 225deg;
+  --i: 5;
 }
 
 .a-6 {
   --angle: 270deg;
+  --i: 6;
 }
 
 .a-7 {
   --angle: 315deg;
+  --i: 7;
 }
 
-/* ---- Ring configs: radius + speed + direction ---- */
+/* ---- Ring configs: radius + Staggered Hexagonal / Crystal Lattice Offsets ---- */
 .ring-inner {
-  --radius: 155px;
-  animation: orbit-cw 14s linear infinite;
+  --radius: 185px;
+  --angle-offset: 22.5deg;
+  animation: harmonicWaveInner 5.4s ease-in-out infinite alternate;
 }
 
 .ring-mid {
-  --radius: 220px;
-  animation: orbit-ccw 22s linear infinite;
+  --radius: 245px;
+  --angle-offset: 0deg;
+  animation: harmonicWaveMid 7.2s ease-in-out infinite alternate;
 }
 
 .ring-outer {
-  --radius: 285px;
-  animation: orbit-cw 32s linear infinite;
+  --radius: 305px;
+  --angle-offset: 22.5deg;
+  animation: harmonicWaveOuter 9.2s ease-in-out infinite alternate;
 }
 
-/* ---- Clockwise orbit (inner + outer rings) ---- */
-@keyframes orbit-cw {
-  from {
+/* 
+ * Cyber Harmonic Resonant Wave Animations
+ * Elegant orbital pendulum oscillation (sway ±12° to ±16°) + radial breathing + 3D levitation + dynamic aura pulse.
+ * Staggered by icon index to create a fluid travelling ripple instead of continuous circular rotation!
+ */
+@keyframes harmonicWaveInner {
+  0% {
     transform:
-      rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle))) translate(-50%, -50%);
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg) - 12deg))
+      translateX(calc(var(--radius) - 5px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg) - 12deg)))
+      translate(-50%, -50%)
+      translateY(5px)
+      scale(0.96);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 10px rgba(0, 240, 255, 0.15);
   }
-
-  to {
+  50% {
     transform:
-      rotate(calc(var(--angle) + 360deg)) translateX(var(--radius)) rotate(calc(-1 * var(--angle) - 360deg)) translate(-50%, -50%);
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg)))
+      translateX(calc(var(--radius) + 8px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg))))
+      translate(-50%, -50%)
+      translateY(-6px)
+      scale(1.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 20px rgba(0, 240, 255, 0.45);
+  }
+  100% {
+    transform:
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg) + 12deg))
+      translateX(calc(var(--radius) - 4px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg) + 12deg)))
+      translate(-50%, -50%)
+      translateY(4px)
+      scale(0.98);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 12px rgba(0, 240, 255, 0.2);
   }
 }
 
-/* ---- Counter-clockwise orbit (middle ring) ---- */
-@keyframes orbit-ccw {
-  from {
+@keyframes harmonicWaveMid {
+  0% {
     transform:
-      rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle))) translate(-50%, -50%);
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg) + 14deg))
+      translateX(calc(var(--radius) + 7px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg) + 14deg)))
+      translate(-50%, -50%)
+      translateY(-5px)
+      scale(1.04);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5), 0 0 18px rgba(0, 122, 255, 0.4);
   }
-
-  to {
+  50% {
     transform:
-      rotate(calc(var(--angle) - 360deg)) translateX(var(--radius)) rotate(calc(-1 * var(--angle) + 360deg)) translate(-50%, -50%);
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg)))
+      translateX(calc(var(--radius) - 6px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg))))
+      translate(-50%, -50%)
+      translateY(6px)
+      scale(0.95);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 122, 255, 0.15);
+  }
+  100% {
+    transform:
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg) - 14deg))
+      translateX(calc(var(--radius) + 6px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg) - 14deg)))
+      translate(-50%, -50%)
+      translateY(-4px)
+      scale(1.03);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.48), 0 0 16px rgba(0, 122, 255, 0.35);
+  }
+}
+
+@keyframes harmonicWaveOuter {
+  0% {
+    transform:
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg) - 10deg))
+      translateX(calc(var(--radius) - 6px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg) - 10deg)))
+      translate(-50%, -50%)
+      translateY(5px)
+      scale(0.96);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.42), 0 0 10px rgba(0, 240, 255, 0.15);
+  }
+  50% {
+    transform:
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg)))
+      translateX(calc(var(--radius) + 9px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg))))
+      translate(-50%, -50%)
+      translateY(-7px)
+      scale(1.06);
+    box-shadow: 0 9px 26px rgba(0, 0, 0, 0.55), 0 0 22px rgba(0, 240, 255, 0.5);
+  }
+  100% {
+    transform:
+      rotate(calc(var(--angle) + var(--angle-offset, 0deg) + 10deg))
+      translateX(calc(var(--radius) - 5px))
+      rotate(calc(-1 * (var(--angle) + var(--angle-offset, 0deg) + 10deg)))
+      translate(-50%, -50%)
+      translateY(4px)
+      scale(0.98);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.42), 0 0 12px rgba(0, 240, 255, 0.2);
   }
 }
 
@@ -625,28 +923,62 @@
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 60px;
-    padding-top: 130px;
+    gap: 48px;
+    padding-top: 120px;
+    padding-bottom: 60px;
   }
 
   .hero-visual {
     order: 1;
+    margin: 0 auto;
   }
 
   .hero-content {
     order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .hero-desc,
-  .hero-expertise,
-  .hero-cta,
+  .hero-greeting {
+    justify-content: center;
+  }
+
+  .hero-desc {
+    margin: 0 auto 28px;
+    text-align: center;
+  }
+
+  .hero-expertise {
+    justify-content: center;
+  }
+
+  .hero-cta {
+    justify-content: center;
+    width: 100%;
+  }
+
   .hero-socials {
     justify-content: center;
+    width: 100%;
   }
 
   .profile-wrapper {
     width: 260px;
     height: 260px;
+  }
+
+  .powder-disperse-canvas {
+    width: 360px;
+    height: 360px;
+  }
+
+  .hud-chip-ai {
+    right: -10px;
+  }
+
+  .hud-chip-human {
+    left: -10px;
   }
 
   /* Scale all 3 ring radii for tablet */
@@ -678,6 +1010,11 @@
     height: 410px;
   }
 
+  .guide-radar {
+    width: 410px;
+    height: 410px;
+  }
+
   /* Smaller icon bubbles */
   .orbit-icon {
     width: 38px;
@@ -692,14 +1029,44 @@
   }
 }
 
+@media (max-width: 540px) {
+  .hero-name-names {
+    white-space: normal;
+  }
+
+  .hud-chip-ai {
+    right: 4px;
+    top: 6px;
+    font-size: 0.65rem;
+    padding: 4px 10px;
+  }
+
+  .hud-chip-human {
+    left: 4px;
+    bottom: 6px;
+    font-size: 0.65rem;
+    padding: 4px 10px;
+  }
+}
+
 @media (max-width: 480px) {
+  .hero-container {
+    padding-top: 100px;
+    gap: 36px;
+  }
+
   .profile-wrapper {
-    width: 190px;
-    height: 190px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .powder-disperse-canvas {
+    width: 280px;
+    height: 280px;
   }
 
   .hero-name {
-    font-size: 1.9rem;
+    font-size: clamp(1.75rem, 8vw, 2.3rem);
   }
 
   .hero-stats {
@@ -709,39 +1076,57 @@
 
   .hero-stat {
     padding: 10px 14px;
+    min-width: 80px;
   }
 
   /* Tight orbit for small phones */
   .ring-inner {
-    --radius: 88px;
+    --radius: 92px;
   }
 
   .ring-mid {
-    --radius: 122px;
+    --radius: 126px;
   }
 
   .ring-outer {
-    --radius: 157px;
+    --radius: 160px;
   }
 
   .guide-inner {
-    width: 176px;
-    height: 176px;
+    width: 184px;
+    height: 184px;
   }
 
   .guide-mid {
-    width: 244px;
-    height: 244px;
+    width: 252px;
+    height: 252px;
   }
 
   .guide-outer {
-    width: 314px;
-    height: 314px;
+    width: 320px;
+    height: 320px;
+  }
+
+  .guide-radar {
+    width: 320px;
+    height: 320px;
   }
 
   .orbit-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 0.82rem;
+    width: 30px;
+    height: 30px;
+    font-size: 0.78rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .portrait-mode-bar {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 }

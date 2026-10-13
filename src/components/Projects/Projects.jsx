@@ -7,7 +7,8 @@ import {
 import { SiSpring, SiReact, SiMysql, SiFirebase, SiWebrtc, SiNodedotjs } from 'react-icons/si';
 import './Projects.css';
 
-// ✅ Import images so the bundler resolves them correctly
+// ✅ Image imports — path is correct because Projects.jsx lives in src/components/Projects/
+//    ../../ goes: Projects/ → components/ → src/ → then into assets/
 import healthhubImg    from '../../assets/healthhub_hospital.jpg';
 import petFeederImg    from '../../assets/smart_pet_feeder.jpg';
 import proconnectImg   from '../../assets/proconnect_webrtc.jpg';
@@ -151,6 +152,11 @@ export default function Projects() {
 
   return (
     <section className="section projects-section" id="projects">
+      {/* Stylized Watermark */}
+      <div className="section-watermark watermark-center" aria-hidden="true">
+        <span className="watermark-text">PROJECTS</span>
+      </div>
+
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -158,12 +164,12 @@ export default function Projects() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-tag">My Work</span>
+          <span className="section-tag">Portfolio</span>
           <h2 className="section-title">
-            Featured <span className="gradient-text">Projects</span>
+            Featured <span className="gradient-text">Work & Innovations</span>
           </h2>
           <p className="section-subtitle">
-            A showcase of full-stack development expertise — from web apps to IoT systems.
+            Enterprise-grade web systems, intelligent ML algorithms, and IoT engineering.
           </p>
         </motion.div>
 
@@ -197,7 +203,7 @@ export default function Projects() {
                 layout
                 whileHover={{ y: -6 }}
               >
-                {/* Project Image Banner */}
+                {/* ✅ Project Image Banner — overlay no longer covers the image */}
                 <div className="proj-card-image">
                   <img
                     src={proj.image}
@@ -206,8 +212,10 @@ export default function Projects() {
                     loading="lazy"
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
-                  <div className="proj-img-overlay" style={{ background: proj.gradient }} />
+                  {/* ✅ Removed inline style — CSS gradient fade handles it now */}
+                  <div className="proj-img-overlay" />
                 </div>
+
                 <div className="proj-card-body">
                   <div className="proj-icon-row">
                     <div className="proj-icon" style={{ background: proj.iconBg }}>

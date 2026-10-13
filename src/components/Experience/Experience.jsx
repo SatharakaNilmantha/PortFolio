@@ -27,8 +27,8 @@ const experiences = [
     company: 'Cyber Mas Solutions (Pvt) Ltd., Colombo, Sri Lanka',
     period: 'May 2026 – Present',
     type: 'Full-time',
-    dotColor: '#6c63ff',
-    gradient: 'linear-gradient(90deg, #6c63ff, #ff6b9d)',
+    dotColor: '#00F0FF',
+    gradient: 'linear-gradient(90deg, #007AFF, #00F0FF)',
     tech: ['React', 'Node.js', 'Docker', 'MySQL', 'Nginx', 'Biometric'],
     highlights: [
       'Maintain and enhance payroll system ensuring stability, performance, and compliance. Optimize queries and improve fingerprint matching via Hikvision API for accurate attendance.',
@@ -53,8 +53,8 @@ const experiences = [
     company: 'Cyber Mas Solutions (Pvt) Ltd., Colombo, Sri Lanka',
     period: 'November 2025 – May 2026',
     type: 'Internship',
-    dotColor: '#ff6b9d',
-    gradient: 'linear-gradient(90deg, #43e97b, #4facfe)',
+    dotColor: '#007AFF',
+    gradient: 'linear-gradient(90deg, #007AFF, #00F0FF)',
     tech: ['Spring Boot', 'React', 'Node.js', 'Docker', 'MySQL', 'Nginx', 'Biometric'],
     highlights: [],
     projects: [
@@ -89,6 +89,11 @@ export default function Experience() {
 
   return (
     <section className="section experience" id="experience">
+      {/*  Stylized Watermark */}
+      <div className="section-watermark watermark-center" aria-hidden="true">
+        <span className="watermark-text">TIMELINE</span>
+      </div>
+
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

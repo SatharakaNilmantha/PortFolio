@@ -11,29 +11,41 @@ import './Contact.css';
 const contactItems = [
   {
     icon: <FaEnvelope />,
-    iconBg: 'linear-gradient(135deg,#6c63ff,#ff6b9d)',
-    label: 'Email',
+    iconBg: 'linear-gradient(135deg, rgba(0, 122, 255, 0.25), rgba(0, 240, 255, 0.15))',
+    iconBorder: 'rgba(0, 122, 255, 0.5)',
+    iconColor: '#00F0FF',
+    glowColor: '0 0 16px rgba(0, 122, 255, 0.45)',
+    label: 'Email Address',
     value: 'satharakanilmantha1@gmail.com',
     href: 'mailto:satharakanilmantha1@gmail.com',
   },
   {
     icon: <FaPhone />,
-    iconBg: 'linear-gradient(135deg,#43e97b,#4facfe)',
-    label: 'Phone',
+    iconBg: 'linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.15))',
+    iconBorder: 'rgba(16, 185, 129, 0.5)',
+    iconColor: '#10B981',
+    glowColor: '0 0 16px rgba(16, 185, 129, 0.45)',
+    label: 'Phone & WhatsApp',
     value: '+94 76 587 1905',
     href: 'tel:+94765871905',
   },
   {
     icon: <FaGithub />,
-    iconBg: 'linear-gradient(135deg,#434343,#000)',
-    label: 'GitHub',
+    iconBg: 'linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05))',
+    iconBorder: 'rgba(255, 255, 255, 0.3)',
+    iconColor: '#ffffff',
+    glowColor: '0 0 16px rgba(255, 255, 255, 0.2)',
+    label: 'GitHub Profile',
     value: 'github.com/SatharakaNilmantha',
     href: 'https://github.com/SatharakaNilmantha',
   },
   {
     icon: <FaLinkedin />,
-    iconBg: 'linear-gradient(135deg,#0A66C2,#00a0dc)',
-    label: 'LinkedIn',
+    iconBg: 'linear-gradient(135deg, rgba(10, 102, 194, 0.3), rgba(0, 119, 181, 0.15))',
+    iconBorder: 'rgba(10, 102, 194, 0.55)',
+    iconColor: '#38bdf8',
+    glowColor: '0 0 16px rgba(10, 102, 194, 0.45)',
+    label: 'LinkedIn Network',
     value: 'linkedin.com/in/satharaka-nilmantha',
     href: 'https://www.linkedin.com/in/satharaka-nilmantha-aa7b96297/',
   },
@@ -56,7 +68,7 @@ export default function Contact() {
     e.preventDefault();
     setSubmitting(true);
     setStatus('');
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise(r => setTimeout(r, 1200));
     const sub = encodeURIComponent(`Contact from ${form.name}`);
     const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
     window.location.href = `mailto:satharakanilmantha1@gmail.com?subject=${sub}&body=${body}`;
@@ -76,6 +88,11 @@ export default function Contact() {
 
   return (
     <section className="section contact-section" id="contact">
+      {/*  Stylized Watermark */}
+      <div className="section-watermark watermark-center" aria-hidden="true">
+        <span className="watermark-text">CONNECT</span>
+      </div>
+
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -120,10 +137,18 @@ export default function Contact() {
                   transition={{ delay: i * 0.1 }}
                   whileHover={{ x: 6 }}
                 >
-                  <div className="ci-icon" style={{ background: c.iconBg, color: '#fff' }}>
+                  <div
+                    className="ci-icon"
+                    style={{
+                      background: c.iconBg,
+                      border: `1px solid ${c.iconBorder}`,
+                      color: c.iconColor,
+                      boxShadow: c.glowColor,
+                    }}
+                  >
                     {c.icon}
                   </div>
-                  <div>
+                  <div className="ci-content">
                     <div className="ci-label">{c.label}</div>
                     <div className="ci-value">{c.value}</div>
                   </div>
@@ -133,11 +158,10 @@ export default function Contact() {
 
             {/* Resume download */}
             <motion.button
-              className="btn-grad"
+              className="btn-grad download-cv-btn"
               onClick={downloadCV}
-              whileHover={{ scale: 1.04 }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              style={{ marginBottom: 24, width: '100%', justifyContent: 'center' }}
             >
               <FaDownload /> Download Resume
             </motion.button>
@@ -171,7 +195,7 @@ export default function Contact() {
             <h3 className="form-title">Send a Message</h3>
             <p className="form-subtitle">Fill in the form and I'll get back to you ASAP.</p>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="contact-form">
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="contact-name">Your Name</label>
@@ -180,7 +204,7 @@ export default function Contact() {
                     type="text"
                     name="name"
                     className="form-input"
-                    placeholder="Satharaka"
+                    placeholder="e.g. Satharaka Nilmantha"
                     required
                     value={form.name}
                     onChange={handleChange}
@@ -193,7 +217,7 @@ export default function Contact() {
                     type="email"
                     name="email"
                     className="form-input"
-                    placeholder="hello@example.com"
+                    placeholder="e.g. hello@example.com"
                     required
                     value={form.email}
                     onChange={handleChange}
@@ -205,7 +229,7 @@ export default function Contact() {
                 <textarea
                   id="contact-message"
                   name="message"
-                  className="form-input"
+                  className="form-input form-textarea"
                   placeholder="Tell me about your project or just say hello..."
                   required
                   value={form.message}
@@ -214,10 +238,10 @@ export default function Contact() {
               </div>
               <motion.button
                 type="submit"
-                className="form-submit"
+                className="form-submit-btn"
                 disabled={submitting}
-                whileHover={{ scale: submitting ? 1 : 1.03 }}
-                whileTap={{ scale: submitting ? 1 : 0.97 }}
+                whileHover={{ scale: submitting ? 1 : 1.02 }}
+                whileTap={{ scale: submitting ? 1 : 0.98 }}
               >
                 <FaPaperPlane />
                 {submitting ? 'Sending...' : 'Send Message'}
@@ -234,6 +258,21 @@ export default function Contact() {
               )}
             </form>
           </motion.div>
+      </div>
+    </div>
+      {/*  Inspired Call to Action Banner */}
+      <div className="footer-cta-banner">
+        <div className="container footer-cta-inner">
+          <div className="footer-cta-text-wrap">
+            <h2 className="footer-cta-heading">Ready to Build Something Extraordinary?</h2>
+            <p className="footer-cta-text">Let's engineer scalable, intelligent software together.</p>
+          </div>
+          <a
+            className="footer-cta-button"
+            href="mailto:satharakanilmantha1@gmail.com"
+          >
+            Start a Conversation →
+          </a>
         </div>
       </div>
     </section>

@@ -88,6 +88,15 @@ export default function Navbar({ theme, toggleTheme }) {
           {/* Actions */}
           <div className="nav-actions">
             <motion.button
+              className="nav-cta desktop-only-btn"
+              onClick={() => scrollTo('contact')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Let's Connect
+            </motion.button>
+
+            <motion.button
               className="theme-btn"
               onClick={toggleTheme}
               whileHover={{ scale: 1.1, rotate: 20 }}
