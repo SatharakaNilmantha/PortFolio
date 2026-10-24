@@ -95,6 +95,7 @@ export default function Contact() {
 
       <div className="container">
         <motion.div
+          className="section-header-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

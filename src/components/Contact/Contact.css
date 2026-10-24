@@ -1,6 +1,6 @@
 /* ===== CONTACT (Style) ===== */
 .contact-section {
-  background: var(--bg);
+  background: transparent;
   position: relative;
   padding-bottom: 0;
 }
@@ -13,6 +13,9 @@
   align-items: start;
   position: relative;
   z-index: 1;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ---- Info Side ---- */

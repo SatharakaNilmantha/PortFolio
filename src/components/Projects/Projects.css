@@ -1,15 +1,16 @@
 /* ===== PROJECTS ( Style) ===== */
 .projects-section {
-  background: var(--bg);
+  background: transparent;
   position: relative;
 }
 
-/* Filter tabs */
+/* Filter tabs - centered */
 .project-filters {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
-  margin: 36px 0 44px;
+  margin: 36px auto 44px;
   position: relative;
   z-index: 1;
 }

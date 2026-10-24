@@ -365,6 +365,37 @@
   .exp-card-body {
     padding: 20px;
   }
+
+  /* Fix project toggle layout on mobile */
+  .exp-project-toggle,
+  .exp-proj-trigger {
+    flex-wrap: wrap;
+    padding: 12px 14px;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .exp-project-name {
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+  }
+
+  .exp-chevron,
+  .chevron-icon {
+    flex-shrink: 0;
+    margin-left: auto;
+    order: 0;
+  }
+
+  .proj-tech-mini {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    flex-wrap: wrap;
+    gap: 5px;
+    order: 2;
+  }
 }
 
 @media (max-width: 480px) {
@@ -382,12 +413,24 @@
     font-size: 0.72rem;
   }
   .exp-card-body {
-    padding: 16px 14px;
+    padding: 16px 12px;
   }
   .exp-role {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
   .exp-tech-row {
     gap: 6px;
   }
+
+  .proj-pill-sm {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  .exp-project-toggle,
+  .exp-proj-trigger {
+    padding: 10px 12px;
+  }
 }
+

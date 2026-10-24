@@ -55,19 +55,37 @@
 }
 
 .logo-badge {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--avidz-primary), var(--accent-cyan));
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #ffffff 0%, #edf5ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: #fff;
   flex-shrink: 0;
-  box-shadow: 0 0 18px rgba(0, 122, 255, 0.4);
+  padding: 3px;
+  border: 1.5px solid rgba(0, 240, 255, 0.45);
+  box-shadow:
+    0 0 18px rgba(0, 122, 255, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  transition: all var(--transition);
+  overflow: hidden;
+}
+
+.nav-logo:hover .logo-badge {
+  border-color: rgba(0, 240, 255, 0.85);
+  box-shadow:
+    0 0 24px rgba(0, 240, 255, 0.55),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+  transform: rotate(3deg);
+}
+
+.nav-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 30, 80, 0.22));
 }
 
 .logo-text-wrap {

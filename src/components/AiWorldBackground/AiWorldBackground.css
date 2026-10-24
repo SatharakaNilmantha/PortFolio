@@ -1,0 +1,55 @@
+/* ===== AI WORLD WATERMARK BACKGROUND LAYER ===== */
+.ai-world-watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease;
+  mask-image: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(0, 0, 0, 1) 35%,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0.4) 82%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(0, 0, 0, 1) 35%,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0.4) 82%,
+    transparent 100%
+  );
+}
+
+.ai-world-watermark canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Dark Mode Watermark Aesthetics */
+.ai-world-watermark.dark-mode {
+  opacity: 0.48;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 24px rgba(0, 122, 255, 0.3));
+}
+
+/* Light Mode Subtle Watermark */
+.ai-world-watermark.light-mode {
+  opacity: 0.25;
+  mix-blend-mode: normal;
+  filter: drop-shadow(0 0 16px rgba(0, 122, 255, 0.2));
+}
+
+@media (max-width: 768px) {
+  .ai-world-watermark.dark-mode {
+    opacity: 0.38;
+  }
+  .ai-world-watermark.light-mode {
+    opacity: 0.2;
+  }
+}
