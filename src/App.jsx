@@ -6,6 +6,7 @@ import Experience from './components/Experience/Experience';
 import Projects from './components/Projects/Projects';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
+import AiWorldBackground from './components/AiWorldBackground/AiWorldBackground';
 import './App.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div className="app-root">
+      <AiWorldBackground theme={theme} />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />

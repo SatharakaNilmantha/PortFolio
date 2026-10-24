@@ -1,4 +1,23 @@
 .app-root {
   min-height: 100vh;
   position: relative;
+  background-color: var(--bg);
 }
+
+/* Let the ambient AI world watermark layer shine seamlessly across all sections without altering theme */
+.about,
+.experience,
+.projects,
+.projects-section,
+.contact,
+.contact-section,
+.footer {
+  background: transparent !important;
+}
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+

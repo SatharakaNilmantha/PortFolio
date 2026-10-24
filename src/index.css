@@ -30,7 +30,7 @@
   --grad-2: linear-gradient(135deg, #00F0FF 0%, #007AFF 100%);
   --grad-3: linear-gradient(135deg, #007AFF 0%, #8A2BE2 100%);
   --grad-4: linear-gradient(135deg, #00F0FF 0%, #8A2BE2 100%);
-  --grad-hero: radial-gradient(circle at 75% 25%, rgba(0, 122, 255, 0.14) 0%, rgba(0, 240, 255, 0.05) 45%, #050505 80%);
+  --grad-hero: radial-gradient(circle at 75% 25%, rgba(0, 122, 255, 0.16) 0%, rgba(0, 240, 255, 0.06) 45%, rgba(5, 5, 5, 0.2) 80%, transparent 100%);
 
   /*  Dark Mode BG/Surface (OLED Black) */
   --bg-dark: #050505;
@@ -73,7 +73,7 @@
   --text-muted: #607090;
   --shadow-glow: 0 0 35px rgba(0, 122, 255, 0.2);
   --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.3);
-  --grad-hero: radial-gradient(circle at 75% 25%, rgba(0, 122, 255, 0.2) 0%, rgba(0, 240, 255, 0.08) 50%, #090d16 85%);
+  --grad-hero: radial-gradient(circle at 75% 25%, rgba(0, 122, 255, 0.2) 0%, rgba(0, 240, 255, 0.08) 50%, rgba(9, 13, 22, 0.3) 85%, transparent 100%);
 }
 
 /* ---------- Reset & Base ---------- */
@@ -349,6 +349,23 @@ h6 {
 .section-body.center {
   text-align: center;
   margin: 0 auto 3rem;
+}
+
+.section-header-center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.section-header-center .section-title {
+  text-align: center;
+}
+
+.section-header-center .section-subtitle {
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* ---------- Glass Cards with avidz Hover Accent ---------- */

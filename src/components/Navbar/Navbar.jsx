@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaHome, FaUserAlt, FaBriefcase, FaCode, FaEnvelope, FaSun, FaMoon } from 'react-icons/fa';
+import snLogo from '../../assets/sn.png';
 import './Navbar.css';
 
 const navItems = [
@@ -58,7 +59,9 @@ export default function Navbar({ theme, toggleTheme }) {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <div className="logo-badge">SN</div>
+            <div className="logo-badge">
+              <img src={snLogo} alt="Satharaka Nilmantha Logo" className="nav-logo-img" />
+            </div>
             <div className="logo-text-wrap">
               <span className="logo-first">Satharaka</span>
               <span className="logo-last">Nilmantha</span>

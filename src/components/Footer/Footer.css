@@ -25,18 +25,37 @@
 }
 
 .footer-logo-badge {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--avidz-primary), var(--accent-cyan));
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #edf5ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1rem;
-  color: #fff;
-  box-shadow: 0 0 16px rgba(0, 122, 255, 0.35);
+  flex-shrink: 0;
+  padding: 3px;
+  border: 1.5px solid rgba(0, 240, 255, 0.45);
+  box-shadow:
+    0 0 18px rgba(0, 122, 255, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  transition: all var(--transition);
+  overflow: hidden;
+}
+
+.footer-logo:hover .footer-logo-badge {
+  border-color: rgba(0, 240, 255, 0.85);
+  box-shadow:
+    0 0 24px rgba(0, 240, 255, 0.55),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+  transform: rotate(3deg);
+}
+
+.footer-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 30, 80, 0.22));
 }
 
 .footer-name {
@@ -106,3 +125,38 @@
   color: var(--text-secondary);
   font-weight: 500;
 }
+
+/* ===== FOOTER SOCIALS ===== */
+.footer-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.footer-social-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.footer-social-btn:hover {
+  color: var(--btn-color, #00f0ff);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--btn-color, rgba(0, 240, 255, 0.5));
+  box-shadow: 0 0 20px var(--btn-glow, rgba(0, 122, 255, 0.45));
+}
+
