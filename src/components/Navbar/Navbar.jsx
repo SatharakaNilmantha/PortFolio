@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaHome, FaUserAlt, FaBriefcase, FaCode, FaEnvelope, FaSun, FaMoon } from 'react-icons/fa';
+import { FaHome, FaUserAlt, FaBriefcase, FaCode, FaEnvelope, FaSun, FaMoon, FaAward } from 'react-icons/fa';
 import snLogo from '../../assets/sn.png';
 import './Navbar.css';
 
 const navItems = [
-  { name: 'Home',       id: 'hero',       icon: <FaHome /> },
-  { name: 'About',      id: 'about',      icon: <FaUserAlt /> },
-  { name: 'Experience', id: 'experience', icon: <FaBriefcase /> },
-  { name: 'Projects',   id: 'projects',   icon: <FaCode /> },
-  { name: 'Contact',    id: 'contact',    icon: <FaEnvelope /> },
+  { name: 'Home',         id: 'hero',         icon: <FaHome /> },
+  { name: 'About',        id: 'about',        icon: <FaUserAlt /> },
+  { name: 'Experience',   id: 'experience',   icon: <FaBriefcase /> },
+  { name: 'Projects',     id: 'projects',     icon: <FaCode /> },
+  { name: 'Certificates', id: 'certificates', icon: <FaAward /> },
+  { name: 'Contact',      id: 'contact',      icon: <FaEnvelope /> },
 ];
 
 export default function Navbar({ theme, toggleTheme }) {
