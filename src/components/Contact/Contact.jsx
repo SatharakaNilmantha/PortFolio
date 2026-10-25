@@ -278,7 +278,7 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  🚀 Thank you! Your message was sent directly to my inbox. I'll get back to you shortly.
+                  Thank you! Your message was sent directly to my inbox. I'll get back to you shortly.
                 </motion.div>
               )}
 
@@ -288,7 +288,7 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  ⚠️ Message could not be sent right now. Please email directly to{' '}
+                  Message could not be sent right now. Please email directly to{' '}
                   <a href="mailto:satharakanilmantha1@gmail.com" style={{ color: '#00F0FF', textDecoration: 'underline' }}>
                     satharakanilmantha1@gmail.com
                   </a>
