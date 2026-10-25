@@ -4,6 +4,7 @@ import Hero from './components/Hero/Hero';
 import About from './components/About/About';
 import Experience from './components/Experience/Experience';
 import Projects from './components/Projects/Projects';
+import Certificates from './components/Certificates/Certificates';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import AiWorldBackground from './components/AiWorldBackground/AiWorldBackground';
@@ -32,6 +33,7 @@ function App() {
         <About />
         <Experience />
         <Projects />
+        <Certificates />
         <Contact />
       </main>
       <Footer />

@@ -52,7 +52,7 @@ export default function Footer() {
             <span>SATHARAKA_NILMANTHA</span> © {new Date().getFullYear()} · All Rights Reserved
           </p>
           <p className="footer-tech">
-            Built with <span>React.js</span> · <span>Framer Motion</span> · <span>Vite</span> · ❤️
+            Built with <span>React.js</span> · <span>Framer Motion</span> · <span>Vite</span>
           </p>
         </div>
 

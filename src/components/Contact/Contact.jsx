@@ -68,13 +68,37 @@ export default function Contact() {
     e.preventDefault();
     setSubmitting(true);
     setStatus('');
-    await new Promise(r => setTimeout(r, 1200));
-    const sub = encodeURIComponent(`Contact from ${form.name}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
-    window.location.href = `mailto:satharakanilmantha1@gmail.com?subject=${sub}&body=${body}`;
-    setStatus('success');
-    setForm({ name: '', email: '', message: '' });
-    setSubmitting(false);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/satharakanilmantha1@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: `New Portfolio Message from ${form.name}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+
+      const resData = await response.json();
+      if (response.ok || resData.success === 'true' || resData.success === true) {
+        setStatus('success');
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      console.error('Contact form error:', err);
+      setStatus('error');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const downloadCV = () => {
@@ -254,7 +278,20 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  ✅ Message sent! I'll be in touch soon.
+                  🚀 Thank you! Your message was sent directly to my inbox. I'll get back to you shortly.
+                </motion.div>
+              )}
+
+              {status === 'error' && (
+                <motion.div
+                  className="form-msg error"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  ⚠️ Message could not be sent right now. Please email directly to{' '}
+                  <a href="mailto:satharakanilmantha1@gmail.com" style={{ color: '#00F0FF', textDecoration: 'underline' }}>
+                    satharakanilmantha1@gmail.com
+                  </a>
                 </motion.div>
               )}
             </form>
