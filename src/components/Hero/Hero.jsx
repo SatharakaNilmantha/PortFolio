@@ -530,6 +530,7 @@ export default function Hero() {
               className={`portrait-mode-btn ${portraitMode === 'human' ? 'active' : ''}`}
               onClick={() => triggerFractureTransition('human')}
             >
+              
               <span className="mode-dot blue" />
               Human Core
             </button>
