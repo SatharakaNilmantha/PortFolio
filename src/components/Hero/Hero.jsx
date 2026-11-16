@@ -88,7 +88,7 @@ export default function Hero() {
   const [roleIdx, setRoleIdx] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [typing, setTyping] = useState(true);
-  const [portraitMode, setPortraitMode] = useState('split'); // 'split' | 'human'
+  const [portraitMode, setPortraitMode] = useState('human'); // 'split' | 'human'
   const [isTransitioning, setIsTransitioning] = useState(false);
   const powderCanvasRef = useRef(null);
   const animationFrameRef = useRef(null);
@@ -527,19 +527,19 @@ export default function Hero() {
           >
             <button
               type="button"
-              className={`portrait-mode-btn ${portraitMode === 'split' ? 'active' : ''}`}
-              onClick={() => triggerFractureTransition('split')}
-            >
-              <span className="mode-dot cyan" />
-              AI / Human Split
-            </button>
-            <button
-              type="button"
               className={`portrait-mode-btn ${portraitMode === 'human' ? 'active' : ''}`}
               onClick={() => triggerFractureTransition('human')}
             >
               <span className="mode-dot blue" />
               Human Core
+            </button>
+            <button
+              type="button"
+              className={`portrait-mode-btn ${portraitMode === 'split' ? 'active' : ''}`}
+              onClick={() => triggerFractureTransition('split')}
+            >
+              <span className="mode-dot cyan" />
+              AI / Human Split
             </button>
           </motion.div>
 
